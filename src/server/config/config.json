@@ -1,0 +1,52 @@
+{
+  "app": {
+    "host": "0.0.0.0",
+    "port": "3000"
+  },
+  "express": {
+    "logLevel": "tiny"
+  },
+  "session": {
+    "secret": "",
+    "maxAge": "1 day"
+  },
+  "cdn": {
+    "host": "",
+    "cacheKey": ""
+  },
+  "services": {
+    "defaultTimeout": 5000,
+    "verboseDebug": false
+  },
+  "i18n": {
+    "defaultLanguage": "en-US",
+    "saveMissingTranslations": false,
+    "supportedLanguages": [
+      { "id": "zh-CN", "i18n": "Chinese" },
+      { "id": "en-US", "i18n": "English" },
+      { "id": "fr-CA", "i18n": "French" },
+      { "id": "ja-JP", "i18n": "Japanese" },
+      { "id": "es-MX", "i18n": "Spanish" }
+    ]
+  },
+  "logging": {
+    "stdOut" : {
+      "disabled": false,
+      "level": "debug"
+    },
+    "streams": []
+  },
+  "statics": {
+    "maxAge": "Always set to 0 unless you are dev testing browser caching",
+    "maxAge": "0 days"
+  },
+  "__required": [
+    "app:host",
+    "app:port",
+    "session:secret",
+    "session:maxAge",
+    "i18n:defaultLanguage",
+    "i18n:supportedLanguages",
+    "services:defaultTimeout"
+  ]
+}

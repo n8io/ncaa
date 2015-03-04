@@ -1,0 +1,11 @@
+.env
+dist
+node_modules
+bower_components
+client
+tmp
+logs
+npm-*.*
+*c9*
+**/config.*.json
+!**/config.dev.json

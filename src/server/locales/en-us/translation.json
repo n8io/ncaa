@@ -1,0 +1,11 @@
+{
+    "home": {
+        "pageTitle": "Home"
+    },
+    "about": {
+        "pageTitle": "About"
+    },
+    "services": {
+        "pageTitle": "Services"
+    }
+}

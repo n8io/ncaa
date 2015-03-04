@@ -1,0 +1,11 @@
+{
+  "session": {
+    "secret": "< set this value per environment >"
+  },
+  "express": {
+    "logLevel": "dev"
+  },
+  "i18n": {
+    "saveMissingTranslations": true
+  }
+}

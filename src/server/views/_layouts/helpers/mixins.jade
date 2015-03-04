@@ -1,0 +1,25 @@
+//- Build preformatted page title section or passes on the supplied html block
+mixin body-title(_title, _desc)
+  if block
+    block
+  else
+    h1 #{_title}
+    if (_desc)
+      +body-description(_desc)
+
+//- Build preformatted page title subtext section or passes on the supplied html block
+mixin body-description(_desc)
+  hr
+  if block
+    block
+  else
+    p #{_desc}
+
+//- Dynamically sets the body's ng-controller name if supplied
+mixin body-ng-controller
+  if (controller_name)
+    body(layout='column', unresolved, data-ng-controller='#{controller_name}')
+      block
+  else
+    body(layout='column', unresolved)
+      block

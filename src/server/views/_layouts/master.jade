@@ -1,0 +1,19 @@
+include helpers/variables
+include helpers/mixins
+
+doctype html
+html(lang="en",data-ng-app='app',data-ng-strict-di)
+  head
+    include partials/header-meta
+    include partials/header-title
+    include partials/header-stylesheets
+    include partials/header-scripts
+  include partials/body-ng-controller
+    +body-ng-controller
+      include partials/body-header
+      div(layout='row', flex='')
+        include partials/body-subnav
+        #content(layout='column', flex='')
+          md-content.md-padding(layout='column', flex='')
+            include partials/body-content
+    include partials/body-scripts

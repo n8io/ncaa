@@ -1,0 +1,40 @@
+block body-scripts
+  //- *** START Header service will provide all of these items when wired up
+
+  script(src='#{CDN("/statics/bower_components/jquery/dist/jquery.min.js")}', data-id='js-jquery')
+  script(src='#{CDN("/statics/bower_components/async/lib/async.js")}', data-id='js-async')
+  script(src='#{CDN("/statics/bower_components/bootstrap/dist/js/bootstrap.min.js")}', data-id='js-bootstrap')
+  script(src='#{CDN("/statics/bower_components/lodash/lodash.min.js")}', data-id='js-lodash')
+  script(src='#{CDN("/statics/bower_components/modernizr/modernizr.js")}', data-id='js-modernizr')
+  script(src='#{CDN("/statics/bower_components/moment/min/moment.min.js")}', data-id='js-moment')
+  script(src='#{CDN("/statics/bower_components/underscore.string/dist/underscore.string.min.js")}', data-id='js-underscore.string')
+
+  script(src='#{CDN("/statics/bower_components/angular/angular.min.js")}', data-id='js-angular')
+  script(src='#{CDN("/statics/bower_components/angular-animate/angular-animate.min.js")}', data-id='js-angular-animate')
+  script(src='#{CDN("/statics/bower_components/angular-aria/angular-aria.min.js")}', data-id='js-angular-aria')
+  script(src='#{CDN("/statics/bower_components/angular-material/angular-material.min.js")}', data-id='js-angular-material')
+  script(src='#{CDN("/statics/bower_components/angular-resource/angular-resource.min.js")}', data-id='js-angular-resource')
+  script(src='#{CDN("/statics/bower_components/angular-ui-router/release/angular-ui-router.min.js")}', data-id='js-angular-ui-router')
+
+  //- *** END Header service items
+
+  //- Setup any globals for the app
+  script.
+    window.__env = '#{ isDevelopment?"dev":process.env.NODE_ENV }';
+    window.__langs = !{ JSON.stringify(config.get('i18n:supportedLanguages') || []) };
+    window.__lang = "#{ i18n.lng() }";
+    window._.str = s; //setting up underscore.string
+
+  //- Setup i18n translations
+  script(src="/i18next/i18next.js", data-id='js-i18n')
+
+  //- Angular app bundle
+  script(src='#{CDN("/js/angular/ng.min.js")}', data-id='js-app')
+
+  //- Scripts loaded, now show body of page
+  script.
+    $('body').removeAttr('unresolved');
+
+  //- Add livereload to help in local development only
+  if (config.get('NODE_ENV')||'').toLowerCase().indexOf('dev') === 0
+    script(src='//localhost:35729/livereload.js', async, data-id='js-livereload')

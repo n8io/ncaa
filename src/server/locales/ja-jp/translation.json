@@ -1,0 +1,11 @@
+{
+    "home": {
+        "pageTitle": "ホーム"
+    },
+    "services": {
+        "pageTitle": "サービス"
+    },
+    "about": {
+        "pageTitle": "約"
+    }
+}
