@@ -16,6 +16,7 @@ global.moment = require('moment');
 global.async = require('async');
 global.request = require('request');
 global.ms = require('ms');
+global.cheerio = require('cheerio');
 
 // Misc app variables
 global.appStartTime = (new Date()).getTime();

@@ -3,32 +3,31 @@
 
   angular
     .module('app.services', ['ngResource'])
-    .service('IpService', ipService)
-    .service('Md5Service', md5Service)
+    .service('ESPNService', espnService)
     ;
 
   /* @ngInject */
-  function ipService($log, $http) {
+  function espnService($log, $http) {
     var svc = {
-      getClientIp: getClientIp
+      getPoolInfo: getPoolInfo
     };
 
     return svc;
 
-    function getClientIp(callback) {
-      var uri = 'http://ip.jsontest.com';
+    function getPoolInfo(callback) {
+      var uri = '/api/espn/bracket';
       $http
         .get(uri)
-        .success(onGetIpSuccess)
-        .error(onGetIpError)
+        .success(onGetBracketInfoSuccess)
+        .error(onGetBracketInfoError)
         ;
 
-      function onGetIpSuccess(data, status, headers, config) {
+      function onGetBracketInfoSuccess(data, status, headers, config) {
         // signature: callback(error, results) {...}
         return callback(null, data);
       }
 
-      function onGetIpError(data, status, headers, config) {
+      function onGetBracketInfoError(data, status, headers, config) {
         $log.error({
           data: data,
           status: status,
@@ -39,23 +38,5 @@
         return callback(new Error('Could not retrieve client ip at this time.'));
       }
     }
-  }
-
-  /* @ngInject */
-  function md5Service($log, $resource) {
-    var uri = 'http://md5.jsontest.com'; // ?text=test
-    var timeout = 5000;
-    var paramDefaults = {
-      text: 'email@ddress.here'
-    };
-
-    return $resource(uri, paramDefaults,
-      {
-        getHash: {
-          method: 'GET',
-          timeout: timeout
-        }
-      }
-    );
   }
 })();

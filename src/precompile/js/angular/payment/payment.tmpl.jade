@@ -1,1 +1,19 @@
 h1 {{pc.title}}
+md-divider
+.height-10
+p Fill out the information below to start the payment process. You will get a chance to review before submitting. All payments must be submitted via Paypal.
+form(name='paymentForm')
+  div(layout, layout-sm='column', layout-wrap)
+    md-input-container(flex='50')
+      label First name
+      input(data-ng-model='pc.data.firstName',required)
+    md-input-container(flex='50')
+      label Last name
+      input(data-ng-model='pc.data.lastName',required)
+    md-input-container(flex='100')
+      label Bracket name(s)
+      input(data-ng-model='pc.data.brackets', required, name='brackets')
+      div(ng-messages='paymentForm.brackets.$error')
+        div(ng-message='required') List all of the brackets you are paying for. Separate them with commas. E.g. bracket1, bracket2
+.height-10
+img(src='http://sacredbydesign.com.au/manage/wp-content/uploads/2011/07/PAYPAL-LOGOS.jpg').responsive

@@ -1,8 +1,8 @@
 # ncaa
-A project to get you up and running quickly.
+A project to get people to sign up for March Madness brackets.
 
 ## Get started
-1. `git clone ncaa.git && cd ncaa`
+1. `git clone git@github.com:n8io/ncaa.git && cd ncaa`
 2. `npm install`
 3. `NODE_ENV=dev npm start`
 

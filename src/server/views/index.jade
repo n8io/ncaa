@@ -4,7 +4,7 @@ append header-meta
   base(href='/')
 
 append header-title
-  | n8io :: ncaa
+  | #{config.get('app:name')}
 
 append body-ng-controller
   - controller_name = 'Master_Controller as mc'

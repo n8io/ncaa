@@ -8,6 +8,8 @@ require('./init/globals');
 // Load up config
 require('./helpers/configuration')();
 
+config.set('app:name', 'March Madness ' + (new Date()).getFullYear())
+
 // Initialize logger
 global.logger = require('./init/logging').getLogger();
 

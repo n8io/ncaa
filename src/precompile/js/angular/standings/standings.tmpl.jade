@@ -1,1 +1,73 @@
-h1 {{sc.title}}
+h1.text-center Welcome to March Madness
+md-divider
+img(src='/statics/img/bracket-banner.png').responsive
+.div(layout='row', layout-fill, layout-wrap)
+  .div(flex="33")
+    md-card
+      md-card-content
+        h3 Payouts
+        md-divider
+        .height-10
+        .div
+          .line-height-20 {{::sc.pool.entries.length}} entries. 100% payout.
+          .line-height-20 1st / {{::sc.pool.payouts.first | currency}}
+          .line-height-20 2nd / {{::sc.pool.payouts.second | currency}}
+          .line-height-20 3rd / {{::sc.pool.payouts.third | currency}}
+  .div(flex="66")
+    md-card
+      md-card-content
+        h3 Helpful links
+        md-divider
+        .height-10
+        md-list
+          md-item
+            md-item-content
+              a(ui-sref='register').line-height-20 How to enter
+          md-item
+            md-item-content
+              a(ui-sref='payment').line-height-20 Where to make payments
+          md-item
+            md-item-content
+              a(ui-sref='rules').line-height-20 Rules
+          md-item
+            md-item-content
+              a(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=ncaa%20tournament%20schedule&es_th=1').line-height-20 Tournament schedule
+md-toolbar.md-theme-dark
+  h1.md-toolbar-tools(layout='row')
+    span(flex, flex-order='0') {{::sc.pool.name}}
+    md-button(ui-sref='register', hide-sm).float-right Join
+.md-list
+  table.table
+    thead
+      tr
+        th Rank
+        th Bracket
+        th(hide-sm) Owner
+        th(hide-sm) R64
+        th(hide-sm) R32
+        th(hide-sm) R16
+        th(hide-sm) R8
+        th(hide-sm) F4
+        th(hide-sm) NCG
+        th Champ
+        th PPR
+        th Total
+        th PCT
+    tbody
+      tr(data-ng-repeat='entry in ::sc.pool.entries | orderBy:-rank:entryName')
+        td
+          span.rank(data-ng-bind='{{::entry.rank}}', data-ng-show='::entry.rank > 0')
+          span.rank(data-ng-hide='::entry.rank > 0') --
+        td
+          a(data-ng-bind='::entry.entryName', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/2015/en/entry?entryID={{::entry.entryID}}')
+        td(data-ng-bind='::entry.userName', hide-sm)
+        td(data-ng-bind='::entry.periodPoints["6"]', hide-sm)
+        td(data-ng-bind='::entry.periodPoints["7"]', hide-sm)
+        td(data-ng-bind='::entry.periodPoints["8"]', hide-sm)
+        td(data-ng-bind='::entry.periodPoints["9"]', hide-sm)
+        td(data-ng-bind='::entry.periodPoints["10"]', hide-sm)
+        td(data-ng-bind='::entry.periodPoints["11"]', hide-sm)
+        td(data-ng-bind='::entry.pickString || "--"')
+        td(data-ng-bind='::entry.ppr')
+        td(data-ng-bind='::entry.points')
+        td(data-ng-bind='::percentile + "%"')

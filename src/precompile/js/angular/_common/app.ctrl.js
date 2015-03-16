@@ -25,8 +25,6 @@
       };
 
       vm.subNavItems = getSubNavItems();
-
-      $log.debug('Controller loaded: Master_Controller');
     }
 
     function toggleSidenav(menuId) {

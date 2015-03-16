@@ -10,8 +10,8 @@
   /* ngInject */
   function setupTheme($mdThemingProvider) {
     $mdThemingProvider.theme('default')
-      .primaryPalette('blue')
-      .accentPalette('orange');
+      .primaryPalette('red')
+      .accentPalette('blue');
 
     // $mdThemingProvider.theme('darkTheme')
     //   .primaryPalette('yellow')
