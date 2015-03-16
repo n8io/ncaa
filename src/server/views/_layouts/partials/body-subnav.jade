@@ -1,7 +1,7 @@
 block body-subnav
-  md-sidenav.md-sidenav-left.md-whiteframe-z2(layout='column', md-component-id='left', md-is-locked-open="$media('gt-sm')")
+  md-sidenav.md-sidenav-left.md-whiteframe-z2(layout='column', md-component-id='left', md-is-locked-open="$mdMedia('gt-sm')")
     md-list
       md-item(ng-repeat='item in mc.subNavItems')
-        md-button(ng-click='mc.selectSubNavItem(item)', ng-class="{'selected' : item === mc.selectedSubNavItem }")
-          md-icon.avatar(md-svg-icon='{{item.avatar}}')
-          | {{item.label}}
+        md-button(ui-sref='{{::item.id}}', ui-sref-active='selected')
+          md-icon.avatar(md-svg-icon='{{::item.avatar}}')
+          span {{::item.label}}

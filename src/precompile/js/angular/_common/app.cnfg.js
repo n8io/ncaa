@@ -2,9 +2,20 @@
   'use strict';
   angular
     .module('app.config', [])
+    .config(setupTheme)
     .run(setupStateChangeEvents)
     .run(initI18n)
     ;
+
+  /* ngInject */
+  function setupTheme($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .accentPalette('orange');
+
+    // $mdThemingProvider.theme('darkTheme')
+    //   .primaryPalette('yellow')
+  }
 
   /* ngInject */
   function setupStateChangeEvents($rootScope) {
@@ -35,11 +46,11 @@
       resPostPath: '/locales/add/__lng__/__ns__',
       detectLngQS: 'lang',
       lowerCaseLng: true,
-      fallbackLng: isDev ? 'xx-xx' : 'en-us',
+      fallbackLng: isDev ? 'xx' : 'en',
       useLocalStorage: true,
-      localStorageExpirationTime: isDev ? 1000 * 5 : thirtyMin,
+      localStorageExpirationTime: isDev ? (1000 * 5) : thirtyMin,
       debug: isDev,
-      sendMissing: isDev
+      sendMissing: true
     }, oni18nInitComplete);
 
     i18n.momentLng = function() {

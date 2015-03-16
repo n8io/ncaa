@@ -22,8 +22,8 @@
     "defaultLanguage": "en-US",
     "saveMissingTranslations": false,
     "supportedLanguages": [
-      { "id": "zh-CN", "i18n": "Chinese" },
       { "id": "en-US", "i18n": "English" },
+      { "id": "zh-CN", "i18n": "Chinese" },
       { "id": "fr-CA", "i18n": "French" },
       { "id": "ja-JP", "i18n": "Japanese" },
       { "id": "es-MX", "i18n": "Spanish" }

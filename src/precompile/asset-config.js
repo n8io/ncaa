@@ -134,7 +134,7 @@ var assets = {
     },
     server: {
       files: [
-        './src/server/**/*.js'
+        './src/server/**/*'
       ]
     },
     jade: {

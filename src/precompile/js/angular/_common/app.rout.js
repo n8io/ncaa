@@ -14,30 +14,35 @@
       .state('standings', {
         url: '/',
         templateUrl: 'standings/standings',
-        controller: 'Standings_Controller as sc'
+        controller: 'Standings_Controller',
+        controllerAs: 'sc'
       })
       .state('register', {
-        url: '/',
+        url: '/register',
         templateUrl: 'register/register',
-        controller: 'Register_Controller as rc'
+        controller: 'Register_Controller',
+        controllerAs: 'rc'
       })
       .state('rules', {
         url: '/rules',
         templateUrl: 'rules/rules',
-        controller: 'Rules_Controller as rc'
+        controller: 'Rules_Controller',
+        controllerAs: 'rc'
       })
       .state('payment', {
         url: '/payment',
         templateUrl: 'payment/payment',
-        controller: 'Payment_Controller as pc'
+        controller: 'Payment_Controller',
+        controllerAs: 'pc'
       })
       .state('info', {
         url: '/info',
         templateUrl: 'info/info',
-        controller: 'Info_Controller as ic'
+        controller: 'Info_Controller',
+        controllerAs: 'ic'
       });
 
     // Handle undefined routes by going back to url (not state) '/'
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/standings');
   }
 })();

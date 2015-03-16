@@ -1,1 +1,24 @@
-{}
+{
+    "standings": {
+        "pageTitle": "XXXXX"
+    },
+    "rules": {
+        "pageTitle": "XXXXX"
+    },
+    "register": {
+        "pageTitle": "XXXXX"
+    },
+    "info": {
+        "pageTitle": "XXXXX"
+    },
+    "payment": {
+        "pageTitle": "XXXXX"
+    },
+    "subnav": {
+        "Standings": "XXXXX",
+        "Rules": "XXXXX",
+        "Payment": "XXXXX",
+        "GroupInformation": "XXXXX",
+        "HowtoEnter": "XXXXX"
+    }
+}

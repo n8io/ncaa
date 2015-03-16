@@ -11,9 +11,9 @@ html(lang="en",data-ng-app='app',data-ng-strict-di)
   include partials/body-ng-controller
     +body-ng-controller
       include partials/body-header
-      div(layout='row', flex='')
+      div(layout='row', flex)
         include partials/body-subnav
-        #content(layout='column', flex='')
-          md-content.md-padding(layout='column', flex='')
+        #content(layout='column', flex)
+          md-content.md-padding(layout='column', flex)
             include partials/body-content
     include partials/body-scripts

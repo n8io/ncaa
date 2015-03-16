@@ -7,26 +7,24 @@
     ;
 
   /* @ngInject */
-  function masterController($log, $location, $mdSidenav, $mdThemingProvider) {
+  function masterController($log, $location, $rootScope, $mdSidenav) {
     var vm = this; // jshint ignore:line
 
+    $rootScope.$on('i18nInitComplete', oni18nInitComplete);
+
     vm.toggleSidenav = toggleSidenav;
+    vm.onSelectSubNavItem = onSelectSubNavItem;
     vm.init = init;
 
     vm.init();
 
     function init() {
-      $mdThemingProvider.theme('default')
-        .primaryPalette('light-green')
-        .accentPalette('green');
-
       vm.i18n = {
         currentLanguage: _.find(window.__langs, {id: window.__lang}),
         languages: window.__langs
       };
 
       vm.subNavItems = getSubNavItems();
-      vm.selectedSubNavItem = vm.subNavItems.length ? vm.subNavItems[0] : null;
 
       $log.debug('Controller loaded: Master_Controller');
     }
@@ -35,14 +33,22 @@
       $mdSidenav(menuId).toggle();
     }
 
+    function onSelectSubNavItem(item) {
+      // console.log(item);
+    }
+
     function getSubNavItems() {
       return [
-        {id: 0, label: 'Standings'},
-        {id: 1, label: 'How to Enter'},
-        {id: 2, label: 'Rules'},
-        {id: 3, label: 'Payment'},
-        {id: 4, label: 'Group Information'}
+        {id: 'standings', label: i18n.t('subnav.Standings', {defaultValue: 'Standings'})},
+        {id: 'register', label: i18n.t('subnav.HowtoEnter', {defaultValue: 'How to Enter'})},
+        {id: 'rules', label: i18n.t('subnav.Rules', {defaultValue: 'Rules'})},
+        {id: 'payment', label: i18n.t('subnav.Payment', {defaultValue: 'Payment'})},
+        {id: 'info', label: i18n.t('subnav.GroupInformation', {defaultValue: 'Group Information'})}
       ];
+    }
+
+    function oni18nInitComplete() {
+      vm.subNavItems = getSubNavItems();
     }
   }
 })();

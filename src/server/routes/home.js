@@ -3,9 +3,10 @@ module.exports = function home(app, options) {
 
   // Capture all html routes here because we are SPA
   var spaRoutes = [
-    '/home',
-    '/services',
-    '/about',
+    '/register',
+    '/rules',
+    '/payment',
+    '/info',
     '/'
   ];
 

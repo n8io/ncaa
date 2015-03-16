@@ -1,6 +1,24 @@
 {
-    "projects": {},
-    "services": {},
-    "about": {},
-    "home": {}
+    "standings": {
+        "pageTitle": "Overview"
+    },
+    "rules": {
+        "pageTitle": "Group Rules"
+    },
+    "register": {
+        "pageTitle": "Register Your Entries"
+    },
+    "info": {
+        "pageTitle": "Group Information"
+    },
+    "payment": {
+        "pageTitle": "How to Pay for Your Entry"
+    },
+    "subnav": {
+        "Standings": "Overview",
+        "HowtoEnter": "How to Enter",
+        "Rules": "Rules",
+        "Payment": "Payment",
+        "GroupInformation": "Group Info"
+    }
 }
