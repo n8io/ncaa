@@ -3,6 +3,7 @@
 
   angular.module('app', [
     'ngMaterial',
+    'app.constants',
     'app.config',
     'app.routes',
     'app.services',
@@ -10,7 +11,6 @@
     'standings',
     'register',
     'rules',
-    'payment',
-    'info'
+    'payment'
   ]);
 })();

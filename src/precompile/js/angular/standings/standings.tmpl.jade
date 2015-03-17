@@ -1,6 +1,3 @@
-h1.text-center Welcome to March Madness
-md-divider
-img(src='/statics/img/bracket-banner.png').responsive
 .div(layout='row', layout-fill, layout-wrap)
   .div(flex="33")
     md-card
@@ -35,7 +32,8 @@ img(src='/statics/img/bracket-banner.png').responsive
 md-toolbar.md-theme-dark
   h1.md-toolbar-tools(layout='row')
     span(flex, flex-order='0') {{::sc.pool.name}}
-    md-button(ui-sref='register', hide-sm).float-right Join
+    md-button(data-ng-click='mc.onRefreshClick()').float-right
+      i.fa.fa-refresh
 .md-list
   table.table
     thead

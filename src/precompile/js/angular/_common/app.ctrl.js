@@ -7,7 +7,7 @@
     ;
 
   /* @ngInject */
-  function masterController($log, $location, $rootScope, $mdSidenav) {
+  function masterController($log, $location, $rootScope, $mdSidenav, ESPNService) {
     var vm = this; // jshint ignore:line
 
     $rootScope.$on('i18nInitComplete', oni18nInitComplete);
@@ -25,6 +25,9 @@
       };
 
       vm.subNavItems = getSubNavItems();
+      vm.onRefreshClick = onRefreshClick;
+
+      ESPNService.refresh();
     }
 
     function toggleSidenav(menuId) {
@@ -40,13 +43,16 @@
         {id: 'standings', label: i18n.t('subnav.Standings', {defaultValue: 'Standings'})},
         {id: 'register', label: i18n.t('subnav.HowtoEnter', {defaultValue: 'How to Enter'})},
         {id: 'rules', label: i18n.t('subnav.Rules', {defaultValue: 'Rules'})},
-        {id: 'payment', label: i18n.t('subnav.Payment', {defaultValue: 'Payment'})},
-        {id: 'info', label: i18n.t('subnav.GroupInformation', {defaultValue: 'Group Information'})}
+        {id: 'payment', label: i18n.t('subnav.Payment', {defaultValue: 'Payment'})}
       ];
     }
 
     function oni18nInitComplete() {
       vm.subNavItems = getSubNavItems();
+    }
+
+    function onRefreshClick() {
+      ESPNService.refresh();
     }
   }
 })();

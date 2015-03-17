@@ -3,19 +3,25 @@
 
   angular
     .module('app.services', ['ngResource'])
+    .service('CacheService', cacheService)
     .service('ESPNService', espnService)
     ;
 
   /* @ngInject */
-  function espnService($log, $http) {
+  function espnService($log, $http, $rootScope, CONSTANTS) {
     var svc = {
-      getPoolInfo: getPoolInfo
+      refresh: function(callback) {
+        return refreshPoolData(callback);
+      }
     };
 
     return svc;
 
-    function getPoolInfo(callback) {
+    function refreshPoolData(callback) {
       var uri = '/api/espn/bracket';
+
+      callback = typeof callback === 'function' ? callback : function() {};
+
       $http
         .get(uri)
         .success(onGetBracketInfoSuccess)
@@ -23,8 +29,11 @@
         ;
 
       function onGetBracketInfoSuccess(data, status, headers, config) {
-        // signature: callback(error, results) {...}
-        return callback(null, data);
+        data.pool = convertPool(data.group);
+
+        $rootScope.$broadcast(CONSTANTS.ONPOOLDATAREFRESHED, data.pool);
+
+        return callback(null, data.pool);
       }
 
       function onGetBracketInfoError(data, status, headers, config) {
@@ -35,8 +44,45 @@
           config: config
         });
 
-        return callback(new Error('Could not retrieve client ip at this time.'));
+        return callback(new Error('Could not retrieve bracket info at this time.'));
       }
     }
+  }
+
+  /* @ngInject */
+  function cacheService($log, $http, $rootScope, CONSTANTS) {
+    var data = {};
+    var svc = {
+      get: function() {
+        return data;
+      },
+      set: function(d) {
+        data = d;
+      }
+    };
+
+    $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, handlePoolDataReceivedEvent);
+
+    return svc;
+
+    function handlePoolDataReceivedEvent(e, pool) {
+      data.pool = pool;
+    }
+  }
+
+  function convertPool(pool) {
+    pool = pool || {};
+    pool.costPerEntry = 10;
+    pool.firstPlacePercent = .5;
+    pool.secondPlacePercent = .35;
+    pool.thirdPlacePercent = .15;
+
+    pool.payouts = {
+      first: pool.entries.length * pool.costPerEntry * pool.firstPlacePercent,
+      second: pool.entries.length * pool.costPerEntry * pool.secondPlacePercent,
+      third: pool.entries.length * pool.costPerEntry * pool.thirdPlacePercent
+    };
+
+    return JSON.parse(JSON.stringify(pool));
   }
 })();

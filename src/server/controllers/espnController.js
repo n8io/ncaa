@@ -10,6 +10,7 @@ function getBracketInfo(req, res, next) {
   var opts = {}
 
   opts.uri = espnBrackUrl;
+  opts.qs = {noc: (new Date()).getTime()};
   opts.json = true;
 
   request(opts, onRequestResponse);

@@ -35,12 +35,7 @@
         controller: 'Payment_Controller',
         controllerAs: 'pc'
       })
-      .state('info', {
-        url: '/info',
-        templateUrl: 'info/info',
-        controller: 'Info_Controller',
-        controllerAs: 'ic'
-      });
+      ;
 
     // Handle undefined routes by going back to url (not state) '/'
     $urlRouterProvider.otherwise('/standings');
