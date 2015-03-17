@@ -33,7 +33,7 @@ module.exports = function() {
   config.set('cdn:qs', getCdnQueryString());
 
   if(!config.get('session:secret')) {
-    config.set('session:key', 'not set');
+    config.set('session:secret', 'not set');
   }
 
   // Check for any config validation errors
