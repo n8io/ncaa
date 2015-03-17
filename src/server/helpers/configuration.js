@@ -32,6 +32,10 @@ module.exports = function() {
   config.set('defaultConfig', configFileBaseName +  '.json');
   config.set('cdn:qs', getCdnQueryString());
 
+  if(!config.get('session:secret') {
+    config.set('session:key', 'not set');
+  }
+
   // Check for any config validation errors
   var configValidationErrors = [];
   var configRequiredValues = config.get('__required') || [];
