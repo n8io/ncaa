@@ -3,6 +3,7 @@
 
   angular.module('app', [
     'ngMaterial',
+    'ngTouch',
     'app.constants',
     'app.config',
     'app.routes',
