@@ -1,5 +1,5 @@
 .div(layout='row', layout-sm='column', layout-fill, layout-wrap)
-  .div(flex="33")
+  .div(flex)
     md-card
       md-card-content
         h3 Payouts
@@ -10,7 +10,7 @@
           .line-height-20 1st / {{::sc.pool.payouts.first | currency}}
           .line-height-20 2nd / {{::sc.pool.payouts.second | currency}}
           .line-height-20 3rd / {{::sc.pool.payouts.third | currency}}
-  .div(flex="66")
+  .div(flex)
     md-card
       md-card-content
         h3 Helpful links
