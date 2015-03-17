@@ -32,7 +32,7 @@ module.exports = function() {
   config.set('defaultConfig', configFileBaseName +  '.json');
   config.set('cdn:qs', getCdnQueryString());
 
-  if(!config.get('session:secret') {
+  if(!config.get('session:secret')) {
     config.set('session:key', 'not set');
   }
 
