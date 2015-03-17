@@ -9,7 +9,7 @@ module.exports = function middleware(app) {
   app.use(require('compression')());
 
   // Setup favicon path to reduce express logging chattiness
-  app.use(require('serve-favicon')(path.join(__dirname, '../../../dist/statics/img/favicon.ico')));
+  // app.use(require('serve-favicon')(path.join(__dirname, '../../../dist/statics/img/favicon.ico')));
 
   // Set statics to cache, otherwise default to never
   app.use(require('serve-static')(path.join(__dirname, '../../../dist'), {
