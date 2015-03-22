@@ -52,7 +52,7 @@ md-toolbar.md-theme-dark
         th Total
         th PCT
     tbody
-      tr(data-ng-repeat='entry in ::sc.pool.entries | orderBy:-rank:entryName')
+      tr(data-ng-repeat='entry in ::sc.pool.entries | orderBy:["rank","entryName"]')
         td
           span.rank(data-ng-bind='{{::entry.rank}}', data-ng-show='::entry.rank > 0')
           span.rank(data-ng-hide='::entry.rank > 0') --
@@ -65,7 +65,8 @@ md-toolbar.md-theme-dark
         td(data-ng-bind='::entry.periodPoints["9"]', hide-sm)
         td(data-ng-bind='::entry.periodPoints["10"]', hide-sm)
         td(data-ng-bind='::entry.periodPoints["11"]', hide-sm)
-        td(data-ng-bind='::entry.pickString || "--"')
+        td
+          img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{::entry.winningTeam.eid}}.png&w=26&h=26&scale=crop')
         td(data-ng-bind='::entry.ppr')
         td(data-ng-bind='::entry.points')
-        td(data-ng-bind='::percentile + "%"')
+        td(data-ng-bind='::entry.percentile + "%"')

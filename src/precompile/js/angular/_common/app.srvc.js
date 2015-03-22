@@ -29,7 +29,7 @@
         ;
 
       function onGetBracketInfoSuccess(data, status, headers, config) {
-        data.pool = convertPool(data.group);
+        data.pool = convertPool(data.group, CONSTANTS.teams);
 
         $rootScope.$broadcast(CONSTANTS.ONPOOLDATAREFRESHED, data.pool);
 
@@ -70,7 +70,7 @@
     }
   }
 
-  function convertPool(pool) {
+  function convertPool(pool, teams) {
     pool = pool || {};
     pool.costPerEntry = 10;
     pool.firstPlacePercent = .5;
