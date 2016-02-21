@@ -1,6 +1,8 @@
 var espnController = function() {};
+var year = process.env.YEAR || (new Date()).getFullyear();
+var groupId = process.env.ESPN_GROUP_ID || -1;
 var espnBrackUrl = 'http://games.espn.go.com/tournament-challenge-bracket'
-  + '/2015/en/api/v3/group?sort=-1&start=0&length=50&enable=periodPoints&groupID=651658';
+  + '/' + year.toString() + '/en/api/v3/group?sort=-1&start=0&length=50&enable=periodPoints&groupID=' + groupId.toString();
 
 espnController.getBracketInfo = getBracketInfo;
 
