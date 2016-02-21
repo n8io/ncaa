@@ -28,7 +28,6 @@
     "fontawesome": "*",
     "jquery": "*",
     "lodash": "*",
-    "modernizr": "*",
     "moment": "*",
     "underscore.string": "*",
     "flag-icon-css": "*",

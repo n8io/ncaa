@@ -33,6 +33,8 @@
 
         $rootScope.$broadcast(CONSTANTS.ONPOOLDATAREFRESHED, data.pool);
 
+        // console.log(data.pool);
+
         return callback(null, data.pool);
       }
 

@@ -5,7 +5,7 @@ block body-scripts
   script(src='#{CDN("/statics/bower_components/async/lib/async.js")}', data-id='js-async')
   script(src='#{CDN("/statics/bower_components/bootstrap/dist/js/bootstrap.min.js")}', data-id='js-bootstrap')
   script(src='#{CDN("/statics/bower_components/lodash/dist/lodash.min.js")}', data-id='js-lodash')
-  script(src='#{CDN("/statics/bower_components/modernizr/modernizr.js")}', data-id='js-modernizr')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', data-id='js-modernizr')
   script(src='#{CDN("/statics/bower_components/moment/min/moment.min.js")}', data-id='js-moment')
   script(src='#{CDN("/statics/bower_components/underscore.string/dist/underscore.string.min.js")}', data-id='js-underscore.string')
 
@@ -14,7 +14,6 @@ block body-scripts
   script(src='#{CDN("/statics/bower_components/angular-aria/angular-aria.min.js")}', data-id='js-angular-aria')
   script(src='#{CDN("/statics/bower_components/angular-material/angular-material.min.js")}', data-id='js-angular-material')
   script(src='#{CDN("/statics/bower_components/angular-resource/angular-resource.min.js")}', data-id='js-angular-resource')
-  script(src='#{CDN("/statics/bower_components/angular-touch/angular-touch.min.js")}', data-id='js-angular-touch')
   script(src='#{CDN("/statics/bower_components/angular-ui-router/release/angular-ui-router.min.js")}', data-id='js-angular-ui-router')
 
   //- *** END Header service items
@@ -25,6 +24,8 @@ block body-scripts
     window.__langs = !{ JSON.stringify(config.get('i18n:supportedLanguages') || []) };
     window.__lang = "#{ i18n.lng() }";
     window._.str = s; //setting up underscore.string
+    window.__year = '#{process.env.YEAR}';
+    window.__paymentUri = '#{process.env.PAYMENT_BASE_URL}';
 
   //- Setup i18n translations
   script(src="/i18next/i18next.js", data-id='js-i18n')

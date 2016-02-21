@@ -1,14 +1,14 @@
 var espnController = function() {};
-var year = process.env.YEAR || (new Date()).getFullyear();
+var year = process.env.YEAR || (new Date()).getFullYear();
 var groupId = process.env.ESPN_GROUP_ID || -1;
 var espnBrackUrl = 'http://games.espn.go.com/tournament-challenge-bracket'
   + '/' + year.toString() + '/en/api/v3/group?sort=-1&start=0&length=200&enable=periodPoints&groupID=' + groupId.toString();
 
-espnController.getBracketInfo = getBracketInfo;
+espnController.getPoolInfo = getPoolInfo;
 
 module.exports = espnController;
 
-function getBracketInfo(req, res, next) {
+function getPoolInfo(callback) {
   var opts = {}
 
   opts.uri = espnBrackUrl;
@@ -19,7 +19,7 @@ function getBracketInfo(req, res, next) {
 
   function onRequestResponse(err, resp, body) {
     if(err || resp.statusCode !== 200) {
-      return next(err || new Error('Returned bad response. ' + resp.statusCode));
+      return callback(err);
     }
 
     var data = body;
@@ -29,7 +29,7 @@ function getBracketInfo(req, res, next) {
       return e;
     });
 
-    return res.json(data);
+    return callback(null, data);
   }
 }
 

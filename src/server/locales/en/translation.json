@@ -1,6 +1,6 @@
 {
     "standings": {
-        "pageTitle": "Overview"
+        "pageTitle": "Entries"
     },
     "rules": {
         "pageTitle": "Group Rules"
@@ -12,10 +12,10 @@
         "pageTitle": "Group Information"
     },
     "payment": {
-        "pageTitle": "How to Pay for Your Entry"
+        "pageTitle": "Pay for Your Entry"
     },
     "subnav": {
-        "Standings": "Overview",
+        "Standings": "Entries",
         "HowtoEnter": "How to Enter",
         "Rules": "Rules",
         "Payment": "Payment",

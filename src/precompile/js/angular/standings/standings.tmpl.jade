@@ -23,13 +23,13 @@
               a.info-link(ui-sref='register').line-height-20 How to enter
           md-item
             md-item-content
-              a.info-link(ui-sref='payment').line-height-20 Where to make payments
+              a.info-link(ui-sref='payment').line-height-20 Pay for your Entry
           md-item
             md-item-content
               a.info-link(ui-sref='rules').line-height-20 Rules
           md-item
             md-item-content
-              a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=' + currentYear + '%20ncaa%20tournament%20schedule&es_th=1').line-height-20 Tournament schedule
+              a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=#{process.env.YEAR}%20ncaa%20tournament%20schedule&es_th=1').line-height-20 Tournament schedule
 md-toolbar.md-theme-dark
   h1.md-toolbar-tools(layout='row')
     span(flex, flex-order='0') {{::sc.pool.name}}
@@ -58,7 +58,7 @@ md-toolbar.md-theme-dark
           span.rank(data-ng-bind='{{::entry.rank}}', data-ng-show='::entry.rank > 0')
           span.rank(data-ng-hide='::entry.rank > 0') --
         td
-          a(data-ng-bind='::entry.entryName', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/2015/en/entry?entryID={{::entry.entryID}}')
+          a(target='_bracket', data-ng-bind='::entry.entryName', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{::entry.entryID}}')
         td(data-ng-bind='::entry.userName', hide-sm)
         td(data-ng-bind='::entry.periodPoints["6"]', hide-sm)
         td(data-ng-bind='::entry.periodPoints["7"]', hide-sm)
