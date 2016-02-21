@@ -72,7 +72,7 @@ var assets = {
         path.join(bowerDir, 'fontawesome/fonts/*'),
         path.join(bowerDir, 'jquery/dist/jquery.min.js'),
         path.join(bowerDir, 'jquery/dist/jquery.min.map'),
-        path.join(bowerDir, 'lodash/lodash.min.js'),
+        path.join(bowerDir, 'lodash/dist/lodash.min.js'),
         path.join(bowerDir, 'modernizr/modernizr.js'),
         path.join(bowerDir, 'moment/min/moment.min.js'),
         path.join(bowerDir, 'underscore.string/dist/underscore.string.min.js')

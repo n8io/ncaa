@@ -2,43 +2,31 @@ h1 {{pc.title}}
 md-divider
 .height-10
 p Fill out the information below to start the payment process. You will get a chance to review before submitting. All payments must be submitted via Paypal.
-form(name='paymentForm', action="https://www.paypal.com/cgi-bin/webscr", method='post')
-  input(type='hidden', name='cmd', value='_xclick')
-  input(type='hidden', name='business', value='nathandavidclark@gmail.com')
-  input(type='hidden', name='item_name', value='NCAA Tournament Bracket(s)')
-  input(type='hidden', name='item_number', value='{{pc.data.numberOfEntries + " - " + pc.data.brackets }}')
-  input(type='hidden', name='amount', value='{{(pc.data.numberOfEntries * pc.pool.costPerEntry) + (pc.data.numberOfEntries * pc.pool.costPerEntry * .029999) + .31 | number:2 }}')
-  input(type='hidden', name='no_shipping', value='0')
-  input(type='hidden', name='no_note', value='1')
-  input(type='hidden', name='custom', value='{{pc.data.firstName + " " + pc.data.lastName}}')
-  input(type='hidden', name='currency_code', value='USD')
-  input(type='hidden', name='bn', value='PP-BuyNowBF')
-
-  div(layout, layout-sm='column', layout-wrap)
-    md-input-container(flex='50')
-      label First name
-      input(data-ng-model='pc.data.firstName',required)
-    md-input-container(flex='50')
-      label Last name
-      input(data-ng-model='pc.data.lastName',required)
-    md-input-container(flex='100')
-      label Entry name(s)
-      input(data-ng-model='pc.data.brackets', required, name='brackets')
-      div(ng-messages='paymentForm.brackets.$error')
-        div(ng-message='required') List all of the brackets you are paying for. Separate them with commas. E.g. bracket1, bracket2
-  div(layout, layout-sm='column', layout-wrap).pad-top-15
-    .height-10
-    .text-muted.bold(flex='100') Number of Entries
-    md-radio-group(data-ng-model='pc.data.numberOfEntries', flex='100')
-      md-radio-button(value='1') One (1)
-      md-radio-button(value='2') Two (2)
-      md-radio-button(value='3') Three (3)
-  md-divider
+div(layout, layout-sm='column', layout-wrap)
+  md-input-container(flex='50')
+    label First name
+    input(data-ng-model='pc.data.firstName',required)
+  md-input-container(flex='50')
+    label Last name
+    input(data-ng-model='pc.data.lastName',required)
+  md-input-container(flex='100')
+    label Entry name(s)
+    input(data-ng-model='pc.data.brackets', required, name='brackets')
+    div(ng-messages='paymentForm.brackets.$error')
+      div(ng-message='required') List all of the brackets you are paying for. Separate them with commas. E.g. bracket1, bracket2
+div(layout, layout-sm='column', layout-wrap).pad-top-15
   .height-10
-  md-button(type='submit',ng-disabled='paymentForm.$invalid || !pc.data.numberOfEntries').md-raised.md-primary Start Payment Process
-  .height-10
-  i.fa.fa-2x.fa-cc-amex.pad-left-5
-  i.fa.fa-2x.fa-cc-mastercard.pad-left-5
-  i.fa.fa-2x.fa-cc-visa.pad-left-5
-  i.fa.fa-2x.fa-cc-discover.pad-left-5
-  .height-10
+  .text-muted.bold(flex='100') Number of Entries
+  md-radio-group(data-ng-model='pc.data.numberOfEntries', flex='100')
+    md-radio-button(value='1') One (1)
+    md-radio-button(value='2') Two (2)
+    md-radio-button(value='3') Three (3)
+md-divider
+.height-10
+md-button(type='submit',ng-disabled='paymentForm.$invalid || !pc.data.numberOfEntries').md-raised.md-primary Start Payment Process
+.height-10
+i.fa.fa-2x.fa-cc-amex.pad-left-5
+i.fa.fa-2x.fa-cc-mastercard.pad-left-5
+i.fa.fa-2x.fa-cc-visa.pad-left-5
+i.fa.fa-2x.fa-cc-discover.pad-left-5
+.height-10

@@ -12,6 +12,7 @@
           .line-height-20 3rd / {{::sc.pool.payouts.third | currency}}
   .div(flex)
     md-card
+      - var currentYear = (new Date()).getFullYear()
       md-card-content
         h3 Helpful links
         md-divider
@@ -19,16 +20,16 @@
         md-list
           md-item
             md-item-content
-              a(ui-sref='register').line-height-20 How to enter
+              a.info-link(ui-sref='register').line-height-20 How to enter
           md-item
             md-item-content
-              a(ui-sref='payment').line-height-20 Where to make payments
+              a.info-link(ui-sref='payment').line-height-20 Where to make payments
           md-item
             md-item-content
-              a(ui-sref='rules').line-height-20 Rules
+              a.info-link(ui-sref='rules').line-height-20 Rules
           md-item
             md-item-content
-              a(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=ncaa%20tournament%20schedule&es_th=1').line-height-20 Tournament schedule
+              a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=' + currentYear + '%20ncaa%20tournament%20schedule&es_th=1').line-height-20 Tournament schedule
 md-toolbar.md-theme-dark
   h1.md-toolbar-tools(layout='row')
     span(flex, flex-order='0') {{::sc.pool.name}}
