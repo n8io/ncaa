@@ -9,5 +9,38 @@ body[unresolved]
 img.responsive
   max-width 100%
 
+img.eliminated
+  -webkit-filter grayscale(100%)
+  filter grayscale(100%)
+  opacity .4
+
 .info-link
   display block
+
+tr
+  transform all 300ms ease
+  .tiny
+    max-width 30px
+    text-align center
+
+.rankings
+  tr
+    th
+    td
+      vertical-align baseline !important
+  tr:hover
+    background-color rgba(0, 0, 0, .1) !important
+    font-size 110%
+    font-weight bold
+  tr:nth-child(even)
+    background-color rgba(0, 0, 0, 0)
+  tr:nth-child(odd)
+    background-color rgba(0, 0, 0, .05)
+  tr.third
+    border-bottom 2px solid rgba(green, .5)
+
+.payment
+  .owed
+    color darken(red, 20%)
+  .paid
+    color rgba(green, .4)

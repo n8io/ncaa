@@ -2,10 +2,12 @@
   This file defines (for Grunt) where asset sources and destinations relative to  the project root
 */
 
+var cwd = require('cwd');
 var path = require('path');
 var outputDir = 'dist';
 var prebuildDir = './src/precompile';
 var bowerDir = 'bower_components';
+var pkgJson = require(cwd('package.json'));
 
 var assets = {
   outputDir: outputDir,
@@ -154,7 +156,7 @@ var assets = {
     }
   },
   nodemon: {
-    cwd: './src/server',
+    script: cwd(pkgJson.main),
     debugPort: 5860,
     watch: ['**/*.js', '**/*.json']
   },
@@ -172,5 +174,7 @@ var assets = {
     }
   }
 };
+
+console.log(JSON.stringify(cwd(pkgJson.main),null,2));
 
 module.exports = assets;

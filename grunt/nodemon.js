@@ -1,8 +1,10 @@
+var cwd = require('cwd');
+var pkgJson = require(cwd('package.json'));
+
 module.exports = {
   dev: {
-    script: 'app.js',
+    script: cwd(pkgJson.main),
     options : {
-      cwd: '<%= cfg.nodemon.cwd %>',
       nodeArgs: ['--debug=' + '<%= cfg.nodemon.debugPort %>'],
       watch: '<%= cfg.nodemon.watch %>',
       ext: 'js,json'

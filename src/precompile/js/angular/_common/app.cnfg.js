@@ -18,13 +18,14 @@
   }
 
   /* ngInject */
-  function setupStateChangeEvents($rootScope) {
+  function setupStateChangeEvents($rootScope, $mdSidenav) {
     $rootScope.$on('$stateChangeSuccess', onStateChangeSuccess);
     $rootScope.$on('$stateChangeError', onStateChangeError);
     $rootScope.$on('$stateNotFound', onStateNotFound);
 
     function onStateChangeSuccess(event, toState, toParams, fromState, fromParams) {
       $('body').removeAttr('unresolved');
+      $mdSidenav('left').close();
     }
 
     function onStateChangeError(event, toState, toParams, fromState, fromParams, error) {

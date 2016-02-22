@@ -9,7 +9,8 @@
   /* @ngInject */
   function constants() {
     return {
-      ONPOOLDATAREFRESHED: 'onPoolDataRefreshed'
+      ONPOOLDATAREFRESHED: 'onPoolDataRefreshed',
+      ONPOOLDATAREFRESHING: 'onPoolDataRefreshing'
     };
   }
 })();

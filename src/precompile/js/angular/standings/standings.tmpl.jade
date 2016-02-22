@@ -34,40 +34,45 @@ md-toolbar.md-theme-dark
   h1.md-toolbar-tools(layout='row')
     span(flex, flex-order='0') {{::sc.pool.name}}
     md-button(data-ng-click='mc.onRefreshClick()').float-right
-      i.fa.fa-refresh
+      i.fa.fa-refresh(data-ng-class='{"fa-spin": sc.isRefreshing}')
 .md-list
   table.table
     thead
       tr
-        th Rank
+        th.tiny Rank
+        th.tiny Paid
         th Bracket
-        th(hide-sm) Owner
-        th(hide-sm) R64
-        th(hide-sm) R32
-        th(hide-sm) R16
-        th(hide-sm) R8
-        th(hide-sm) F4
-        th(hide-sm) NCG
+        th(hide-md, hide-sm, hide-xs) Owner
+        th(hide-md, hide-sm, hide-xs) R64
+        th(hide-md, hide-sm, hide-xs) R32
+        th(hide-md, hide-sm, hide-xs) R16
+        th(hide-md, hide-sm, hide-xs) R8
+        th(hide-md, hide-sm, hide-xs) F4
+        th(hide-md, hide-sm, hide-xs) NCG
         th Champ
         th PPR
         th Total
-        th PCT
-    tbody
-      tr(data-ng-repeat='entry in ::sc.pool.entries | orderBy:["rank","entryName"]')
-        td
+        th(hide-xs) PCT
+    tbody.rankings
+      tr(data-ng-repeat='entry in ::sc.pool.entries | orderBy:["rank","entryName"]', data-ng-class='{first: $first, second: $index == 1, third: $index == 2}')
+        td.tiny
           span.rank(data-ng-bind='{{::entry.rank}}', data-ng-show='::entry.rank > 0')
           span.rank(data-ng-hide='::entry.rank > 0') --
+        td.tiny
+          span.payment
+            i.fa.fa-usd(data-ng-if='!entry.paid').owed
+            i.fa.fa-check(data-ng-if='entry.paid').paid
         td
           a(target='_bracket', data-ng-bind='::entry.entryName', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{::entry.entryID}}')
-        td(data-ng-bind='::entry.userName', hide-sm)
-        td(data-ng-bind='::entry.periodPoints["6"]', hide-sm)
-        td(data-ng-bind='::entry.periodPoints["7"]', hide-sm)
-        td(data-ng-bind='::entry.periodPoints["8"]', hide-sm)
-        td(data-ng-bind='::entry.periodPoints["9"]', hide-sm)
-        td(data-ng-bind='::entry.periodPoints["10"]', hide-sm)
-        td(data-ng-bind='::entry.periodPoints["11"]', hide-sm)
+        td(data-ng-bind='::entry.userName', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints["6"]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints["7"]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints["8"]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints["9"]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints["10"]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints["11"]', hide-md, hide-sm, hide-xs)
         td
-          img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{::entry.winningTeam.eid}}.png&w=26&h=26&scale=crop')
+          img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{::entry.winningTeam.eid}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}')
         td(data-ng-bind='::entry.ppr')
         td(data-ng-bind='::entry.points')
-        td(data-ng-bind='::entry.percentile + "%"')
+        td(data-ng-bind='::entry.percentile + "%"', hide-xs)

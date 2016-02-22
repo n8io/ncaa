@@ -22,6 +22,8 @@
 
       callback = typeof callback === 'function' ? callback : function() {};
 
+      $rootScope.$broadcast(CONSTANTS.ONPOOLDATAREFRESHING);
+
       $http
         .get(uri)
         .success(onGetBracketInfoSuccess)
