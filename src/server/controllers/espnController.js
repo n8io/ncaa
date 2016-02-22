@@ -26,6 +26,8 @@ function getPoolInfo(callback) {
     data.group.entries = _.map(data.group.entries, function(e) {
       e.winningTeam = _.find(teams, {id: e.winningTeamID});
 
+      e.periodPoints = _(e.periodPoints).values().value();
+
       return e;
     });
 

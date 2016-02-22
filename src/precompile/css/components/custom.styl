@@ -18,26 +18,47 @@ img.eliminated
   display block
 
 tr
-  transform all 300ms ease
   .tiny
     max-width 30px
-    text-align center
+  .small
+    max-width 40px
+  .medium
+    max-width 60px
+  .large
+    max-width 100px
 
 .rankings
   tr
+    transform all 1s ease
     th
     td
       vertical-align baseline !important
+    &.tiny
+      .rank
+        transform all 700ms ease
   tr:hover
-    background-color rgba(0, 0, 0, .1) !important
-    font-size 110%
-    font-weight bold
+    background-color rgba(0, 0, 0, 0.1) !important
+    td.tiny
+      .rank
+        font-size 110%
+        font-weight bold
   tr:nth-child(even)
     background-color rgba(0, 0, 0, 0)
   tr:nth-child(odd)
     background-color rgba(0, 0, 0, .05)
+  tr.first
+    font-weight bold
+    .rank
+      font-size 110%
+  tr.second
+    font-weight bold
+    .rank
+      font-size 110%
   tr.third
+    font-weight bold
     border-bottom 2px solid rgba(green, .5)
+    .rank
+      font-size 110%
 
 .payment
   .owed
