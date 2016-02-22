@@ -45,6 +45,7 @@
     "compression": "*",
     "cookie-parser": "*",
     "cookie-session": "*",
+    "dotenv-safe": "^2.2.0",
     "express": "*",
     "grunt": "*",
     "grunt-angular-templates": "*",

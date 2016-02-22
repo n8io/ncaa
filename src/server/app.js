@@ -1,5 +1,5 @@
+require('dotenv-safe').load({silent: true});
 var express = require('express');
-
 var app = express();
 
 // Establish global variables
