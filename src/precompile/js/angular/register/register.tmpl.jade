@@ -20,7 +20,7 @@ md-list
         h2 Step 2 &mdash; Click the link
         h3
           .mgn-left-20
-            a(target='_espn', href='//bit.ly/tournament-challenged') http://bit.ly/tournament-challenged
+            a(target='_espn', href='#{process.env.BITLY_URL}') #{process.env.BITLY_URL}
   md-divider
   md-item
     md-item-content
