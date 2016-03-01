@@ -1,6 +1,7 @@
 /*
   This file defines (for Grunt) where asset sources and destinations relative to  the project root
 */
+require('dotenv-safe').load({silent: true});
 
 var cwd = require('cwd');
 var path = require('path');
@@ -174,7 +175,5 @@ var assets = {
     }
   }
 };
-
-console.log(JSON.stringify(cwd(pkgJson.main),null,2));
 
 module.exports = assets;
