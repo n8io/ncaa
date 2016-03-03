@@ -29,7 +29,10 @@ require('./init/middleware')(app);
 // Define custom routes
 require('./routes')(app);
 
-var server = app.listen(app.get('port'), app.get('host'), function() {
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
+
+var server = app.listen(PORT, HOST, function() {
   logger.info(
     '%s@%s is running at http://%s:%s',
     app.get('name'),

@@ -10,7 +10,7 @@
     "dev": "grunt watcher | bunyan",
     "grunt": "grunt",
     "jscs": "grunt jscs",
-    "clean": "npm run dusting && rm -rf node_modules/",
+    "clean": "npm run clean:dusting && rm -rf node_modules/",
     "clean:dusting": "rm -rf dist/ src/precompile/statics/bower_components"
   },
   "keywords": [
