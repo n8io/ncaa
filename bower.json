@@ -29,7 +29,6 @@
     "jquery": "*",
     "lodash": "*",
     "moment": "*",
-    "underscore.string": "*",
     "angular-material": "*",
     "angular-touch": "*"
   }
