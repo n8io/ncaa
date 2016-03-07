@@ -9,7 +9,7 @@
     "build:lint": "npm run build lint",
     "build:nvm": "node build/nvm",
     "clean": "npm run clean:dusting && rm -rf node_modules/",
-    "clean:dusting": "rm -rf dist/ coverage/ log/ logs/ npm-debug.log",
+    "clean:dusting": "rm -rf dist/ coverage/ log/ logs/ npm-debug.log client/statics/bower_components/",
     "dev": "gulp dev | bunyan",
     "postinstall": "bower install && npm run build",
     "start": "node $npm_package_main",

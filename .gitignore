@@ -9,3 +9,4 @@ npm-*.*
 *c9*
 **/config.*.json
 !**/config.dev.json
+.git.json
