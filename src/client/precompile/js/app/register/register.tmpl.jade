@@ -1,0 +1,53 @@
+h1
+  span {{rc.title}}
+md-divider
+md-list
+  md-item
+    md-item-content
+      .md-tile-content
+        h2 Step 1 &mdash; Login to your ESPN account*.
+        h3
+          .mgn-left-10
+            a(target='_espn', href='http://espn.go.com') Login here
+        .height-10
+        a(target='_espn', href='http://espn.go.com')
+          img(src='/statics/img/step-01-signin.png').responsive
+        md-subheader.md-no-sticky * If you do not have an ESPN account, you will need to create one.
+  md-divider
+  md-item
+    md-item-content
+      .md-tile-content
+        h2 Step 2 &mdash; Click the link
+        h3
+          .mgn-left-20
+            a(target='_espn', href='#{process.env.BITLY_URL}') #{process.env.BITLY_URL}
+  md-divider
+  md-item
+    md-item-content
+      .md-tile-content
+        h2 Step 3 &mdash; Name your bracket
+        .height-10
+        img(src='/statics/img/step-03-create.png').responsive
+  md-divider
+  md-item
+    md-item-content
+      .md-tile-content
+        h2 Step 4 &mdash; Join the Group*
+        .height-10
+        img(src='/statics/img/step-04-join.png').responsive
+        .height-10
+        h3 OR if you want to add a bracket you already have already created...
+        .height-10
+        img(src='/statics/img/step-04b-add.png').responsive
+        md-subheader.md-no-sticky
+          span * If prompted, the group password is:&nbsp;
+          span.bold madness
+  md-divider
+  md-item
+    md-item-content
+      .md-tile-content
+        h2 Step 5 &mdash; Verify you have entered
+        h3
+          .mgn-left-20
+          a(ui-sref='standings') Group Entries
+        md-subheader.md-no-sticky If you do not see your bracket entry here, you messed up. Go back to Step 2 and try again.

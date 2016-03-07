@@ -1,0 +1,68 @@
+body
+  transition opacity ease-in 0.2s
+  font-family Roboto, sans-serif
+body[unresolved]
+  opacity 0
+  display block
+  overflow hidden
+
+img.responsive
+  max-width 100%
+
+img.eliminated
+  -webkit-filter grayscale(100%)
+  filter grayscale(100%)
+  opacity .4
+
+.info-link
+  display block
+
+tr
+  .tiny
+    max-width 30px
+  .small
+    max-width 40px
+  .medium
+    max-width 60px
+  .large
+    max-width 100px
+
+.rankings
+  tr
+    transform all 1s ease
+    th
+    td
+      vertical-align baseline !important
+    &.tiny
+      .rank
+        transform all 700ms ease
+  tr:hover
+    background-color rgba(0, 0, 0, 0.1) !important
+    td.tiny
+      .rank
+        font-size 110%
+        font-weight bold
+  tr:nth-child(even)
+    background-color rgba(0, 0, 0, 0)
+  tr:nth-child(odd)
+    background-color rgba(0, 0, 0, .05)
+  tr.first
+    font-weight bold
+    .rank
+      font-size 110%
+  tr.second
+    font-weight bold
+    .rank
+      font-size 110%
+  tr.third
+    font-weight bold
+    border-bottom 2px solid rgba(green, .5)
+    .rank
+      font-size 110%
+
+.payment
+  cursor pointer
+  .owed
+    color darken(red, 20%)
+  .paid
+    color rgba(green, .4)

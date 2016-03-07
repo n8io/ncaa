@@ -1,0 +1,81 @@
+.div(layout='row', layout-sm='column', layout-fill, layout-wrap)
+  .div(flex)
+    md-card
+      md-card-content
+        h3 Payouts
+        md-divider
+        .height-10
+        .div
+          .line-height-20 {{::sc.pool.entries.length}} entries. 100% payout.
+          .line-height-20 1st / {{::sc.pool.payouts.first | currency}}
+          .line-height-20 2nd / {{::sc.pool.payouts.second | currency}}
+          .line-height-20 3rd / {{::sc.pool.payouts.third | currency}}
+        .height-10
+        .height-5
+  .div(flex)
+    md-card
+      - var currentYear = (new Date()).getFullYear()
+      md-card-content
+        h3 Helpful links
+        md-divider
+        .height-10
+        md-list
+          md-item
+            md-item-content
+              a.info-link(ui-sref='register').line-height-20 How to enter
+          md-item
+            md-item-content
+              a.info-link(ui-sref='payment').line-height-20 Pay for your Entry
+          md-item
+            md-item-content
+              a.info-link(ui-sref='rules').line-height-20 Rules
+          md-item
+            md-item-content
+              a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=#{process.env.YEAR}%20ncaa%20tournament%20schedule&es_th=1').line-height-20 Tournament schedule
+md-toolbar.md-theme-dark
+  h1.md-toolbar-tools(layout='row')
+    span(flex, flex-order='0') {{::sc.pool.name}}
+    md-button(data-ng-click='mc.onRefreshClick()', aria-label='Refresh').float-right
+      i.fa.fa-refresh(data-ng-class='{"fa-spin": sc.isRefreshing}')
+.md-list
+  table.table
+    thead
+      tr
+        th.tiny.text-center Rank
+        th Bracket
+        th.tiny.text-center Paid
+        th(hide-md, hide-sm, hide-xs) Owner
+        th(hide-md, hide-sm, hide-xs) R64
+        th(hide-md, hide-sm, hide-xs) R32
+        th(hide-md, hide-sm, hide-xs) R16
+        th(hide-md, hide-sm, hide-xs) R8
+        th(hide-md, hide-sm, hide-xs) F4
+        th(hide-md, hide-sm, hide-xs) NCG
+        th.medium.text-center Champ
+        th.small.text-right PPR
+        th.small Total
+        th(hide-xs) PCT
+    tbody.rankings
+      tr(data-ng-repeat='entry in ::sc.pool.entries | orderBy:["rank","entryName"]', data-ng-class='{first: $first, second: $index == 1, third: $index == 2}')
+        td.tiny.text-center
+          span.rank(data-ng-bind='{{::entry.rank}}', data-ng-show='::entry.rank > 0')
+          span.rank(data-ng-hide='::entry.rank > 0') --
+        td
+          a(target='_bracket', data-hint='{{::entry.userName || "Unknown"}}', data-ng-bind='::entry.entryName', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{::entry.entryID}}').hint--top-right.hint--bounce
+        td.tiny.text-center
+          .payment(data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'Entry is paid for.'}}").hint--bounce.hint--top
+            i.fa.fa-usd(data-ng-if='!entry.paid').owed
+            i.fa.fa-check(data-ng-if='entry.paid').paid
+        td(data-ng-bind='::entry.userName || "--"', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints[0]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints[1]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints[2]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints[3]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints[4]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='::entry.periodPoints[5]', hide-md, hide-sm, hide-xs)
+        td.medium.text-center
+          .hint--top.hint--bounce(data-hint='{{entry.winningTeam.n}}')
+            img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{::entry.winningTeam.eid}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}').responsive
+        td(data-ng-bind='::entry.ppr').small.text-right
+        td(data-ng-bind='::entry.points').small
+        td(data-ng-bind='::entry.percentile + "%"', hide-xs)

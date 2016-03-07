@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "$": true,
+    "_": true,
+    "angular": true,
+    "CryptoJS": true,
+    "d3": true,
+    "Firebase": true,
+    "moment": true,
+    "Mousetrap": true,
+    "PUBNUB": true,
+    "toastr": true,
+    "__paymentUri": true,
+    "__year": true
+  },
+  "plugins": [
+    "angular"
+  ]
+}

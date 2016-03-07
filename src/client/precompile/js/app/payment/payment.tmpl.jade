@@ -1,0 +1,30 @@
+h1 {{pc.title}}
+md-divider
+.height-10
+p Fill out the information below to start the payment process. You will get a chance to review before submitting. All payments must be submitted via this form.
+form(name='pc.paymentForm', layout, layout-xs='column', layout-wrap)
+  md-input-container(flex='50',flex-xs='100')
+    label First name
+    input(data-ng-model='pc.paymentForm.firstName',required,md-input-name='firstName').fname
+  md-input-container(flex='50', flex-xs='100')
+    label Last name
+    input(data-ng-model='pc.paymentForm.lastName',required,md-input-name='lastName')
+  md-chips(flex='100',required, md-input-name='selectedEntries', data-ng-model='pc.selectedEntries', md-autocomplete-snap='', md-transform-chip='pc.transformChip($chip)', md-require-match='true')
+    md-autocomplete(md-selected-item='pc.selectedItem', md-search-text='pc.searchText', md-items='item in pc.querySearch(pc.searchText)', md-item-text='item.name', md-floating-label='Your entry name(s)').chips
+      span(md-highlight-text='pc.searchText') {{item.name}}{{item.paid ? ' (paid)' : ''}}
+    md-chip-template
+      span
+        strong {{$chip.name}}{{$chip.paid ? ' (paid)' : ''}}
+md-divider
+.height-10
+.height-10
+.height-10
+md-button(type='submit', ng-click='pc.onSubmit()', ng-disabled='pc.paymentForm.$invalid || pc.selectedEntries.length == 0').md-raised.md-primary Continue
+.float-right
+  .height-10
+  i.fa.fa-2x.fa-cc-amex.pad-left-5
+  i.fa.fa-2x.fa-cc-mastercard.pad-left-5
+  i.fa.fa-2x.fa-cc-visa.pad-left-5
+  i.fa.fa-2x.fa-cc-discover.pad-left-5
+.height-10
+

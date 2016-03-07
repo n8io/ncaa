@@ -5,7 +5,7 @@ module.exports = (gulp, plugins) => {
   require(`./tasks`)(gulp, plugins, cfg);
 
   // Expose custom multi-tasks
-  gulp.task(`compile`, [`compile-js`, `compile-css`, `compile-html`, `compile-statics`]);
+  gulp.task(`compile`, [`compile-js`, `compile-css`, `compile-html`]);
   gulp.task(`compile-css`, [`css`]);
   gulp.task(`compile-html`, [`html`]);
   gulp.task(`compile-js`, [`js`]);
