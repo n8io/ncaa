@@ -1,7 +1,6 @@
 const stripeAccoutKey = process.env.STRIPE_SECRET_KEY;
-const stripe = require('stripe')(stripeAccoutKey);
-const _ = require('lodash');
-var paymentsController = function() {};
+const stripe = require(`stripe`)(stripeAccoutKey);
+const paymentsController = function() {};
 
 module.exports = paymentsController;
 
@@ -13,16 +12,16 @@ function getPayments(callback) {
 
     charges
       .data
-      .filter((c) => c.metadata.ncaa && c.metadata.brackets && c.paid && c.metadata.brackets.indexOf('~~~') > -1)
+      .filter((c) => c.metadata.ncaa && c.metadata.brackets && c.paid && c.metadata.brackets.indexOf(`~~~`) > -1)
       .forEach((c) => {
-        const parts = c.metadata.brackets.split(':::');
+        const parts = c.metadata.brackets.split(`:::`);
 
         parts.forEach((b) => {
-          const arr = b.split('~~~');
+          const arr = b.split(`~~~`);
           const id = parseInt(arr[0], 10);
           const name = arr[1];
 
-          if(!brackets.find((e) => e.id === id)) {
+          if (!brackets.find((e) => e.id === id)) {
             brackets.push({
               id: id,
               name: name,
@@ -35,5 +34,5 @@ function getPayments(callback) {
       ;
 
     return callback(null, brackets);
-  })
+  });
 }

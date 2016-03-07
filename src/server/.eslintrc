@@ -1,0 +1,9 @@
+{
+  "env": {
+    "node": true
+  },
+  "globals": {
+    "config": true,
+    "logger": true
+  }
+}

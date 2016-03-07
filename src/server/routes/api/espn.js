@@ -1,22 +1,23 @@
-var espnController = require('../../controllers/espnController');
-var paymentsController = require('../../controllers/paymentsController');
+const express = require(`express`);
+const espnController = require(`../../controllers/espnController`);
+const paymentsController = require(`../../controllers/paymentsController`);
 
-module.exports = function(app, options) {
-  var router = express.Router();
+module.exports = function(app /* , options*/) {
+  const router = express.Router();
 
-  router.get('/espn/bracket', getPoolInfo);
+  router.get(`/espn/bracket`, getPoolInfo);
 
-  app.use('/api', router);
+  app.use(`/api`, router);
 
   function getPoolInfo(req, res, next) {
     espnController.getPoolInfo(function(err, pool) {
-      if(err) {
-        return next(err || new Error('Returned bad response.'));
+      if (err) {
+        return next(err || new Error(`Returned bad response.`));
       }
 
       paymentsController.getPayments(function(err, paidBrackets) {
-        if(err) {
-          return next(err || new Error('Retuned bad response when fetching payments'));
+        if (err) {
+          return next(err || new Error(`Retuned bad response when fetching payments`));
         }
 
         pool.group.entries.forEach((e) => {

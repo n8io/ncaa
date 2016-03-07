@@ -1,24 +1,30 @@
+const fs = require(`fs`);
+const express = require(`express`);
+const cwd = require(`cwd`);
+const pkgjson = require(cwd(`package.json`));
+const bwrjson = JSON.parse(fs.readFileSync(cwd(`.bowerrc`), `utf-8`).toString());
+
 module.exports = function home(app, options) {
-  var router = express.Router();
+  const router = express.Router();
 
   // Capture all html routes here because we are SPA
-  var spaRoutes = [
-    '/register',
-    '/rules',
-    '/payment',
-    '/info',
-    '/'
+  const spaRoutes = [
+    `/register`,
+    `/rules`,
+    `/payment`,
+    `/info`,
+    `/`
   ];
 
   router.get(spaRoutes, function(req, res, next) {
-    if(!req.accepts('html')) {
+    if (!req.accepts(`html`)) {
       return next();
     }
 
-    var options = options || {};
+    options = options || {};
 
-    return res.render('index', {pkgjson: pkgjson, bwrjson: bwrjson});
+    return res.render(`index`, {pkgjson: pkgjson, bwrjson: bwrjson});
   });
 
-  app.use('/', router);
+  app.use(`/`, router);
 };

@@ -21,22 +21,20 @@ block body-scripts
   //- Setup any globals for the app
   script.
     window.__env = '#{ isDevelopment?"dev":process.env.NODE_ENV }';
-    window.__langs = !{ JSON.stringify(config.get('i18n:supportedLanguages') || []) };
-    window.__lang = "#{ i18n.lng() }";
     window._.str = s; //setting up underscore.string
     window.__year = '#{process.env.YEAR}';
     window.__paymentUri = '#{process.env.PAYMENT_BASE_URL}';
 
-  //- Setup i18n translations
-  script(src="/i18next/i18next.js", data-id='js-i18n')
-
   //- Angular app bundle
-  script(src='#{CDN("/js/angular/ng.min.js")}', data-id='js-app')
+  - if (isDevelopment)
+    script(src='#{CDN("/js/script.js")}', data-id='js-app')
+  - else  
+    script(src='#{CDN("/js/script.min.js")}', data-id='js-app')
 
   //- Scripts loaded, now show body of page
   script.
     $('body').removeAttr('unresolved');
 
   //- Add livereload to help in local development only
-  if (config.get('NODE_ENV')||'').toLowerCase().indexOf('dev') === 0
+  if (isDevelopment)
     script(src='//localhost:35729/livereload.js', async, data-id='js-livereload')

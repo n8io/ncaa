@@ -1,11 +1,12 @@
-var paymentsController = require('../../controllers/paymentsController');
+const express = require(`express`);
+const paymentsController = require(`../../controllers/paymentsController`);
 
-module.exports = function(app, options) {
-  var router = express.Router();
+module.exports = function(app /* , options*/) {
+  const router = express.Router();
 
-  router.get('/payments', getPayments);
+  router.get(`/payments`, getPayments);
 
-  app.use('/api', router);
+  app.use(`/api`, router);
 
   function getPayments(req, res) {
     paymentsController.getPayments(function(err, paidBrackets) {
