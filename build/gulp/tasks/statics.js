@@ -29,7 +29,6 @@ module.exports = (gulp, plugins, cfg) => {
 
     gulp // Copy over all other statics
       .src(otherStatics, {base: cfg.statics.bower.baseDir})
-      .pipe(plugins.debug())
       .pipe(gulp.dest(cfg.statics.bower.dest))
       ;
   }
