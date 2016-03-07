@@ -29,8 +29,8 @@ require(`./init/middleware`)(app);
 // Define custom routes
 require(`./routes`)(app);
 
-const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || `0.0.0.0`;
 
 const server = app.listen(PORT, HOST, function() {
   logger.info( // eslint-ignore line
