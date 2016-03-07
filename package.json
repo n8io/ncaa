@@ -67,7 +67,7 @@
     "del": "*",
     "eslint-plugin-angular": "^1.0.0",
     "glob-all": "^3.0.1",
-    "gulp": "*",
+    "gulp": "^3.9.1",
     "gulp-babel": "*",
     "gulp-concat": "*",
     "gulp-csso": "^1.0.1",
