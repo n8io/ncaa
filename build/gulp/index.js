@@ -11,7 +11,7 @@ module.exports = (gulp, plugins) => {
   gulp.task(`compile-js`, [`js`]);
   gulp.task(`compile-statics`, [`statics`]);
   gulp.task(`lint`, [`lint-js`]);
-  gulp.task(`lint-js`, plugins.sequence(`lint-server`, `lint-client`));
+  gulp.task(`lint-js`, plugins.sequence(`lint-js-server`, `lint-js-client`));
 
   gulp.task(`default`, (cb) => plugins.sequence([
     `clean`,

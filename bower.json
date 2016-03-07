@@ -30,7 +30,6 @@
     "lodash": "*",
     "moment": "*",
     "underscore.string": "*",
-    "flag-icon-css": "*",
     "angular-material": "*",
     "angular-touch": "*"
   }
