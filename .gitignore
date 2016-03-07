@@ -4,7 +4,7 @@ node_modules
 bower_components
 tmp
 logs
-npm-*.*
+npm-debug.*
 *c9*
 **/config.*.json
 !**/config.dev.json
