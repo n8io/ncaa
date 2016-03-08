@@ -10,15 +10,13 @@ block header-meta
   meta(name='author', content='n8io')
   meta(description='Get your picks in. Come and join our pool.')
   
-  meta(itemprop='name', content='#{title}')
-  meta(itemprop='description', content='#{desc}')
-  meta(itemprop='image', content='#{imageUrl}')
-  
   script(type='application/ld+json').
     {
       "@context": "http://schema.org",
       "@type": "Event",
       "name": "#{title}",
+      "description": "#{desc}",
+      "image": "#{imageUrl}"
       "startDate" : "2016-03-18T12:05:00-05:00",
       "url" : "#{siteUrl}",
       "location" : {
