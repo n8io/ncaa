@@ -16,7 +16,7 @@ block header-meta
       "@type": "Event",
       "name": "#{title}",
       "description": "#{desc}",
-      "image": "#{imageUrl}"
+      "image": "#{imageUrl}",
       "startDate" : "2016-03-18T12:05:00-05:00",
       "url" : "#{siteUrl}",
       "location" : {
@@ -34,8 +34,8 @@ block header-meta
   meta(property='og:type', content='website')
   meta(property='og:image', content='#{imageUrl}')
     
-  //- meta(property='twitter:site', content='#{title}')
-  //- meta(property='twitter:title', content='#{title}')
-  //- meta(property='twitter:description', content='#{desc}')
-  //- meta(property='twitter:summary', content='#{desc}')
-  //- meta(property='twitter:image:src', content='#{imageUrl}')
+  meta(property='twitter:site', content='#{title}')
+  meta(property='twitter:title', content='#{title}')
+  meta(property='twitter:description', content='#{desc}')
+  meta(property='twitter:summary', content='#{desc}')
+  meta(property='twitter:image:src', content='#{imageUrl}')
