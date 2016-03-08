@@ -13,9 +13,21 @@ block header-meta
   meta(itemprop='name', content='#{title}')
   meta(itemprop='description', content='#{desc}')
   meta(itemprop='image', content='#{imageUrl}')
-  meta(itemprop='location:name', conetnt='Nate\'s house')
-  meta(itemprop='location:address', content='Norton, OH 44203')
-  meta(itemprop='startDate', content='2016-03-18T12:05:00-05:00')
+  
+  script(type='application/ld+json').
+    {
+      "@context": "http://schema.org",
+      "@type": "Event",
+      "name": "#{title}",
+      "startDate" : "2016-03-18T12:05:00-05:00",
+      "url" : "#{siteUrl}",
+      "location" : {
+        "@type" : "Place",
+        "sameAs" : "http://espn.go.com",
+        "name" : "#{title}",
+        "address" : "Norton, OH 44203"
+      }
+    }
   
   meta(property='og:title', content='#{title}')
   meta(property='og:site_name', content='#{title}')
