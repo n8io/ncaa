@@ -9,3 +9,4 @@ npm-debug.*
 **/config.*.json
 !**/config.dev.json
 .git.json
+.DS_Store

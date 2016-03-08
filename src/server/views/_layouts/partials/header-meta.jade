@@ -1,9 +1,28 @@
 block header-meta
+  - var siteUrl = 'http://ncaa.n8io.com';
+  - var title = 'March Madness ' + (new Date()).getFullYear();
+  - var imageUrl = 'https://dl.dropboxusercontent.com/u/452959/hosted/march-madness.jpg';
+  - var desc = 'Get your picks in. Come and join our pool.';
+  
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible',content='IE=edge')
   meta(name='viewport', content='width=device-width, initial-scale=1')
   meta(name='author', content='n8io')
   meta(description='Get your picks in. Come and join our pool.')
-  meta(property='og:title', content='March Madness')
-  meta(property='og:description', content='Get your picks in. Come and join our pool.')
-  meta(property='og:url', content='https://tournament-challenged.herokuapp.com')
+  
+  meta(itemprop='name', content='#{title}')
+  meta(itemprop='description', content='#{desc}')
+  meta(itemprop='image', content='#{imageUrl}')
+  
+  meta(property='og:title', content='#{title}')
+  meta(property='og:site_name', content='#{title}')
+  meta(property='og:description', content='#{desc}')
+  meta(property='og:url', content='#{siteUrl}')
+  meta(property='og:type', content='website')
+  meta(property='og:image', content='#{imageUrl}')
+    
+  meta(property='twitter:site', content='#{title}')
+  meta(property='twitter:title', content='#{title}')
+  meta(property='twitter:description', content='#{desc}')
+  meta(property='twitter:summary', content='#{desc}')
+  meta(property='twitter:image:src', content='#{imageUrl}')
