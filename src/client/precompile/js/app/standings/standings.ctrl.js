@@ -41,7 +41,8 @@ function standingsController($scope, $rootScope, $timeout, CacheService, CONSTAN
     }
 
     pool.entries.forEach((entry) => {
-      entry.owner = (entry.paid ? `${entry.paid.firstName} ${entry.paid.lastName}` : entry.userName) || `Unknown`;
+      entry.owner = entry.userName;
+      entry.financier = (entry.paid ? `${entry.paid.firstName} ${entry.paid.lastName} | ${entry.userName}` : ``) || `${entry.userName}`;
     });
 
     return pool;
