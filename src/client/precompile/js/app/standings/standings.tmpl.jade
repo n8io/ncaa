@@ -65,7 +65,7 @@ md-toolbar.md-theme-dark
             gravatar(round, size='16',email='::entry.paid.email || ""').mgn-right-5
             span(data-ng-bind='::entry.entryName')
         td.tiny.text-center
-          a.payment(ui-sref='payment({entry:entry.id})', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'Entry is paid for.'}}").hint--bounce.hint--top
+          a.payment(data-ng-attr-ui-sref='{{::entry.paid ? "." : "payment({entry: " + entry.entryID + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'Entry is paid for.'}}").hint--bounce.hint--top
             i.fa.fa-usd(data-ng-if='!entry.paid').owed
             i.fa.fa-check(data-ng-if='entry.paid').paid
         td(data-ng-bind='::entry.owner', hide-md, hide-sm, hide-xs)
