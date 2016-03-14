@@ -19,7 +19,7 @@ md-divider
 .height-10
 .height-10
 .height-10
-md-button(type='submit', ng-click='pc.onSubmit()', ng-disabled='pc.paymentForm.$invalid || pc.selectedEntries.length == 0').md-raised.md-primary Continue
+md-button#payment(type='submit', ng-click='pc.onSubmit()', ng-disabled='pc.paymentForm.$invalid || pc.selectedEntries.length == 0').md-raised.md-primary Continue
 .float-right
   .height-10
   i.fa.fa-2x.fa-cc-amex.pad-left-5
@@ -27,4 +27,3 @@ md-button(type='submit', ng-click='pc.onSubmit()', ng-disabled='pc.paymentForm.$
   i.fa.fa-2x.fa-cc-visa.pad-left-5
   i.fa.fa-2x.fa-cc-discover.pad-left-5
 .height-10
-

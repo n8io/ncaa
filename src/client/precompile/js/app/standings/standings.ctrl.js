@@ -19,7 +19,7 @@ function standingsController($scope, $rootScope, CacheService, CONSTANTS) {
   }
 
   function onPoolInfoRefreshed(e, pool) {
-    vm.pool = pool;
+    vm.pool = addDisplayLabel(pool);
     vm.isRefreshing = false;
   }
 
@@ -28,7 +28,15 @@ function standingsController($scope, $rootScope, CacheService, CONSTANTS) {
     vm.title = `Standings`; // Will quietly fail if i18n is not done loading.
 
     if (CacheService.get().pool) {
-      vm.pool = CacheService.get().pool;
+      vm.pool = addDisplayLabel(CacheService.get().pool);
     }
+  }
+
+  function addDisplayLabel(pool) {
+    pool.entries.forEach((entry) => {
+      entry.owner = (entry.paid ? `${entry.paid.firstName} ${entry.paid.lastName}` : entry.userName) || `Unknown`;
+    });
+
+    return pool;
   }
 }

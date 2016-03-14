@@ -27,7 +27,7 @@ function defineRoutes($locationProvider, $stateProvider, $urlRouterProvider) {
       controllerAs: `rc`
     })
     .state(`payment`, {
-      url: `/payment`,
+      url: `/payment?entry`,
       templateUrl: `/html/js/app/payment/payment.tmpl.html`,
       controller: `Payment_Controller`,
       controllerAs: `pc`

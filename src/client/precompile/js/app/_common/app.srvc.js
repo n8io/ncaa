@@ -4,6 +4,7 @@ angular
   .module(`app.services`, [`ngResource`])
   .service(`CacheService`, cacheService)
   .service(`ESPNService`, espnService)
+  .service(`CryptoJs`, CryptoJs)
   ;
 
 /* @ngInject */
@@ -71,6 +72,11 @@ function cacheService($log, $http, $rootScope, CONSTANTS) {
   function handlePoolDataReceivedEvent(e, pool) {
     data.pool = pool;
   }
+}
+
+/* @ngInject */
+function CryptoJs() {
+  return CryptoJS;
 }
 
 function convertPool(pool) {

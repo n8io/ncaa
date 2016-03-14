@@ -7,7 +7,7 @@ module.exports = paymentsController;
 paymentsController.getPayments = getPayments;
 
 function getPayments(callback) {
-  stripe.charges.list({limit: 3}, function(err, charges) {
+  stripe.charges.list({limit: 200}, function(err, charges) {
     const brackets = [];
 
     charges
@@ -26,7 +26,8 @@ function getPayments(callback) {
               id: id,
               name: name,
               firstName: c.metadata.firstName,
-              lastName: c.metadata.lastName
+              lastName: c.metadata.lastName,
+              email: c.metadata.email
             });
           }
         });

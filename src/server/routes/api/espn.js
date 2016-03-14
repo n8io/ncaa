@@ -21,7 +21,15 @@ module.exports = function(app /* , options*/) {
         }
 
         pool.group.entries.forEach((e) => {
-          e.paid = !!paidBrackets.find((p) => p.id === e.entryID);
+          const pb = paidBrackets.find((p) => p.id === e.entryID);
+
+          if (pb) {
+            e.paid = {
+              firstName: pb.firstName,
+              lastName: pb.lastName,
+              email: pb.email
+            };
+          }
         });
 
         return res.json(pool);

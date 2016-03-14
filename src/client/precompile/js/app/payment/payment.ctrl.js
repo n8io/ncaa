@@ -6,7 +6,7 @@ angular
   ;
 
 /* ngInject */
-function paymentController($log, $scope, $rootScope, $timeout, CONSTANTS, CacheService) {
+function paymentController($log, $scope, $rootScope, $timeout, $location, CONSTANTS, CacheService) {
   const vm = this; // eslint-disable-line
 
   $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
@@ -66,6 +66,11 @@ function paymentController($log, $scope, $rootScope, $timeout, CONSTANTS, CacheS
       return `${e.id.toString()}~~~${e.name}`;
     }).join(`:::`));
 
+    angular.element(`#payment`)
+      .attr(`disable`, `disable`)
+      .text(`Please wait...`)
+      ;
+
     window.location.href = url;
   }
 
@@ -75,12 +80,14 @@ function paymentController($log, $scope, $rootScope, $timeout, CONSTANTS, CacheS
     if (CacheService.get().pool) {
       vm.pool = CacheService.get().pool;
       vm.entries = mapPoolEntries(vm.pool);
+      addQsSelection();
     }
   }
 
   function onPoolInfoRefreshed(e, pool) {
     vm.pool = pool;
     vm.entries = mapPoolEntries(pool);
+    addQsSelection();
   }
 
   function mapPoolEntries(pool) {
@@ -92,5 +99,13 @@ function paymentController($log, $scope, $rootScope, $timeout, CONSTANTS, CacheS
         paid: e.paid
       };
     });
+  }
+
+  function addQsSelection() {
+    const qsEntry = $location.search().entry;
+
+    if (qsEntry) {
+      vm.selectedEntries = vm.entries.filter((entry) => entry.id === parseInt(qsEntry, 10));
+    }
   }
 }
