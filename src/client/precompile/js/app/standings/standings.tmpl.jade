@@ -34,9 +34,9 @@
               a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=#{process.env.YEAR}%20ncaa%20tournament%20schedule&es_th=1').line-height-20 Tournament schedule
 md-toolbar.md-theme-dark
   h1.md-toolbar-tools(layout='row')
-    span(flex, flex-order='0') {{::sc.pool.name}}
+    span(flex, flex-order='0', data-ng-bind='::sc.pool.name')
     md-button(data-ng-click='mc.onRefreshClick()', aria-label='Refresh').float-right
-      i.fa.fa-refresh(data-ng-class='{"fa-spin": sc.isRefreshing}')
+      i.fa.fa-refresh(data-ng-class='{"fa-spin": sc.isRefreshing || !sc.pool}')
 .md-list
   table.table
     thead

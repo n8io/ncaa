@@ -48,6 +48,8 @@ function espnService($log, $http, $rootScope, CONSTANTS) {
         config: config
       });
 
+      $rootScope.$broadcast(CONSTANTS.ONPOOLDATAREFRESHED, data.pool);
+
       return callback(new Error(`Could not retrieve bracket info at this time.`));
     }
   }
