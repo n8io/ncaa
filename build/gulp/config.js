@@ -31,7 +31,7 @@ const cfg = {
     ]
   },
   css: {
-    src: cwd(srcDir, `client/precompile/css/style.styl`),
+    src: cwd(srcDir, `client/precompile/css/**/*.styl`),
     dest: {
       file: `style.min.css`,
       dir: cwd(distDir, `css`)

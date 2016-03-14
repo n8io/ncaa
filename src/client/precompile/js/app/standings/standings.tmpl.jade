@@ -1,3 +1,11 @@
+.div(layout='row', layout-sm='column', layout-fill, layout-wrap, data-ng-if='sc.countdown && sc.countdown.total > 0')
+  .div(flex).countdown-wrapper
+    .countdown(data-ng-class='{xs: sc.$mdMedia("xs"), sm: sc.$mdMedia("sm"), md: sc.$mdMedia("md"), lg: sc.$mdMedia("lg")}')
+      .days(data-ng-bind='("00" + sc.countdown.days.toString()).slice(-2) + ":"')
+      .hours(data-ng-bind='("00" + sc.countdown.hours.toString()).slice(-2) + ":"')
+      .minutes(data-ng-bind='("00" + sc.countdown.minutes.toString()).slice(-2) + ":"')
+      .seconds(data-ng-bind='("00" + sc.countdown.seconds.toString()).slice(-2)')
+      .clearfix
 .div(layout='row', layout-sm='column', layout-fill, layout-wrap)
   .div(flex)
     md-card
@@ -6,7 +14,8 @@
         md-divider
         .height-10
         .div
-          .line-height-20 {{::sc.pool.entries.length}} entries. 100% payout.
+          .line-height-20 {{::sc.pool.entries.length}} entries
+          .line-height-20 100% payout
           .line-height-20 1st / {{::sc.pool.payouts.first | currency}}
           .line-height-20 2nd / {{::sc.pool.payouts.second | currency}}
           .line-height-20 3rd / {{::sc.pool.payouts.third | currency}}
@@ -20,16 +29,29 @@
         md-list.pad-0
           md-item
             md-item-content
-              a.info-link(ui-sref='register').line-height-20 How to enter
+              a.info-link(ui-sref='register').line-height-20
+                i.fa.fa-fw.fa-ticket
+                span How to enter
           md-item
             md-item-content
-              a.info-link(ui-sref='payment').line-height-20 Pay for your Entry
+              a.info-link(ui-sref='payment').line-height-20 
+                i.fa.fa-fw.fa-usd
+                span Pay for your entry
           md-item
             md-item-content
-              a.info-link(ui-sref='rules').line-height-20 Rules
+              a.info-link(ui-sref='rules').line-height-20
+                i.fa.fa-fw.fa-gavel
+                span Rules
           md-item
             md-item-content
-              a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=#{process.env.YEAR}%20ncaa%20tournament%20schedule&es_th=1').line-height-20 Tournament schedule
+              a(href='//dl.dropboxusercontent.com/u/452959/hosted/2016.bracket.png', target='_print') 
+                i.fa.fa-fw.fa-print
+                span Empty printable bracket
+          md-item
+            md-item-content
+              a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=#{process.env.YEAR}%20ncaa%20tournament%20schedule&es_th=1').line-height-20 
+                i.fa.fa-fw.fa-calendar
+                span Tournament schedule
 md-toolbar.md-theme-dark
   h1.md-toolbar-tools(layout='row')
     span(flex, flex-order='0', data-ng-bind='::sc.pool.name')

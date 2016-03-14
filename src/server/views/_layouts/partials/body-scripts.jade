@@ -7,6 +7,7 @@ block body-scripts
   script(src='#{CDN("/statics/bower_components/lodash/dist/lodash.min.js")}', data-id='js-lodash')
   script(src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', data-id='js-modernizr')
   script(src='#{CDN("/statics/bower_components/moment/min/moment.min.js")}', data-id='js-moment')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/moment-duration-format/1.3.0/moment-duration-format.min.js', data-id='js-moment-duration')
   script(src='//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js', data-id='js-moment')
 
   script(src='#{CDN("/statics/bower_components/angular/angular.min.js")}', data-id='js-angular')
@@ -23,6 +24,7 @@ block body-scripts
     window.__env = '#{ isDevelopment?"dev":process.env.NODE_ENV }';
     window.__year = '#{process.env.YEAR}';
     window.__paymentUri = '#{process.env.PAYMENT_BASE_URL}';
+    window.__startTime = #{process.env.START_TIME_MS};
 
   //- Angular app bundle
   - if (isDevelopment)

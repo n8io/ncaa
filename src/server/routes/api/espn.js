@@ -32,6 +32,8 @@ module.exports = function(app /* , options*/) {
           }
         });
 
+        pool.startTime = parseInt(process.env.START_TIME_MS, 10);
+
         return res.json(pool);
       });
     });

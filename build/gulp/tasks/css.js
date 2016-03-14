@@ -4,6 +4,7 @@ module.exports = (gulp, plugins, cfg) => {
   function css() {
     return gulp
       .src(cfg.css.src)
+      .pipe(plugins.filter(`**/style.styl`))
       .pipe(plugins.if(
           cfg.env === cfg.localEnv, // Using proper config based on env
           plugins.stylus(cfg.css.options.local),
