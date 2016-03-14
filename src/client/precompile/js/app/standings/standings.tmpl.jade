@@ -10,8 +10,6 @@
           .line-height-20 1st / {{::sc.pool.payouts.first | currency}}
           .line-height-20 2nd / {{::sc.pool.payouts.second | currency}}
           .line-height-20 3rd / {{::sc.pool.payouts.third | currency}}
-        .height-10
-        .height-5
   .div(flex)
     md-card
       - var currentYear = (new Date()).getFullYear()
@@ -19,7 +17,7 @@
         h3 Helpful links
         md-divider
         .height-10
-        md-list
+        md-list.pad-0
           md-item
             md-item-content
               a.info-link(ui-sref='register').line-height-20 How to enter
