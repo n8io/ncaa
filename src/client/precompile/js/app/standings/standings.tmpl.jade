@@ -76,7 +76,8 @@ md-toolbar.md-theme-dark
         td(data-ng-bind='::entry.periodPoints[4]', hide-md, hide-sm, hide-xs)
         td(data-ng-bind='::entry.periodPoints[5]', hide-md, hide-sm, hide-xs)
         td.medium.text-center
-          .hint--top.hint--bounce(data-hint='{{entry.winningTeam.n}}')
+          span(data-ng-if='!entry.winningTeam') --
+          .hint--top.hint--bounce(data-hint='{{entry.winningTeam.n}}',data-ng-if='entry.winningTeam')
             img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{::entry.winningTeam.eid}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}').responsive
         td(data-ng-bind='::entry.ppr').small.text-right
         td(data-ng-bind='::entry.points').small
