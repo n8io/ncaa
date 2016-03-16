@@ -4,12 +4,13 @@ angular
   ;
 
 /* ngInject */
-function standingsController($scope, $rootScope, $timeout, $interval, $mdMedia, CacheService, CONSTANTS) {
+function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdMedia, CacheService, CONSTANTS) {
   const vm = this; // jshint ignore:line
 
   $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHING, onPoolInfoRefreshing);
   $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
 
+  vm.parseEntryName = parseEntryName;
   vm.init = init;
 
   vm.init();
@@ -72,6 +73,10 @@ function standingsController($scope, $rootScope, $timeout, $interval, $mdMedia, 
     vm.countdown.minutes = minutes;
     vm.countdown.seconds = seconds;
     vm.countdown.total = moment(start).diff(tick, `milliseconds`);
+  }
+
+  function parseEntryName(name) {
+    return $sce.trustAsHtml(name);
   }
 
   function addDisplayLabel(pool) {

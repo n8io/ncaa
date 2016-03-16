@@ -30,6 +30,7 @@
     "lodash": "*",
     "moment": "*",
     "angular-material": "*",
-    "angular-touch": "*"
+    "angular-touch": "*",
+    "angular-sanitize": "*"
   }
 }
