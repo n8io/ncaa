@@ -14,7 +14,7 @@ form(name='pc.paymentForm', layout, layout-xs='column', layout-wrap)
       span(md-highlight-text='pc.searchText') {{item.name}}{{item.paid ? ' (paid)' : ''}}
     md-chip-template
       span
-        strong {{$chip.name}}{{$chip.paid ? ' (paid)' : ''}}
+        strong(data-ng-bind-html="$chip.name + ($chip.paid ? ' (paid)' : '') | unsafe")
 md-divider
 .height-10
 .height-10

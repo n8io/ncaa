@@ -6,7 +6,7 @@ angular
   ;
 
 /* ngInject */
-function paymentController($log, $scope, $rootScope, $timeout, $location, CONSTANTS, CacheService) {
+function paymentController($log, $scope, $rootScope, $timeout, $location, $sce, CONSTANTS, CacheService) {
   const vm = this; // eslint-disable-line
 
   $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
@@ -27,7 +27,7 @@ function paymentController($log, $scope, $rootScope, $timeout, $location, CONSTA
     }
     // Otherwise, create a new one
     return {
-      name: chip
+      name: $sce.trustAsHtml(chip)
     };
   }
 
