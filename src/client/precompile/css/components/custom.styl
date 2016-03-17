@@ -107,6 +107,21 @@ tr
     color #337AB7
     &:hover
       color rgba(#337AB7, .4)
+tr.group
+  td
+    .star
+      cursor pointer
+      color darken(#fff, 20%)
+      transition all 0.2s ease
+      outline none
+      -webkit-focus-ring-color transparent
+      outline-color transparent
+      &:hover
+        color rgba(#337AB7, .6)
+      &.favorite
+        color rgba(#337AB7, .6)
+        &:hover
+          color rgba(#337AB7, .4)
 
 tr.favorite-divider
   td
