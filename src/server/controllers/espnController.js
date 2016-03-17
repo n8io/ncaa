@@ -39,518 +39,461 @@ function getPoolInfo(callback) {
 }
 
 function getTeams() {
-  return [
+  const teams = [
     {
-      id: 1,
-      s: 1,
-      isEliminated: false,
-      a: `UK`,
-      n: `Kentucky`,
-      eid: 96
+      w: false,
+      id: 87,
+      s: `40`,
+      eid: 150,
+      h: true
     },
     {
-      id: 2,
-      s: 16,
-      isEliminated: true,
-      a: `HAMP`,
-      n: `Hampton`,
-      eid: 2261
+      w: false,
+      id: 88,
+      s: `43`,
+      eid: 350,
+      h: false
     },
     {
-      id: 3,
-      s: 8,
-      isEliminated: true,
-      a: `CIN`,
-      n: `Cincinnati`,
-      eid: 2132
+      w: false,
+      id: 115,
+      s: `25`,
+      eid: 2641,
+      h: true
     },
     {
-      id: 4,
-      s: 9,
-      isEliminated: true,
-      a: `PUR`,
-      n: `Purdue`,
-      eid: 2509
+      w: false,
+      id: 116,
+      s: `26`,
+      eid: 2086,
+      h: false
     },
     {
-      id: 5,
-      s: 5,
-      isEliminated: false,
-      a: `WVU`,
-      n: `West Virginia`,
-      eid: 277
+      w: false,
+      id: 67,
+      s: `--`,
+      eid: 38,
+      h: true
     },
     {
-      id: 6,
-      s: 12,
-      isEliminated: true,
-      a: `BUFF`,
-      n: `Buffalo`,
-      eid: 2084
+      w: false,
+      id: 68,
+      s: `--`,
+      eid: 41,
+      h: false
     },
     {
-      id: 7,
-      s: 4,
-      isEliminated: false,
-      a: `MD`,
-      n: `Maryland`,
-      eid: 120
+      w: false,
+      id: 119,
+      s: `--`,
+      eid: 66,
+      h: true
     },
     {
-      id: 8,
-      s: 13,
-      isEliminated: true,
-      a: `VALP`,
-      n: `Valparaiso`,
-      eid: 2674
+      w: false,
+      id: 120,
+      s: `--`,
+      eid: 314,
+      h: false
     },
     {
-      id: 9,
-      s: 6,
-      isEliminated: true,
-      a: `BUT`,
-      n: `Butler`,
-      eid: 2086
+      w: false,
+      id: 85,
+      s: `--`,
+      eid: 239,
+      h: true
     },
     {
-      id: 10,
-      s: 11,
-      isEliminated: true,
-      a: `TEX`,
-      n: `Texas`,
-      eid: 251
+      w: false,
+      id: 86,
+      s: `--`,
+      eid: 43,
+      h: false
     },
     {
-      id: 11,
-      s: 3,
-      isEliminated: false,
-      a: `ND`,
-      n: `Notre Dame`,
-      eid: 87
+      w: false,
+      id: 113,
+      s: `--`,
+      eid: 258,
+      h: true
     },
     {
-      id: 12,
-      s: 14,
-      isEliminated: true,
-      a: `NE`,
-      n: `Northeastern`,
-      eid: 111
+      w: false,
+      id: 114,
+      s: `--`,
+      eid: 2261,
+      h: false
     },
     {
-      id: 13,
-      s: 7,
-      isEliminated: false,
-      a: `WICH`,
-      n: `Wichita St`,
-      eid: 2724
+      w: false,
+      id: 65,
+      s: `--`,
+      eid: 2305,
+      h: true
     },
     {
-      id: 14,
-      s: 10,
-      isEliminated: true,
-      a: `IND`,
-      n: `Indiana`,
-      eid: 84
+      w: false,
+      id: 66,
+      s: `--`,
+      eid: 2046,
+      h: false
     },
     {
-      id: 15,
-      s: 2,
-      isEliminated: false,
-      a: `KU`,
-      n: `Kansas`,
-      eid: 2305
+      w: false,
+      id: 117,
+      s: `--`,
+      eid: 2509,
+      h: true
     },
     {
-      id: 16,
-      s: 15,
-      isEliminated: true,
-      a: `NMSU`,
-      n: `NM State`,
-      eid: 166
+      w: false,
+      id: 118,
+      s: `--`,
+      eid: 2031,
+      h: false
     },
     {
-      id: 17,
-      s: 1,
-      isEliminated: false,
-      a: `WIS`,
-      n: `Wisconsin`,
-      eid: 275
+      w: false,
+      id: 75,
+      s: `--`,
+      eid: 2390,
+      h: true
     },
     {
-      id: 18,
-      s: 16,
-      isEliminated: true,
-      a: `CCAR`,
-      n: `Coastal Car`,
-      eid: 324
+      w: false,
+      id: 76,
+      s: `--`,
+      eid: 2084,
+      h: false
     },
     {
-      id: 19,
-      s: 8,
-      isEliminated: false,
-      a: `ORE`,
-      n: `Oregon`,
-      eid: 2483
+      w: false,
+      id: 101,
+      s: `--`,
+      eid: 84,
+      h: true
     },
     {
-      id: 20,
-      s: 9,
-      isEliminated: true,
-      a: `OKST`,
-      n: `Oklahoma St`,
-      eid: 197
+      w: false,
+      id: 102,
+      s: `--`,
+      eid: 236,
+      h: false
     },
     {
-      id: 21,
-      s: 5,
-      isEliminated: true,
-      a: `ARK`,
-      n: `Arkansas`,
-      eid: 8
+      w: false,
+      id: 97,
+      s: `--`,
+      eid: 153,
+      h: true
     },
     {
-      id: 22,
-      s: 12,
-      isEliminated: true,
-      a: `WOF`,
-      n: `Wofford`,
-      eid: 2747
+      w: false,
+      id: 98,
+      s: `--`,
+      eid: 526,
+      h: false
     },
     {
-      id: 23,
-      s: 4,
-      isEliminated: false,
-      a: `UNC`,
-      n: `UNC`,
-      eid: 153
+      w: false,
+      id: 123,
+      s: `--`,
+      eid: 254,
+      h: true
     },
     {
-      id: 24,
-      s: 13,
-      isEliminated: true,
-      a: `HARV`,
-      n: `Harvard`,
-      eid: 108
+      w: false,
+      id: 124,
+      s: `--`,
+      eid: 278,
+      h: false
     },
     {
-      id: 25,
-      s: 6,
-      isEliminated: false,
-      a: `XAV`,
-      n: `Xavier`,
-      eid: 2752
+      w: false,
+      id: 73,
+      s: `--`,
+      eid: 12,
+      h: true
     },
     {
-      id: 26,
-      s: 11,
-      isEliminated: true,
-      a: `MISS`,
-      n: `Ole Miss`,
-      eid: 145
+      w: false,
+      id: 74,
+      s: `--`,
+      eid: 2724,
+      h: false
     },
     {
-      id: 27,
-      s: 3,
-      isEliminated: true,
-      a: `BAY`,
-      n: `Baylor`,
-      eid: 239
+      w: false,
+      id: 103,
+      s: `--`,
+      eid: 96,
+      h: true
     },
     {
-      id: 28,
-      s: 14,
-      isEliminated: true,
-      a: `GAST`,
-      n: `Georgia St`,
-      eid: 2247
+      w: false,
+      id: 104,
+      s: `--`,
+      eid: 2619,
+      h: false
     },
     {
-      id: 29,
-      s: 7,
-      isEliminated: true,
-      a: `VCU`,
-      n: `VCU`,
-      eid: 2670
+      w: false,
+      id: 99,
+      s: `--`,
+      eid: 30,
+      h: true
     },
     {
-      id: 30,
-      s: 10,
-      isEliminated: true,
-      a: `OSU`,
-      n: `Ohio State`,
-      eid: 194
+      w: false,
+      id: 100,
+      s: `--`,
+      eid: 2507,
+      h: false
     },
     {
-      id: 31,
-      s: 2,
-      isEliminated: false,
-      a: `ARIZ`,
-      n: `Arizona`,
-      eid: 12
+      w: false,
+      id: 121,
+      s: `--`,
+      eid: 2550,
+      h: true
     },
     {
-      id: 32,
-      s: 15,
-      isEliminated: true,
-      a: `TXSO`,
-      n: `Texas So`,
-      eid: 2640
+      w: false,
+      id: 122,
+      s: `--`,
+      eid: 2250,
+      h: false
     },
     {
-      id: 33,
-      s: 1,
-      isEliminated: true,
-      a: `VILL`,
-      n: `Villanova`,
-      eid: 222
+      w: false,
+      id: 125,
+      s: `--`,
+      eid: 2168,
+      h: true
     },
     {
-      id: 34,
-      s: 16,
-      isEliminated: true,
-      a: `LAF`,
-      n: `Lafayette`,
-      eid: 322
+      w: false,
+      id: 126,
+      s: `--`,
+      eid: 183,
+      h: false
     },
     {
-      id: 35,
-      s: 8,
-      isEliminated: false,
-      a: `NCST`,
-      n: `NC State`,
-      eid: 152
+      w: false,
+      id: 79,
+      s: `--`,
+      eid: 222,
+      h: true
     },
     {
-      id: 36,
-      s: 9,
-      isEliminated: true,
-      a: `LSU`,
-      n: `LSU`,
-      eid: 99
+      w: false,
+      id: 80,
+      s: `--`,
+      eid: 2427,
+      h: false
     },
     {
-      id: 37,
-      s: 5,
-      isEliminated: false,
-      a: `UNI`,
-      n: `N Iowa`,
-      eid: 2460
+      w: false,
+      id: 93,
+      s: `--`,
+      eid: 204,
+      h: true
     },
     {
-      id: 38,
-      s: 12,
-      isEliminated: true,
-      a: `WYO`,
-      n: `Wyoming`,
-      eid: 2751
+      w: false,
+      id: 94,
+      s: `--`,
+      eid: 2670,
+      h: false
     },
     {
-      id: 39,
-      s: 4,
-      isEliminated: false,
-      a: `LOU`,
-      n: `Louisville`,
-      eid: 97
+      w: false,
+      id: 71,
+      s: `--`,
+      eid: 25,
+      h: true
     },
     {
-      id: 40,
-      s: 13,
-      isEliminated: true,
-      a: `UCI`,
-      n: `UC Irvine`,
-      eid: 300
+      w: false,
+      id: 72,
+      s: `--`,
+      eid: 62,
+      h: false
     },
     {
-      id: 41,
-      s: 6,
-      isEliminated: true,
-      a: `PROV`,
-      n: `Providence`,
-      eid: 2507
+      w: false,
+      id: 127,
+      s: `--`,
+      eid: 127,
+      h: true
     },
     {
-      id: 42,
-      s: 11,
-      isEliminated: false,
-      a: `DAY`,
-      n: `Dayton`,
-      eid: 2168
+      w: false,
+      id: 128,
+      s: `--`,
+      eid: 2393,
+      h: false
     },
     {
-      id: 43,
-      s: 3,
-      isEliminated: false,
-      a: `OKLA`,
-      n: `Oklahoma`,
-      eid: 201
+      w: false,
+      id: 77,
+      s: `--`,
+      eid: 2294,
+      h: true
     },
     {
-      id: 44,
-      s: 14,
-      isEliminated: true,
-      a: `ALB`,
-      n: `Albany`,
-      eid: 399
+      w: false,
+      id: 78,
+      s: `--`,
+      eid: 218,
+      h: false
     },
     {
-      id: 45,
-      s: 7,
-      isEliminated: false,
-      a: `MSU`,
-      n: `Michigan St`,
-      eid: 127
+      w: false,
+      id: 95,
+      s: `--`,
+      eid: 201,
+      h: true
     },
     {
-      id: 46,
-      s: 10,
-      isEliminated: true,
-      a: `UGA`,
-      n: `Georgia`,
-      eid: 61
+      w: false,
+      id: 96,
+      s: `--`,
+      eid: 2934,
+      h: false
     },
     {
-      id: 47,
-      s: 2,
-      isEliminated: false,
-      a: `UVA`,
-      n: `Virginia`,
-      eid: 258
+      w: false,
+      id: 69,
+      s: `--`,
+      eid: 120,
+      h: true
     },
     {
-      id: 48,
-      s: 15,
-      isEliminated: true,
-      a: `BEL`,
-      n: `Belmont`,
-      eid: 2057
+      w: false,
+      id: 70,
+      s: `--`,
+      eid: 2571,
+      h: false
     },
     {
-      id: 49,
-      s: 1,
-      isEliminated: false,
-      a: `DUKE`,
-      n: `Duke`,
-      eid: 150
+      w: false,
+      id: 109,
+      s: `--`,
+      eid: 275,
+      h: true
     },
     {
-      id: 50,
-      s: 16,
-      isEliminated: true,
-      a: `RMU`,
-      n: `R. Morris`,
-      eid: 2523
+      w: false,
+      id: 110,
+      s: `--`,
+      eid: 221,
+      h: false
     },
     {
-      id: 51,
-      s: 8,
-      isEliminated: false,
-      a: `SDSU`,
-      n: `San Diego St`,
-      eid: 21
+      w: false,
+      id: 107,
+      s: `--`,
+      eid: 277,
+      h: true
     },
     {
-      id: 52,
-      s: 9,
-      isEliminated: true,
-      a: `SJU`,
-      n: `St. John's`,
-      eid: 2599
+      w: false,
+      id: 108,
+      s: `--`,
+      eid: 2617,
+      h: false
     },
     {
-      id: 53,
-      s: 5,
-      isEliminated: false,
-      a: `UTAH`,
-      n: `Utah`,
-      eid: 254
+      w: false,
+      id: 91,
+      s: `--`,
+      eid: 245,
+      h: true
     },
     {
-      id: 54,
-      s: 12,
-      isEliminated: true,
-      a: `SFA`,
-      n: `SF Austin`,
-      eid: 2617
+      w: false,
+      id: 92,
+      s: `--`,
+      eid: 2739,
+      h: false
     },
     {
-      id: 55,
-      s: 4,
-      isEliminated: true,
-      a: `GTWN`,
-      n: `Georgetown`,
-      eid: 46
+      w: false,
+      id: 81,
+      s: `--`,
+      eid: 2483,
+      h: true
     },
     {
-      id: 56,
-      s: 13,
-      isEliminated: true,
-      a: `EWU`,
-      n: `E Washington`,
-      eid: 331
+      w: false,
+      id: 82,
+      s: `--`,
+      eid: 107,
+      h: false
     },
     {
-      id: 57,
-      s: 6,
-      isEliminated: true,
-      a: `SMU`,
-      n: `SMU`,
-      eid: 2567
+      w: false,
+      id: 111,
+      s: `--`,
+      eid: 2752,
+      h: true
     },
     {
-      id: 58,
-      s: 11,
-      isEliminated: false,
-      a: `UCLA`,
-      n: `UCLA`,
-      eid: 26
+      w: false,
+      id: 112,
+      s: `--`,
+      eid: 2692,
+      h: false
     },
     {
-      id: 59,
-      s: 3,
-      isEliminated: true,
-      a: `ISU`,
-      n: `Iowa State`,
-      eid: 66
+      w: false,
+      id: 105,
+      s: `--`,
+      eid: 87,
+      h: true
     },
     {
-      id: 60,
-      s: 14,
-      isEliminated: true,
-      a: `UAB`,
-      n: `UAB`,
-      eid: 5
+      w: false,
+      id: 106,
+      s: `--`,
+      eid: 130,
+      h: false
     },
     {
-      id: 61,
-      s: 7,
-      isEliminated: false,
-      a: `IOWA`,
-      n: `Iowa`,
-      eid: 2294
+      w: false,
+      id: 89,
+      s: `--`,
+      eid: 251,
+      h: true
     },
     {
-      id: 62,
-      s: 10,
-      isEliminated: true,
-      a: `DAV`,
-      n: `Davidson`,
-      eid: 2166
+      w: false,
+      id: 90,
+      s: `--`,
+      eid: 2460,
+      h: false
     },
     {
-      id: 63,
-      s: 2,
-      isEliminated: false,
-      a: `GONZ`,
-      n: `Gonzaga`,
-      eid: 2250
+      w: false,
+      id: 83,
+      s: `--`,
+      eid: 2603,
+      h: true
     },
     {
-      id: 64,
-      s: 15,
-      isEliminated: true,
-      a: `NDSU`,
-      n: `ND State`,
-      eid: 2449
+      w: false,
+      id: 84,
+      s: `--`,
+      eid: 2132,
+      h: false
     }
   ];
+
+  teams.forEach((t) => {
+    t.id = t.id - 64;
+    return t;
+  });
+
+  return teams;
 }
