@@ -5,6 +5,7 @@ angular
   .service(`CacheService`, cacheService)
   .service(`ESPNService`, espnService)
   .service(`CryptoJs`, CryptoJs)
+  .service(`Favorites`, Favorites)
   ;
 
 /* @ngInject */
@@ -79,6 +80,34 @@ function cacheService($log, $http, $rootScope, CONSTANTS) {
 /* @ngInject */
 function CryptoJs() {
   return CryptoJS;
+}
+
+/* @ngInject */
+function Favorites() {
+  const FAV_KEY = `favorites_${(new Date()).getFullYear()}`;
+
+  return {
+    get: get,
+    set: set
+  };
+
+  function get() {
+    if (!window.localStorage) {
+      return [];
+    }
+
+    const str = localStorage.getItem(FAV_KEY) || `[]`;
+
+    return angular.fromJson(str);
+  }
+
+  function set(favs) {
+    if (!window.localStorage) {
+      return favs;
+    }
+
+    localStorage.setItem(FAV_KEY, angular.toJson(favs));
+  }
 }
 
 function convertPool(pool) {

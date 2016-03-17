@@ -18,8 +18,10 @@ img.eliminated
   display block
 
 tr
+  .teeny
+    max-width 16px
   .tiny
-    max-width 30px
+        max-width 30px
   .small
     max-width 40px
   .medium
@@ -38,10 +40,6 @@ tr
         transform all 700ms ease
   tr:hover
     background-color rgba(0, 0, 0, 0.1) !important
-    td.tiny
-      .rank
-        font-size 110%
-        font-weight bold
   tr:nth-child(even)
     background-color rgba(0, 0, 0, 0)
   tr:nth-child(odd)
@@ -95,3 +93,26 @@ tr
       font-size 3.5em
     &.lg
       font-size 5em
+
+.star
+  cursor pointer
+  color darken(#fff, 20%)
+  transition all 0.2s ease
+  outline none
+  -webkit-focus-ring-color transparent
+  outline-color transparent
+  &:hover
+    color #337AB7
+  &.favorite
+    color #337AB7
+    &:hover
+      color rgba(#337AB7, .4)
+
+tr.favorite-divider
+  td
+    background-color #fff
+    border-top 1px solid #ddd
+    border-bottom 1px solid #ddd
+    div
+      min-height 20px
+      text-align center

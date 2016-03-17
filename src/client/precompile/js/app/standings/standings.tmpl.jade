@@ -14,11 +14,11 @@
         md-divider
         .height-10
         .div
-          .line-height-20 {{::sc.pool.entries.length}} entries
+          .line-height-20 {{sc.pool.entries.length}} entries
           .line-height-20 100% payout
-          .line-height-20 1st / {{::sc.pool.payouts.first | currency}}
-          .line-height-20 2nd / {{::sc.pool.payouts.second | currency}}
-          .line-height-20 3rd / {{::sc.pool.payouts.third | currency}}
+          .line-height-20 1st / {{sc.pool.payouts.first | currency}}
+          .line-height-20 2nd / {{sc.pool.payouts.second | currency}}
+          .line-height-20 3rd / {{sc.pool.payouts.third | currency}}
   .div(flex)
     md-card
       - var currentYear = (new Date()).getFullYear()
@@ -54,13 +54,14 @@
                 span Tournament schedule
 md-toolbar.md-theme-dark
   h1.md-toolbar-tools(layout='row')
-    span(flex, flex-order='0', data-ng-bind='::sc.pool.name')
+    span(flex, flex-order='0', data-ng-bind='sc.pool.name')
     md-button(data-ng-click='mc.onRefreshClick()', aria-label='Refresh').float-right
       i.fa.fa-refresh(data-ng-class='{"fa-spin": sc.isRefreshing || !sc.pool}')
 .md-list
   table.table
     thead
       tr
+        th.teeny.text-center
         th.tiny.text-center Rank
         th Bracket
         th.tiny.text-center Paid
@@ -76,29 +77,69 @@ md-toolbar.md-theme-dark
         th.small Total
         th(hide-xs) PCT
     tbody.rankings
-      tr(data-ng-repeat='entry in ::sc.pool.entries | orderBy:["rank","entryName"]', data-ng-class='{first: $first, second: $index == 1, third: $index == 2}')
+      tr(data-ng-repeat='entry in sc.pool.entries | favorites | orderBy:["rank","entryName"]')
+        td.teeny.text-center
+          .star(data-ng-class='{favorite: entry.isFavorite}', data-ng-click='sc.toggleFavorite(entry)', data-hint='{{!!entry.isFavorite ? "Remove favorite" : "Mark as favorite"}}').hint--top-right.hint--bounce
+            i.fa.fa-star
         td.tiny.text-center
-          span.rank(data-ng-bind='{{::entry.rank}}', data-ng-show='::entry.rank > 0')
-          span.rank(data-ng-hide='::entry.rank > 0') --
+          span.rank(data-ng-bind='{{entry.rank}}', data-ng-show='entry.rank > 0')
+          span.rank(data-ng-hide='entry.rank > 0') --
         td
-          a(target='_bracket', data-hint='{{::entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{::entry.entryID}}').hint--top-right.hint--bounce
-            gravatar(round, size='16',email='::entry.paid.email || ""').mgn-right-5
-            span(data-ng-bind-html='::entry.entryName | unsafe')
+          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{entry.entryID}}').hint--top-right.hint--bounce
+            gravatar(round, size='16',email='entry.paid.email || ""').mgn-right-5
+            span(data-ng-bind-html='entry.entryName | unsafe')
         td.tiny.text-center
-          a.payment(data-ng-attr-ui-sref='{{::entry.paid ? "." : "payment({entry: " + entry.entryID + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
+          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.entryID + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
             i.fa.fa-usd(data-ng-if='!entry.paid').owed
             i.fa.fa-check(data-ng-if='entry.paid').paid
-        td(data-ng-bind='::entry.owner', data-hint='{{::entry.financier}}', hide-md, hide-sm, hide-xs).hint--top-right.hint--bounce
-        td(data-ng-bind='::entry.periodPoints[0]', hide-md, hide-sm, hide-xs)
-        td(data-ng-bind='::entry.periodPoints[1]', hide-md, hide-sm, hide-xs)
-        td(data-ng-bind='::entry.periodPoints[2]', hide-md, hide-sm, hide-xs)
-        td(data-ng-bind='::entry.periodPoints[3]', hide-md, hide-sm, hide-xs)
-        td(data-ng-bind='::entry.periodPoints[4]', hide-md, hide-sm, hide-xs)
-        td(data-ng-bind='::entry.periodPoints[5]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.owner', data-hint='{{entry.financier}}', hide-md, hide-sm, hide-xs).hint--top-right.hint--bounce
+        td(data-ng-bind='entry.periodPoints[0]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[1]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[2]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[3]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[4]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[5]', hide-md, hide-sm, hide-xs)
         td.medium.text-center
           span(data-ng-if='!entry.winningTeam') --
           .hint--top.hint--bounce(data-hint='{{entry.winningTeam.n}}',data-ng-if='entry.winningTeam')
-            img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{::entry.winningTeam.eid}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}').responsive
-        td(data-ng-bind='::entry.ppr').small.text-right
-        td(data-ng-bind='::entry.points').small
-        td(data-ng-bind='::entry.percentile + "%"', hide-xs)
+            img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{entry.winningTeam.eid}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}').responsive
+        td(data-ng-bind='entry.ppr').small.text-right
+        td(data-ng-bind='entry.points').small
+        td(data-ng-bind='entry.percentile + "%"', hide-xs)
+      tr(data-ng-if='(sc.pool.entries | favorites).length > 0').favorite-divider
+        td(colspan='9999')
+          div
+            span.pad-right-5 FAVORITES
+            i.fa.fa-chevron-up
+            span.pad-left-10.pad-right-10 |
+            i.fa.fa-chevron-down
+            span.pad-left-5 GROUP
+      tr(data-ng-repeat='entry in sc.pool.entries | orderBy:["rank","entryName"]', data-ng-class='{first: $first, second: $index == 1, third: $index == 2}')
+        td.teeny.text-center
+          .star(data-ng-class='{favorite: entry.isFavorite}', data-ng-click='sc.toggleFavorite(entry)', data-hint='{{!!entry.isFavorite ? "Remove favorite" : "Mark as favorite"}}').hint--top-right.hint--bounce
+            i.fa.fa-star
+        td.tiny.text-center
+          span.rank(data-ng-bind='{{entry.rank}}', data-ng-show='entry.rank > 0')
+          span.rank(data-ng-hide='entry.rank > 0') --
+        td
+          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{entry.entryID}}').hint--top-right.hint--bounce
+            gravatar(round, size='16',email='entry.paid.email || ""').mgn-right-5
+            span(data-ng-bind-html='entry.entryName | unsafe')
+        td.tiny.text-center
+          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.entryID + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
+            i.fa.fa-usd(data-ng-if='!entry.paid').owed
+            i.fa.fa-check(data-ng-if='entry.paid').paid
+        td(data-ng-bind='entry.owner', data-hint='{{entry.financier}}', hide-md, hide-sm, hide-xs).hint--top-right.hint--bounce
+        td(data-ng-bind='entry.periodPoints[0]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[1]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[2]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[3]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[4]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[5]', hide-md, hide-sm, hide-xs)
+        td.medium.text-center
+          span(data-ng-if='!entry.winningTeam') --
+          .hint--top.hint--bounce(data-hint='{{entry.winningTeam.n}}',data-ng-if='entry.winningTeam')
+            img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{entry.winningTeam.eid}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}').responsive
+        td(data-ng-bind='entry.ppr').small.text-right
+        td(data-ng-bind='entry.points').small
+        td(data-ng-bind='entry.percentile + "%"', hide-xs)

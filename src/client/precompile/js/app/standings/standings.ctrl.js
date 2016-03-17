@@ -4,13 +4,14 @@ angular
   ;
 
 /* ngInject */
-function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdMedia, CacheService, CONSTANTS) {
+function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdMedia, Favorites, CacheService, CONSTANTS) {
   const vm = this; // jshint ignore:line
 
   $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHING, onPoolInfoRefreshing);
   $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
 
   vm.parseEntryName = parseEntryName;
+  vm.toggleFavorite = toggleFavorite;
   vm.init = init;
 
   vm.init();
@@ -20,10 +21,7 @@ function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdM
   }
 
   function onPoolInfoRefreshed(e, pool) {
-    $timeout(() => {
-      vm.pool = addDisplayLabel(pool);
-      vm.isRefreshing = false;
-    });
+    $timeout(() => setPool(pool));
   }
 
   function init() {
@@ -34,16 +32,25 @@ function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdM
       hours: 0,
       minutes: 0,
       seconds: 0,
-      total: 1
+      total: 0
     };
     vm.title = `Standings`; // Will quietly fail if i18n is not done loading.
 
     if (CacheService.get().pool) {
-      vm.pool = addDisplayLabel(CacheService.get().pool);
-      vm.isRefreshing = false;
+      setPool(CacheService.get().pool);
     }
 
     startCountdownInterval();
+  }
+
+  function setPool(pool) {
+    vm.pool = addDisplayLabel(pool);
+    vm.pool.entries = vm.pool.entries.map((e) => {
+      e.isFavorite = !!Favorites.get().find((id) => e.entryID === id);
+
+      return e;
+    });
+    vm.isRefreshing = false;
   }
 
   function startCountdownInterval() {
@@ -73,6 +80,12 @@ function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdM
     vm.countdown.minutes = minutes;
     vm.countdown.seconds = seconds;
     vm.countdown.total = moment(start).diff(tick, `milliseconds`);
+  }
+
+  function toggleFavorite(entry) {
+    entry.isFavorite = !entry.isFavorite;
+
+    Favorites.set(vm.pool.entries.filter((e) => e.isFavorite).map((e) => e.entryID));
   }
 
   function parseEntryName(name) {
