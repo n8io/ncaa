@@ -60,6 +60,7 @@ function paymentController($log, $scope, $rootScope, $timeout, $location, $sce, 
       + `&i=https://goo.gl/GHMVnF`
       + `&b=https://goo.gl/iIlJPf`
       + `&r=http://ncaa.n8io.com`
+      + `&z=1`
       ;
 
     url += `&m_brackets=` + encodeURIComponent(vm.selectedEntries.map(function(e) { // eslint-disable-line
