@@ -10,6 +10,10 @@ function getPayments(callback) {
   stripe.charges.list({limit: 200}, function(err, charges) {
     const brackets = [];
 
+    if (!charges || !charges.data) {
+      return callback(null, brackets);
+    }
+
     charges
       .data
       .filter((c) => c.metadata.ncaa && c.metadata.brackets && c.paid && c.metadata.brackets.indexOf(`~~~`) > -1)
