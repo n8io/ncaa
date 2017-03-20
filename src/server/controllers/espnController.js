@@ -44,7 +44,7 @@ function getTeams() {
     {
       "sl": 0,
       "id": 1,
-      "e": false,
+      "e": true,
       "s": 1,
       "r": `31-3`,
       "c": `123d7C`,
@@ -57,7 +57,7 @@ function getTeams() {
     {
       "sl": 1,
       "id": 2,
-      "e": false,
+      "e": true,
       "s": 16,
       "r": `19-15`,
       "c": `f4f142`,
@@ -83,7 +83,7 @@ function getTeams() {
     {
       "sl": 3,
       "id": 4,
-      "e": false,
+      "e": true,
       "s": 9,
       "r": `22-10`,
       "c": `74232D`,
@@ -96,7 +96,7 @@ function getTeams() {
     {
       "sl": 4,
       "id": 5,
-      "e": false,
+      "e": true,
       "s": 5,
       "r": `22-10`,
       "c": `00204E`,
@@ -109,7 +109,7 @@ function getTeams() {
     {
       "sl": 5,
       "id": 6,
-      "e": false,
+      "e": true,
       "s": 12,
       "r": `29-5`,
       "c": `1d2f68`,
@@ -135,7 +135,7 @@ function getTeams() {
     {
       "sl": 7,
       "id": 8,
-      "e": false,
+      "e": true,
       "s": 13,
       "r": `27-7`,
       "c": `002d61`,
@@ -148,7 +148,7 @@ function getTeams() {
     {
       "sl": 8,
       "id": 9,
-      "e": false,
+      "e": true,
       "s": 6,
       "r": `30-4`,
       "c": `E32F38`,
@@ -161,7 +161,7 @@ function getTeams() {
     {
       "sl": 9,
       "id": 10,
-      "e": false,
+      "e": true,
       "s": 11,
       "r": `24-9`,
       "c": `F36E21`,
@@ -187,7 +187,7 @@ function getTeams() {
     {
       "sl": 11,
       "id": 12,
-      "e": false,
+      "e": true,
       "s": 14,
       "r": `28-5`,
       "c": `891216`,
@@ -213,7 +213,7 @@ function getTeams() {
     {
       "sl": 13,
       "id": 14,
-      "e": false,
+      "e": true,
       "s": 10,
       "r": `19-12`,
       "c": `083963`,
@@ -226,7 +226,7 @@ function getTeams() {
     {
       "sl": 14,
       "id": 15,
-      "e": false,
+      "e": true,
       "s": 2,
       "r": `27-8`,
       "c": `001A57`,
@@ -239,7 +239,7 @@ function getTeams() {
     {
       "sl": 15,
       "id": 16,
-      "e": false,
+      "e": true,
       "s": 15,
       "r": `22-14`,
       "c": `AE0210`,
@@ -265,7 +265,7 @@ function getTeams() {
     {
       "sl": 17,
       "id": 18,
-      "e": false,
+      "e": true,
       "s": 16,
       "r": `18-16`,
       "c": `005DAB`,
@@ -278,7 +278,7 @@ function getTeams() {
     {
       "sl": 18,
       "id": 19,
-      "e": false,
+      "e": true,
       "s": 8,
       "r": `23-11`,
       "c": `372286`,
@@ -291,7 +291,7 @@ function getTeams() {
     {
       "sl": 19,
       "id": 20,
-      "e": false,
+      "e": true,
       "s": 9,
       "r": `19-15`,
       "c": `000000`,
@@ -304,7 +304,7 @@ function getTeams() {
     {
       "sl": 20,
       "id": 21,
-      "e": false,
+      "e": true,
       "s": 5,
       "r": `25-9`,
       "c": `00122b`,
@@ -317,7 +317,7 @@ function getTeams() {
     {
       "sl": 21,
       "id": 22,
-      "e": false,
+      "e": true,
       "s": 12,
       "r": `23-6`,
       "c": `ff9408`,
@@ -343,7 +343,7 @@ function getTeams() {
     {
       "sl": 23,
       "id": 24,
-      "e": false,
+      "e": true,
       "s": 13,
       "r": `26-8`,
       "c": `000060`,
@@ -356,7 +356,7 @@ function getTeams() {
     {
       "sl": 24,
       "id": 25,
-      "e": false,
+      "e": true,
       "s": 6,
       "r": `24-8`,
       "c": `D5002B`,
@@ -382,7 +382,7 @@ function getTeams() {
     {
       "sl": 26,
       "id": 27,
-      "e": false,
+      "e": true,
       "s": 3,
       "r": `25-8`,
       "c": `782F40`,
@@ -395,7 +395,7 @@ function getTeams() {
     {
       "sl": 27,
       "id": 28,
-      "e": false,
+      "e": true,
       "s": 14,
       "r": `26-7`,
       "c": `00885a`,
@@ -408,7 +408,7 @@ function getTeams() {
     {
       "sl": 28,
       "id": 29,
-      "e": false,
+      "e": true,
       "s": 7,
       "r": `28-4`,
       "c": `003768`,
@@ -421,7 +421,7 @@ function getTeams() {
     {
       "sl": 29,
       "id": 30,
-      "e": false,
+      "e": true,
       "s": 10,
       "r": `26-8`,
       "c": `929292`,
@@ -447,7 +447,7 @@ function getTeams() {
     {
       "sl": 31,
       "id": 32,
-      "e": false,
+      "e": true,
       "s": 15,
       "r": `22-9`,
       "c": `00A26B`,
@@ -473,7 +473,7 @@ function getTeams() {
     {
       "sl": 33,
       "id": 34,
-      "e": false,
+      "e": true,
       "s": 16,
       "r": `22-12`,
       "c": `bb0000`,
@@ -486,7 +486,7 @@ function getTeams() {
     {
       "sl": 34,
       "id": 35,
-      "e": false,
+      "e": true,
       "s": 8,
       "r": `21-11`,
       "c": `004325`,
@@ -499,7 +499,7 @@ function getTeams() {
     {
       "sl": 35,
       "id": 36,
-      "e": false,
+      "e": true,
       "s": 9,
       "r": `19-14`,
       "c": `18453B`,
@@ -512,7 +512,7 @@ function getTeams() {
     {
       "sl": 36,
       "id": 37,
-      "e": false,
+      "e": true,
       "s": 5,
       "r": `23-10`,
       "c": `660015`,
@@ -525,7 +525,7 @@ function getTeams() {
     {
       "sl": 37,
       "id": 38,
-      "e": false,
+      "e": true,
       "s": 12,
       "r": `28-6`,
       "c": `153E5F`,
@@ -551,7 +551,7 @@ function getTeams() {
     {
       "sl": 39,
       "id": 40,
-      "e": false,
+      "e": true,
       "s": 13,
       "r": `29-5`,
       "c": `013C24`,
@@ -564,7 +564,7 @@ function getTeams() {
     {
       "sl": 40,
       "id": 41,
-      "e": false,
+      "e": true,
       "s": 6,
       "r": `25-9`,
       "c": `13299e`,
@@ -577,7 +577,7 @@ function getTeams() {
     {
       "sl": 41,
       "id": 42,
-      "e": false,
+      "e": true,
       "s": 11,
       "r": `24-9`,
       "c": `3691C6`,
@@ -603,7 +603,7 @@ function getTeams() {
     {
       "sl": 43,
       "id": 44,
-      "e": false,
+      "e": true,
       "s": 14,
       "r": `22-12`,
       "c": `8c001a`,
@@ -629,7 +629,7 @@ function getTeams() {
     {
       "sl": 45,
       "id": 46,
-      "e": false,
+      "e": true,
       "s": 10,
       "r": `20-12`,
       "c": `FF6500`,
@@ -642,7 +642,7 @@ function getTeams() {
     {
       "sl": 46,
       "id": 47,
-      "e": false,
+      "e": true,
       "s": 2,
       "r": `24-8`,
       "c": `ad000a`,
@@ -655,7 +655,7 @@ function getTeams() {
     {
       "sl": 47,
       "id": 48,
-      "e": false,
+      "e": true,
       "s": 15,
       "r": `20-14`,
       "c": `b50500`,
@@ -681,7 +681,7 @@ function getTeams() {
     {
       "sl": 49,
       "id": 50,
-      "e": false,
+      "e": true,
       "s": 16,
       "r": `23-11`,
       "c": `6A0403`,
@@ -694,7 +694,7 @@ function getTeams() {
     {
       "sl": 50,
       "id": 51,
-      "e": false,
+      "e": true,
       "s": 8,
       "r": `25-9`,
       "c": `9c1831`,
@@ -707,7 +707,7 @@ function getTeams() {
     {
       "sl": 51,
       "id": 52,
-      "e": false,
+      "e": true,
       "s": 9,
       "r": `21-11`,
       "c": `0857B1`,
@@ -720,7 +720,7 @@ function getTeams() {
     {
       "sl": 52,
       "id": 53,
-      "e": false,
+      "e": true,
       "s": 5,
       "r": `24-9`,
       "c": `7F011B`,
@@ -733,7 +733,7 @@ function getTeams() {
     {
       "sl": 53,
       "id": 54,
-      "e": false,
+      "e": true,
       "s": 12,
       "r": `30-4`,
       "c": `0079C2`,
@@ -759,7 +759,7 @@ function getTeams() {
     {
       "sl": 55,
       "id": 56,
-      "e": false,
+      "e": true,
       "s": 13,
       "r": `26-6`,
       "c": `9e0b0e`,
@@ -772,7 +772,7 @@ function getTeams() {
     {
       "sl": 56,
       "id": 57,
-      "e": false,
+      "e": true,
       "s": 6,
       "r": `29-5`,
       "c": `000000`,
@@ -785,7 +785,7 @@ function getTeams() {
     {
       "sl": 57,
       "id": 58,
-      "e": false,
+      "e": true,
       "s": 11,
       "r": `20-13`,
       "c": `588fe8`,
@@ -811,7 +811,7 @@ function getTeams() {
     {
       "sl": 59,
       "id": 60,
-      "e": false,
+      "e": true,
       "s": 14,
       "r": `22-13`,
       "c": `002445`,
@@ -824,7 +824,7 @@ function getTeams() {
     {
       "sl": 60,
       "id": 61,
-      "e": false,
+      "e": true,
       "s": 7,
       "r": `24-7`,
       "c": `004B8D`,
@@ -837,7 +837,7 @@ function getTeams() {
     {
       "sl": 61,
       "id": 62,
-      "e": false,
+      "e": true,
       "s": 10,
       "r": `30-4`,
       "c": `0d0a03`,
@@ -863,7 +863,7 @@ function getTeams() {
     {
       "sl": 63,
       "id": 64,
-      "e": false,
+      "e": true,
       "s": 15,
       "r": `24-10`,
       "c": `000000`,
@@ -875,10 +875,10 @@ function getTeams() {
     }
   ];
 
-  // teams.forEach((t) => {
-  //   t.id = t.id - 64;
-  //   return t;
-  // });
+  teams.forEach((t) => {
+    t.isEliminated = t.e;
+    return t;
+  });
 
   return teams;
 }

@@ -34,7 +34,7 @@
                 span How to enter
           md-item
             md-item-content
-              a.info-link(ui-sref='payment').line-height-20 
+              a.info-link(ui-sref='payment').line-height-20
                 i.fa.fa-fw.fa-usd
                 span Pay for your entry
           md-item
@@ -44,12 +44,12 @@
                 span Rules
           md-item
             md-item-content
-              a(href='//dl.dropboxusercontent.com/u/452959/hosted/2016.bracket.png', target='_print') 
+              a(href='//dl.dropboxusercontent.com/u/452959/hosted/2016.bracket.png', target='_print')
                 i.fa.fa-fw.fa-print
                 span Empty printable bracket
           md-item
             md-item-content
-              a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=ncaa%20tournament%20schedule&es_th=1').line-height-20 
+              a.info-link(target='_sched', href='https://www.google.com/webhp?sourceid=chrome-instant&rlz=1C1CHFX_enUS507US507&ion=1&espv=2&es_th=1&ie=UTF-8#q=ncaa%20tournament%20schedule&es_th=1').line-height-20
                 i.fa.fa-fw.fa-calendar
                 span Tournament schedule
 md-toolbar.md-theme-dark
@@ -114,7 +114,36 @@ md-toolbar.md-theme-dark
             span.pad-left-10.pad-right-10 |
             i.fa.fa-chevron-down
             span.pad-left-5 GROUP
-      tr(data-ng-repeat='entry in sc.pool.entries', data-ng-class='{first: $first, second: $index == 1, third: $index == 2}').group
+      tr(data-ng-repeat='entry in sc.pool.entries | alive', data-ng-class='{first: $first, second: $index == 1, third: $index == 2}').group
+        td.teeny.text-center
+          .star(data-ng-class='{favorite: entry.isFavorite}', data-ng-click='sc.toggleFavorite(entry)', data-hint='{{!!entry.isFavorite ? "Remove favorite" : "Mark as favorite"}}').hint--top-right.hint--bounce
+            i.fa.fa-star
+        td.tiny.text-center
+          span.rank(data-ng-bind='{{entry.rank}}', data-ng-show='entry.rank > 0')
+          span.rank(data-ng-hide='entry.rank > 0') --
+        td
+          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{entry.entryID}}').hint--top-right.hint--bounce
+            gravatar(round, size='16',email='entry.paid.email || ""').mgn-right-5
+            span(data-ng-bind-html='entry.entryName | unsafe')
+        td.tiny.text-center
+          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.entryID + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
+            i.fa.fa-usd(data-ng-if='!entry.paid').owed
+            i.fa.fa-check(data-ng-if='entry.paid').paid
+        td(data-ng-bind='entry.owner', data-hint='{{entry.financier}}', hide-md, hide-sm, hide-xs).hint--top-right.hint--bounce
+        td(data-ng-bind='entry.periodPoints[0]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[1]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[2]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[3]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[4]', hide-md, hide-sm, hide-xs)
+        td(data-ng-bind='entry.periodPoints[5]', hide-md, hide-sm, hide-xs)
+        td.medium.text-center
+          span(data-ng-if='!entry.winningTeam') --
+          .hint--top.hint--bounce(data-hint='{{entry.winningTeam.n}}',data-ng-if='entry.winningTeam')
+            img(data-ng-src='http://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{entry.winningTeam.eid}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}').responsive
+        td(data-ng-bind='entry.ppr').small.text-right
+        td(data-ng-bind='entry.points').small
+        td(data-ng-bind='entry.percentile + "%"', hide-xs)
+      tr(data-ng-repeat='entry in sc.pool.entries | eliminated').group
         td.teeny.text-center
           .star(data-ng-class='{favorite: entry.isFavorite}', data-ng-click='sc.toggleFavorite(entry)', data-hint='{{!!entry.isFavorite ? "Remove favorite" : "Mark as favorite"}}').hint--top-right.hint--bounce
             i.fa.fa-star

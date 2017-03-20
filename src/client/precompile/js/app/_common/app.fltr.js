@@ -2,6 +2,8 @@ angular
   .module(`app.filters`, [])
   .filter(`unsafe`, unsafe)
   .filter(`favorites`, favorites)
+  .filter(`eliminated`, eliminated)
+  .filter(`alive`, alive)
   ;
 
 /* @ngInject */
@@ -16,5 +18,25 @@ function favorites() {
     }
 
     return entries.filter((entry) => entry.isFavorite);
+  };
+}
+/* @ngInject */
+function eliminated() {
+  return function(entries) {
+    if (!entries) {
+      return entries;
+    }
+
+    return entries.filter((entry) => !!entry.winningTeam.isEliminated);
+  };
+}
+/* @ngInject */
+function alive() {
+  return function(entries) {
+    if (!entries) {
+      return entries;
+    }
+
+    return entries.filter((entry) => !entry.winningTeam.isEliminated);
   };
 }
