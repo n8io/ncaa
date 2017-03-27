@@ -70,7 +70,7 @@ function getTeams() {
     {
       "sl": 2,
       "id": 3,
-      "e": false,
+      "e": true,
       "s": 8,
       "r": `25-9`,
       "c": `A00002`,
@@ -122,7 +122,7 @@ function getTeams() {
     {
       "sl": 6,
       "id": 7,
-      "e": false,
+      "e": true,
       "s": 4,
       "r": `24-8`,
       "c": `0021A5`,
@@ -174,7 +174,7 @@ function getTeams() {
     {
       "sl": 10,
       "id": 11,
-      "e": false,
+      "e": true,
       "s": 3,
       "r": `25-7`,
       "c": `004834`,
@@ -330,7 +330,7 @@ function getTeams() {
     {
       "sl": 22,
       "id": 23,
-      "e": false,
+      "e": true,
       "s": 4,
       "r": `26-8`,
       "c": `FFC600`,
@@ -369,7 +369,7 @@ function getTeams() {
     {
       "sl": 25,
       "id": 26,
-      "e": false,
+      "e": true,
       "s": 11,
       "r": `21-13`,
       "c": `002144`,
@@ -434,7 +434,7 @@ function getTeams() {
     {
       "sl": 30,
       "id": 31,
-      "e": false,
+      "e": true,
       "s": 2,
       "r": `30-4`,
       "c": `002449`,
@@ -460,7 +460,7 @@ function getTeams() {
     {
       "sl": 32,
       "id": 33,
-      "e": false,
+      "e": true,
       "s": 1,
       "r": `28-4`,
       "c": `0022B4`,
@@ -538,7 +538,7 @@ function getTeams() {
     {
       "sl": 38,
       "id": 39,
-      "e": false,
+      "e": true,
       "s": 4,
       "r": `25-7`,
       "c": `B89D29`,
@@ -616,7 +616,7 @@ function getTeams() {
     {
       "sl": 44,
       "id": 45,
-      "e": false,
+      "e": true,
       "s": 7,
       "r": `24-11`,
       "c": `00274c`,
@@ -746,7 +746,7 @@ function getTeams() {
     {
       "sl": 54,
       "id": 55,
-      "e": false,
+      "e": true,
       "s": 4,
       "r": `23-8`,
       "c": `0d1361`,
@@ -798,7 +798,7 @@ function getTeams() {
     {
       "sl": 58,
       "id": 59,
-      "e": false,
+      "e": true,
       "s": 3,
       "r": `29-4`,
       "c": `005C8E`,
@@ -850,7 +850,7 @@ function getTeams() {
     {
       "sl": 62,
       "id": 63,
-      "e": false,
+      "e": true,
       "s": 2,
       "r": `29-5`,
       "c": `005DAA`,
