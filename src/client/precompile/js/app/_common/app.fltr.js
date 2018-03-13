@@ -27,7 +27,7 @@ function eliminated() {
       return entries;
     }
 
-    return entries.filter((entry) => !!entry.winningTeam.isEliminated);
+    return entries.filter((entry) => entry.winningTeam && !!entry.winningTeam.isEliminated);
   };
 }
 /* @ngInject */
@@ -37,6 +37,6 @@ function alive() {
       return entries;
     }
 
-    return entries.filter((entry) => !entry.winningTeam.isEliminated);
+    return entries.filter((entry) => !entry.winningTeam || !entry.winningTeam.isEliminated);
   };
 }
