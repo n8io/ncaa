@@ -43,7 +43,7 @@ function getPayments(callback) {
         });
       });
 
-    console.log(brackets);
+    // console.log(brackets);
 
     return callback(null, brackets);
   });
