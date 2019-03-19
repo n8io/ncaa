@@ -17,6 +17,11 @@ img.eliminated
 .info-link
   display block
 
+.content-grid
+  display grid
+  grid-gap 1rem
+  margin 0 2rem
+
 tr
   .teeny
     max-width 16px
@@ -75,11 +80,13 @@ tr
   position relative
   min-height 60px
   .countdown
-    position absolute
-    top 50%
-    left 50%
-    padding 20px 5px
-    transform translate(-50%, -50%)
+    font-size: 2.25em;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    margin-top: 1rem;
     transition font-size 300ms ease
     div
       font-family sans-serif

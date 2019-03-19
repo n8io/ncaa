@@ -1,4 +1,4 @@
-/* Compiled via gulp-uglify on Sunday, March 3rd 2019, 7:36:36PM -05:00 [ 1551659796259 ] */
+/* Compiled via gulp-uglify on Tuesday, March 19th 2019, 7:38:19PM -04:00 [ 1553038699892 ] */
 "use strict";
 
 (function() {
@@ -363,6 +363,12 @@
 (function() {
     "use strict";
 
+    angular.module("rules", ["rules.controllers"]);
+})();
+
+(function() {
+    "use strict";
+
     angular.module("register", ["register.controllers"]);
 })();
 
@@ -370,12 +376,6 @@
     "use strict";
 
     angular.module("standings", ["standings.controllers"]);
-})();
-
-(function() {
-    "use strict";
-
-    angular.module("rules", ["rules.controllers"]);
 })();
 
 (function() {
@@ -439,10 +439,8 @@
             var url = (__paymentUri || "https://stripe-processor.herokuapp.com") + // eslint-disable-line
                 "?" + "&c=USD" + "&n=" + __year + " March Madness" + "&d=" + encodeURIComponent(vm.selectedEntries.map(function(e) {
                     return e.name;
-                }).join(", ")) // eslint-disable-line
-                +
-                "&a=" + (vm.selectedEntries.length * 10 * 100).toString() + "&m_firstName=" + encodeURIComponent(vm.paymentForm.firstName) + "&m_lastName=" + encodeURIComponent(vm.paymentForm.lastName) + "&m_ncaa=true" + "&o=1" + "&i=https://goo.gl/GHMVnF" + "&b=https://goo.gl/iIlJPf" + "&r=http://ncaa.n8io.com" + "&z=1";
-
+                }).join(", ")) + // eslint-disable-line
+                "&a=" + (vm.selectedEntries.length * 10 * 100).toString() + "&m_firstName=" + encodeURIComponent(vm.paymentForm.firstName) + "&m_lastName=" + encodeURIComponent(vm.paymentForm.lastName) + "&m_ncaa=true" + ("&m_year=" + new Date().getFullYear()) + "&o=1" + "&i=https://goo.gl/GHMVnF" + "&b=https://goo.gl/iIlJPf" + "&r=http://ncaa.n8io.com" + "&z=1";
             url += "&m_brackets=" + encodeURIComponent(vm.selectedEntries.map(function(e) {
                 // eslint-disable-line
                 return e.id.toString() + "~~~" + e.name;
@@ -472,10 +470,10 @@
         function mapPoolEntries(pool) {
             return pool.entries.map(function(e) {
                 return {
-                    id: e.entryID,
+                    id: e.id,
                     name: e.entryName,
                     _lowername: e.entryName.toLowerCase(),
-                    paid: e.paid
+                    paid: Boolean(e.paid)
                 };
             });
         }
@@ -490,6 +488,41 @@
             }
         }
     }
+})();
+
+(function() {
+    "use strict";
+
+    (function() {
+        'use strict';
+        // Controllers that are specific to this feature
+
+        rulesController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+        angular.module("rules.controllers", []).controller("Rules_Controller", rulesController);
+
+        /* ngInject */
+        function rulesController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+            var vm = this; // eslint-disable-line
+
+            $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+            vm.init = init;
+
+            vm.init();
+
+            function init() {
+                vm.title = "Rules"; // Will quietly fail if i18n is not done loading.
+
+                if (CacheService.get().pool) {
+                    vm.pool = CacheService.get().pool;
+                }
+            }
+
+            function onPoolInfoRefreshed(e, pool) {
+                vm.pool = pool;
+            }
+        }
+    })();
 })();
 
 (function() {
@@ -576,7 +609,7 @@
             vm.pool = addDisplayLabel(pool);
             vm.pool.entries = vm.pool.entries.map(function(e) {
                 e.isFavorite = !!Favorites.get().find(function(id) {
-                    return e.entryID === id;
+                    return e.id === id;
                 });
 
                 return e;
@@ -619,7 +652,7 @@
             Favorites.set(vm.pool.entries.filter(function(e) {
                 return e.isFavorite;
             }).map(function(e) {
-                return e.entryID;
+                return e.id;
             }));
         }
 
@@ -640,39 +673,4 @@
             return pool;
         }
     }
-})();
-
-(function() {
-    "use strict";
-
-    (function() {
-        'use strict';
-        // Controllers that are specific to this feature
-
-        rulesController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-        angular.module("rules.controllers", []).controller("Rules_Controller", rulesController);
-
-        /* ngInject */
-        function rulesController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-            var vm = this; // eslint-disable-line
-
-            $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-            vm.init = init;
-
-            vm.init();
-
-            function init() {
-                vm.title = "Rules"; // Will quietly fail if i18n is not done loading.
-
-                if (CacheService.get().pool) {
-                    vm.pool = CacheService.get().pool;
-                }
-            }
-
-            function onPoolInfoRefreshed(e, pool) {
-                vm.pool = pool;
-            }
-        }
-    })();
 })();

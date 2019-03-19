@@ -85,11 +85,11 @@ md-toolbar.md-theme-dark
           span.rank(data-ng-bind='{{entry.rank}}', data-ng-show='entry.rank > 0')
           span.rank(data-ng-hide='entry.rank > 0') --
         td
-          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{entry.entryID}}').hint--top-right.hint--bounce
+          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?id={{entry.id}}').hint--top-right.hint--bounce
             gravatar(round, size='16',email='entry.paid.email || ""').mgn-right-5
             span(data-ng-bind-html='entry.entryName | unsafe')
         td.tiny.text-center
-          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.entryID + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
+          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.id + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
             i.fa.fa-usd(data-ng-if='!entry.paid').owed
             i.fa.fa-check(data-ng-if='entry.paid').paid
         td(data-ng-bind='entry.owner', data-hint='{{entry.financier}}', hide-md, hide-sm, hide-xs).hint--top-right.hint--bounce
@@ -122,11 +122,11 @@ md-toolbar.md-theme-dark
           span.rank(data-ng-bind='{{entry.rank}}', data-ng-show='entry.rank > 0')
           span.rank(data-ng-hide='entry.rank > 0') --
         td
-          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{entry.entryID}}').hint--top-right.hint--bounce
+          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?id={{entry.id}}').hint--top-right.hint--bounce
             gravatar(round, size='16',email='entry.paid.email || ""').mgn-right-5
             span(data-ng-bind-html='entry.entryName | unsafe')
         td.tiny.text-center
-          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.entryID + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
+          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.id + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
             i.fa.fa-usd(data-ng-if='!entry.paid').owed
             i.fa.fa-check(data-ng-if='entry.paid').paid
         td(data-ng-bind='entry.owner', data-hint='{{entry.financier}}', hide-md, hide-sm, hide-xs).hint--top-right.hint--bounce
@@ -151,11 +151,11 @@ md-toolbar.md-theme-dark
           span.rank(data-ng-bind='{{entry.rank}}', data-ng-show='entry.rank > 0')
           span.rank(data-ng-hide='entry.rank > 0') --
         td
-          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{entry.entryID}}').hint--top-right.hint--bounce
+          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://games.espn.go.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?id={{entry.id}}').hint--top-right.hint--bounce
             gravatar(round, size='16',email='entry.paid.email || ""').mgn-right-5
             span(data-ng-bind-html='entry.entryName | unsafe')
         td.tiny.text-center
-          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.entryID + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
+          a.payment(data-ng-attr-ui-sref='{{entry.paid ? "." : "payment({entry: " + entry.id + "})"}}', data-hint="{{!entry.paid ? 'Entry is not valid until paid for.' : 'PAID'}}").hint--bounce.hint--top
             i.fa.fa-usd(data-ng-if='!entry.paid').owed
             i.fa.fa-check(data-ng-if='entry.paid').paid
         td(data-ng-bind='entry.owner', data-hint='{{entry.financier}}', hide-md, hide-sm, hide-xs).hint--top-right.hint--bounce

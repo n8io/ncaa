@@ -1,10 +1,19 @@
 angular
   .module(`standings.controllers`, [])
-  .controller(`Standings_Controller`, standingsController)
-  ;
+  .controller(`Standings_Controller`, standingsController);
 
 /* ngInject */
-function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdMedia, Favorites, CacheService, CONSTANTS) {
+function standingsController(
+  $scope,
+  $rootScope,
+  $timeout,
+  $interval,
+  $sce,
+  $mdMedia,
+  Favorites,
+  CacheService,
+  CONSTANTS
+) {
   const vm = this; // jshint ignore:line
 
   $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHING, onPoolInfoRefreshing);
@@ -17,7 +26,7 @@ function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdM
   vm.init();
 
   function onPoolInfoRefreshing(/* e , pool */) {
-    $timeout(() => vm.isRefreshing = true);
+    $timeout(() => (vm.isRefreshing = true));
   }
 
   function onPoolInfoRefreshed(e, pool) {
@@ -45,8 +54,8 @@ function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdM
 
   function setPool(pool) {
     vm.pool = addDisplayLabel(pool);
-    vm.pool.entries = vm.pool.entries.map((e) => {
-      e.isFavorite = !!Favorites.get().find((id) => e.entryID === id);
+    vm.pool.entries = vm.pool.entries.map(e => {
+      e.isFavorite = !!Favorites.get().find(id => e.id === id);
 
       return e;
     });
@@ -85,7 +94,7 @@ function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdM
   function toggleFavorite(entry) {
     entry.isFavorite = !entry.isFavorite;
 
-    Favorites.set(vm.pool.entries.filter((e) => e.isFavorite).map((e) => e.entryID));
+    Favorites.set(vm.pool.entries.filter(e => e.isFavorite).map(e => e.id));
   }
 
   function parseEntryName(name) {
@@ -97,9 +106,12 @@ function standingsController($scope, $rootScope, $timeout, $interval, $sce, $mdM
       return;
     }
 
-    pool.entries.forEach((entry) => {
+    pool.entries.forEach(entry => {
       entry.owner = entry.userName;
-      entry.financier = (entry.paid ? `${entry.paid.firstName} ${entry.paid.lastName} | ${entry.userName}` : ``) || `${entry.userName}`;
+      entry.financier =
+        (entry.paid
+          ? `${entry.paid.firstName} ${entry.paid.lastName} | ${entry.userName}`
+          : ``) || `${entry.userName}`;
     });
 
     return pool;

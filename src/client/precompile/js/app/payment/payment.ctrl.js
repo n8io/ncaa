@@ -2,11 +2,19 @@
 
 angular
   .module(`payment.controllers`, [])
-  .controller(`Payment_Controller`, paymentController)
-  ;
+  .controller(`Payment_Controller`, paymentController);
 
 /* ngInject */
-function paymentController($log, $scope, $rootScope, $timeout, $location, $sce, CONSTANTS, CacheService) {
+function paymentController(
+  $log,
+  $scope,
+  $rootScope,
+  $timeout,
+  $location,
+  $sce,
+  CONSTANTS,
+  CacheService
+) {
   const vm = this; // eslint-disable-line
 
   $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
@@ -41,36 +49,55 @@ function paymentController($log, $scope, $rootScope, $timeout, $location, $sce, 
     const lowercaseQuery = angular.lowercase(query);
 
     return function filterFn(entry) {
-      return (entry._lowername.indexOf(lowercaseQuery) === 0);
+      return entry._lowername.indexOf(lowercaseQuery) === 0;
     };
   }
 
   function onSubmit() {
     // ?&c=USD&o=1&n=2016%20March%20Madness&d=The%20Hoosier%20Brackets&f=Nate&l=Clark&a=2000&i=https://goo.gl/GHMVnF&b=https://goo.gl/iIlJPf&r=http://www.google.com
-    let url = (__paymentUri || `https://stripe-processor.herokuapp.com`) // eslint-disable-line
-      + `?`
-      + `&c=USD`
-      + `&n=` + __year + ` March Madness`
-      + `&d=` + encodeURIComponent(vm.selectedEntries.map(function(e) { return e.name; }).join(`, `)) // eslint-disable-line
-      + `&a=` + (vm.selectedEntries.length * 10 * 100).toString()
-      + `&m_firstName=` + encodeURIComponent(vm.paymentForm.firstName)
-      + `&m_lastName=` + encodeURIComponent(vm.paymentForm.lastName)
-      + `&m_ncaa=true`
-      + `&o=1`
-      + `&i=https://goo.gl/GHMVnF`
-      + `&b=https://goo.gl/iIlJPf`
-      + `&r=http://ncaa.n8io.com`
-      + `&z=1`
-      ;
+    let url =
+      (__paymentUri || `https://stripe-processor.herokuapp.com`) + // eslint-disable-line
+      `?` +
+      `&c=USD` +
+      `&n=` +
+      __year +
+      ` March Madness` +
+      `&d=` +
+      encodeURIComponent(
+        vm.selectedEntries
+          .map(function(e) {
+            return e.name;
+          })
+          .join(`, `)
+      ) + // eslint-disable-line
+      `&a=` +
+      (vm.selectedEntries.length * 10 * 100).toString() +
+      `&m_firstName=` +
+      encodeURIComponent(vm.paymentForm.firstName) +
+      `&m_lastName=` +
+      encodeURIComponent(vm.paymentForm.lastName) +
+      `&m_ncaa=true` +
+      `&m_year=${new Date().getFullYear()}` +
+      `&o=1` +
+      `&i=https://goo.gl/GHMVnF` +
+      `&b=https://goo.gl/iIlJPf` +
+      `&r=http://ncaa.n8io.com` +
+      `&z=1`;
+    url +=
+      `&m_brackets=` +
+      encodeURIComponent(
+        vm.selectedEntries
+          .map(function(e) {
+            // eslint-disable-line
+            return `${e.id.toString()}~~~${e.name}`;
+          })
+          .join(`:::`)
+      );
 
-    url += `&m_brackets=` + encodeURIComponent(vm.selectedEntries.map(function(e) { // eslint-disable-line
-      return `${e.id.toString()}~~~${e.name}`;
-    }).join(`:::`));
-
-    angular.element(`#payment`)
+    angular
+      .element(`#payment`)
       .attr(`disable`, `disable`)
-      .text(`Please wait...`)
-      ;
+      .text(`Please wait...`);
 
     window.location.href = url;
   }
@@ -94,10 +121,10 @@ function paymentController($log, $scope, $rootScope, $timeout, $location, $sce, 
   function mapPoolEntries(pool) {
     return pool.entries.map(function(e) {
       return {
-        id: e.entryID,
+        id: e.id,
         name: e.entryName,
         _lowername: e.entryName.toLowerCase(),
-        paid: e.paid
+        paid: Boolean(e.paid)
       };
     });
   }
@@ -106,7 +133,9 @@ function paymentController($log, $scope, $rootScope, $timeout, $location, $sce, 
     const qsEntry = $location.search().entry;
 
     if (qsEntry) {
-      vm.selectedEntries = vm.entries.filter((entry) => entry.id === parseInt(qsEntry, 10));
+      vm.selectedEntries = vm.entries.filter(
+        entry => entry.id === parseInt(qsEntry, 10)
+      );
     }
   }
 }

@@ -17,11 +17,13 @@ module.exports = function(app /* , options*/) {
 
       paymentsController.getPayments(function(err, paidBrackets) {
         if (err) {
-          return next(err || new Error(`Retuned bad response when fetching payments`));
+          return next(
+            err || new Error(`Retuned bad response when fetching payments`)
+          );
         }
 
-        pool.group.entries.forEach((e) => {
-          const pb = paidBrackets.find((p) => p.id === e.entryID);
+        pool.group.entries.forEach(e => {
+          const pb = paidBrackets.find(p => p.id === e.id);
 
           if (pb) {
             e.paid = {
