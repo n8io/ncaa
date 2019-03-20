@@ -1,4 +1,4 @@
-/* Compiled via gulp-uglify on Wednesday, March 20th 2019, 6:38:20PM -04:00 [ 1553121500161 ] */
+/* Compiled via gulp-uglify on Wednesday, March 20th 2019, 6:59:38PM -04:00 [ 1553122778806 ] */
 "use strict";
 
 (function() {
@@ -363,13 +363,13 @@
 (function() {
     "use strict";
 
-    angular.module("register", ["register.controllers"]);
+    angular.module("standings", ["standings.controllers"]);
 })();
 
 (function() {
     "use strict";
 
-    angular.module("standings", ["standings.controllers"]);
+    angular.module("register", ["register.controllers"]);
 })();
 
 (function() {
@@ -493,36 +493,6 @@
 (function() {
     "use strict";
 
-    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-    angular.module("register.controllers", []).controller("Register_Controller", registerController);
-
-    /* ngInject */
-    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-        var vm = this; // eslint-disable-line
-
-        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-        vm.init = init;
-
-        vm.init();
-
-        function init() {
-            vm.title = "How to Enter";
-
-            if (CacheService.get().pool) {
-                vm.pool = CacheService.get().pool;
-            }
-        }
-
-        function onPoolInfoRefreshed(e, pool) {
-            vm.pool = pool;
-        }
-    }
-})();
-
-(function() {
-    "use strict";
-
     standingsController.$inject = ['$scope', '$rootScope', '$timeout', '$interval', '$sce', '$mdMedia', 'Favorites', 'CacheService', 'CONSTANTS'];
     angular.module("standings.controllers", []).controller("Standings_Controller", standingsController);
 
@@ -636,6 +606,36 @@
             });
 
             return pool;
+        }
+    }
+})();
+
+(function() {
+    "use strict";
+
+    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+    angular.module("register.controllers", []).controller("Register_Controller", registerController);
+
+    /* ngInject */
+    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+        var vm = this; // eslint-disable-line
+
+        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+        vm.init = init;
+
+        vm.init();
+
+        function init() {
+            vm.title = "How to Enter";
+
+            if (CacheService.get().pool) {
+                vm.pool = CacheService.get().pool;
+            }
+        }
+
+        function onPoolInfoRefreshed(e, pool) {
+            vm.pool = pool;
         }
     }
 })();

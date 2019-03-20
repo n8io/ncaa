@@ -57,7 +57,7 @@ module.exports = function(app /* , options*/) {
 
         pool.startTime = parseInt(process.env.START_TIME_MS, 10);
 
-        cache.expiration = new Date().getTime() + minutes(1);
+        cache.expiration = new Date().getTime() + minutes(5);
         cache.data = { ...pool };
 
         return res.json(pool);
