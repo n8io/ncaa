@@ -57,7 +57,7 @@ function getPoolInfo(callback) {
       R.pathOr([], [`g`, `e`]),
       R.map(
         R.pipe(
-          R.pick([`id`, `p`, `pct`, `n_d`, `n_e`]),
+          R.pick([`id`, `p`, `pct`, `ppr`, `n_d`, `n_e`]),
           renameKeys({
             p: `points`,
             pct: `percent`,
@@ -80,10 +80,12 @@ function getPoolInfo(callback) {
     //   return e;
     // });
 
-    return callback(null, {
+    const output = {
       group: { entries: entries },
       maxEntriesPerUser: maxEntriesPerUser
-    });
+    };
+
+    return callback(null, output);
   }
 }
 
