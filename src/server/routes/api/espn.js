@@ -14,7 +14,7 @@ function isCached() {
 
   const isFresh = expiration > new Date().getTime();
 
-  console.log({ isFresh });
+  // console.log({ isFresh });
 
   return isFresh;
 }

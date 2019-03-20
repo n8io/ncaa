@@ -1,4 +1,4 @@
-/* Compiled via gulp-uglify on Wednesday, March 20th 2019, 6:59:38PM -04:00 [ 1553122778806 ] */
+/* Compiled via gulp-uglify on Wednesday, March 20th 2019, 7:45:54PM -04:00 [ 1553125554489 ] */
 "use strict";
 
 (function() {
@@ -363,7 +363,7 @@
 (function() {
     "use strict";
 
-    angular.module("standings", ["standings.controllers"]);
+    angular.module("rules", ["rules.controllers"]);
 })();
 
 (function() {
@@ -375,7 +375,7 @@
 (function() {
     "use strict";
 
-    angular.module("rules", ["rules.controllers"]);
+    angular.module("standings", ["standings.controllers"]);
 })();
 
 (function() {
@@ -435,12 +435,12 @@
         }
 
         function onSubmit() {
-            // ?&c=USD&o=1&n=2016%20March%20Madness&d=The%20Hoosier%20Brackets&f=Nate&l=Clark&a=2000&i=https://goo.gl/GHMVnF&b=https://goo.gl/iIlJPf&r=http://www.google.com
+            // ?&c=USD&o=1&n=2016%20March%20Madness&d=The%20Hoosier%20Brackets&f=Nate&l=Clark&a=2000&i=https://goo.gl/GHMVnF&b=https://goo.gl/iIlJPf&r=https://www.google.com
             var url = (__paymentUri || "https://stripe-processor.herokuapp.com") + // eslint-disable-line
                 "?" + "&c=USD" + "&n=" + __year + " March Madness" + "&d=" + encodeURIComponent(vm.selectedEntries.map(function(e) {
                     return e.name;
                 }).join(", ")) + // eslint-disable-line
-                "&a=" + (vm.selectedEntries.length * 10 * 100).toString() + "&m_firstName=" + encodeURIComponent(vm.paymentForm.firstName) + "&m_lastName=" + encodeURIComponent(vm.paymentForm.lastName) + "&m_ncaa=true" + ("&m_year=" + new Date().getFullYear()) + "&o=1" + "&i=https://goo.gl/GHMVnF" + "&b=https://goo.gl/iIlJPf" + "&r=http://ncaa.n8io.com" + "&z=1";
+                "&a=" + (vm.selectedEntries.length * 10 * 100).toString() + "&m_firstName=" + encodeURIComponent(vm.paymentForm.firstName) + "&m_lastName=" + encodeURIComponent(vm.paymentForm.lastName) + "&m_ncaa=true" + ("&m_year=" + new Date().getFullYear()) + "&o=1" + "&i=https://goo.gl/GHMVnF" + "&b=https://goo.gl/iIlJPf" + "&r=https://ncaa.n8io.com" + "&z=1";
             url += "&m_brackets=" + encodeURIComponent(vm.selectedEntries.map(function(e) {
                 // eslint-disable-line
                 return e.id.toString() + "~~~" + e.name;
@@ -486,6 +486,71 @@
                     return entry.id === parseInt(qsEntry, 10);
                 });
             }
+        }
+    }
+})();
+
+(function() {
+    "use strict";
+
+    (function() {
+        'use strict';
+        // Controllers that are specific to this feature
+
+        rulesController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+        angular.module("rules.controllers", []).controller("Rules_Controller", rulesController);
+
+        /* ngInject */
+        function rulesController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+            var vm = this; // eslint-disable-line
+
+            $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+            vm.init = init;
+
+            vm.init();
+
+            function init() {
+                vm.title = "Rules"; // Will quietly fail if i18n is not done loading.
+
+                if (CacheService.get().pool) {
+                    vm.pool = CacheService.get().pool;
+                }
+            }
+
+            function onPoolInfoRefreshed(e, pool) {
+                vm.pool = pool;
+            }
+        }
+    })();
+})();
+
+(function() {
+    "use strict";
+
+    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+    angular.module("register.controllers", []).controller("Register_Controller", registerController);
+
+    /* ngInject */
+    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+        var vm = this; // eslint-disable-line
+
+        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+        vm.init = init;
+
+        vm.init();
+
+        function init() {
+            vm.title = "How to Enter";
+
+            if (CacheService.get().pool) {
+                vm.pool = CacheService.get().pool;
+            }
+        }
+
+        function onPoolInfoRefreshed(e, pool) {
+            vm.pool = pool;
         }
     }
 })();
@@ -608,69 +673,4 @@
             return pool;
         }
     }
-})();
-
-(function() {
-    "use strict";
-
-    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-    angular.module("register.controllers", []).controller("Register_Controller", registerController);
-
-    /* ngInject */
-    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-        var vm = this; // eslint-disable-line
-
-        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-        vm.init = init;
-
-        vm.init();
-
-        function init() {
-            vm.title = "How to Enter";
-
-            if (CacheService.get().pool) {
-                vm.pool = CacheService.get().pool;
-            }
-        }
-
-        function onPoolInfoRefreshed(e, pool) {
-            vm.pool = pool;
-        }
-    }
-})();
-
-(function() {
-    "use strict";
-
-    (function() {
-        'use strict';
-        // Controllers that are specific to this feature
-
-        rulesController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-        angular.module("rules.controllers", []).controller("Rules_Controller", rulesController);
-
-        /* ngInject */
-        function rulesController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-            var vm = this; // eslint-disable-line
-
-            $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-            vm.init = init;
-
-            vm.init();
-
-            function init() {
-                vm.title = "Rules"; // Will quietly fail if i18n is not done loading.
-
-                if (CacheService.get().pool) {
-                    vm.pool = CacheService.get().pool;
-                }
-            }
-
-            function onPoolInfoRefreshed(e, pool) {
-                vm.pool = pool;
-            }
-        }
-    })();
 })();

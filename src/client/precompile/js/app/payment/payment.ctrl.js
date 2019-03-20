@@ -54,7 +54,7 @@ function paymentController(
   }
 
   function onSubmit() {
-    // ?&c=USD&o=1&n=2016%20March%20Madness&d=The%20Hoosier%20Brackets&f=Nate&l=Clark&a=2000&i=https://goo.gl/GHMVnF&b=https://goo.gl/iIlJPf&r=http://www.google.com
+    // ?&c=USD&o=1&n=2016%20March%20Madness&d=The%20Hoosier%20Brackets&f=Nate&l=Clark&a=2000&i=https://goo.gl/GHMVnF&b=https://goo.gl/iIlJPf&r=https://www.google.com
     let url =
       (__paymentUri || `https://stripe-processor.herokuapp.com`) + // eslint-disable-line
       `?` +
@@ -81,7 +81,7 @@ function paymentController(
       `&o=1` +
       `&i=https://goo.gl/GHMVnF` +
       `&b=https://goo.gl/iIlJPf` +
-      `&r=http://ncaa.n8io.com` +
+      `&r=https://ncaa.n8io.com` +
       `&z=1`;
     url +=
       `&m_brackets=` +
