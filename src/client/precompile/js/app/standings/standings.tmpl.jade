@@ -52,12 +52,12 @@
               a.info-link(target='_sched', href='https://www.google.com/search?&q=ncaa+tournament+schedule&oq=ncaa').line-height-20
                 i.fa.fa-fw.fa-calendar
                 span Tournament schedule
-md-toolbar.md-theme-dark
+md-toolbar.md-theme-dark.full-width
   h1.md-toolbar-tools(layout='row')
     span(flex, flex-order='0', data-ng-bind='sc.pool.name')
     md-button(data-ng-click='mc.onRefreshClick()', aria-label='Refresh').float-right
       i.fa.fa-refresh(data-ng-class='{"fa-spin": sc.isRefreshing || !sc.pool}')
-.md-list
+.md-list.full-width
   table.table
     thead
       tr
