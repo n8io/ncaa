@@ -849,7 +849,7 @@ const transformTeam = ({
 }) => ({
   nameShort,
   bpi,
-  color,
+  color: `#${color}`,
   id: eid,
   seedId: id,
   isEliminated,
