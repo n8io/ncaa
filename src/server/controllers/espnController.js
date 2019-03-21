@@ -19,6 +19,22 @@ espnController.getPoolInfo = getPoolInfo;
 
 module.exports = espnController;
 
+const addWinningTeamInfo = ({ picks, ...entry }) => {
+  if (!picks || !picks.length) return null;
+
+  const seedId = Number(R.last(picks.split('|')));
+  const winningTeam = R.pick(
+    ['color', 'id', 'isEliminated', 'name'],
+    teams[seedId] || {}
+  );
+
+  // console.log({ id, winningTeam });
+
+  return R.isEmpty(winningTeam)
+    ? undefined
+    : R.assoc('winningTeam', winningTeam)(entry);
+};
+
 function getPoolInfo(callback) {
   const opts = {};
 
@@ -53,32 +69,28 @@ function getPoolInfo(callback) {
     }
     */
 
+    const transformProps = R.pipe(
+      R.pick([`id`, `p`, `pct`, `ppr`, `ps`, `n_d`, `n_e`]),
+      renameKeys({
+        p: `points`,
+        pct: `percent`,
+        n_d: `userName`,
+        n_e: `entryName`,
+        ps: 'picks'
+      })
+    );
+
     const entries = R.pipe(
       R.pathOr([], [`g`, `e`]),
       R.map(
         R.pipe(
-          R.pick([`id`, `p`, `pct`, `ppr`, `n_d`, `n_e`]),
-          renameKeys({
-            p: `points`,
-            pct: `percent`,
-            n_d: `userName`,
-            n_e: `entryName`
-          })
+          transformProps,
+          addWinningTeamInfo
         )
       )
     )(data);
 
     const maxEntriesPerUser = R.pathOr(1, [`g`, `max`], data);
-
-    // entries = data.group.entries.map(e => {
-    //   e.winningTeam = _.find(teams, { id: e.winningTeamID });
-
-    //   e.periodPoints = _(e.periodPoints)
-    //     .values()
-    //     .value();
-
-    //   return e;
-    // });
 
     const output = {
       group: { entries: entries },

@@ -1,3 +1,4 @@
+const R = require(`ramda`);
 // Visit bracket page and query the following in the Dev Tools console:
 // console.log(espn.fantasy.maxpart.config.scoreboard_teams) && copy(espn.fantasy.maxpart.config.scoreboard_teams)
 const teams = [
@@ -836,7 +837,8 @@ const teams = [
 ];
 
 const transformTeam = ({
-  eid: id,
+  eid,
+  id,
   s: seed,
   e: isEliminated,
   n: name,
@@ -848,11 +850,12 @@ const transformTeam = ({
   nameShort,
   bpi,
   color,
-  id,
+  id: eid,
+  seedId: id,
   isEliminated,
   name,
   record,
   seed
 });
 
-module.exports = teams.map(transformTeam);
+module.exports = R.indexBy(R.prop('seedId'), teams.map(transformTeam));
