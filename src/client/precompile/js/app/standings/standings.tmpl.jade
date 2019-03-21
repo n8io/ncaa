@@ -102,7 +102,7 @@ md-toolbar.md-theme-dark.full-width
         td.medium.text-center
           span(data-ng-if='!entry.winningTeam') --
           .hint--top.hint--bounce(data-hint='{{entry.winningTeam.nameame}}',data-ng-if='entry.winningTeam')
-            img(data-ng-src='https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{entry.winningTeam.eid}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}').responsive
+            img(data-ng-src='https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/{{entry.winningTeam.id}}.png&w=26&h=26&scale=crop',data-ng-class='{eliminated: entry.winningTeam.isEliminated}').responsive
         td(data-ng-bind='entry.ppr').small.text-right
         td(data-ng-bind='entry.points').small
         td(data-ng-bind='entry.percentile + "%"', hide-xs)
