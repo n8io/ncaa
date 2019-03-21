@@ -1,10 +1,15 @@
 angular
   .module(`app.controllers`, [])
-  .controller(`Master_Controller`, masterController)
-  ;
+  .controller(`Master_Controller`, masterController);
 
 /* @ngInject */
-function masterController($log, $location, $rootScope, $mdSidenav, ESPNService) {
+function masterController(
+  $log,
+  $location,
+  $rootScope,
+  $mdSidenav,
+  ESPNService
+) {
   var vm = this; // eslint-disable-line
 
   vm.toggleSidenav = toggleSidenav;
@@ -17,6 +22,8 @@ function masterController($log, $location, $rootScope, $mdSidenav, ESPNService) 
     vm.onRefreshClick = onRefreshClick;
 
     ESPNService.refresh();
+
+    setTimeout(() => ESPNService.refresh(), 1000);
   }
 
   function toggleSidenav(menuId) {
@@ -25,10 +32,10 @@ function masterController($log, $location, $rootScope, $mdSidenav, ESPNService) 
 
   function getSubNavItems() {
     return [
-      {id: `standings`, label: `Standings`},
-      {id: `register`, label: `How to Enter`},
-      {id: `rules`, label: `Rules`},
-      {id: `payment`, label: `Payment`}
+      { id: `standings`, label: `Standings` },
+      { id: `register`, label: `How to Enter` },
+      { id: `rules`, label: `Rules` },
+      { id: `payment`, label: `Payment` }
     ];
   }
 

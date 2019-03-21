@@ -30,6 +30,7 @@ function standingsController(
   }
 
   function onPoolInfoRefreshed(e, pool) {
+    console.log({ onPoolInfoRefreshed: pool });
     $timeout(() => setPool(pool));
   }
 
@@ -53,6 +54,8 @@ function standingsController(
   }
 
   function setPool(pool) {
+    if (!pool) return;
+
     vm.pool = addDisplayLabel(pool);
     vm.pool.entries = vm.pool.entries.map(e => {
       e.isFavorite = !!Favorites.get().find(id => e.id === id);
