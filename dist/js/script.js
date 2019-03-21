@@ -1,4 +1,4 @@
-/* Compiled via gulp-uglify on Wednesday, March 20th 2019, 8:27:57PM -04:00 [ 1553128077215 ] */
+/* Compiled via gulp-uglify on Wednesday, March 20th 2019, 8:33:20PM -04:00 [ 1553128400360 ] */
 "use strict";
 
 (function() {
@@ -367,6 +367,12 @@
 (function() {
     "use strict";
 
+    angular.module("standings", ["standings.controllers"]);
+})();
+
+(function() {
+    "use strict";
+
     angular.module("register", ["register.controllers"]);
 })();
 
@@ -374,12 +380,6 @@
     "use strict";
 
     angular.module("rules", ["rules.controllers"]);
-})();
-
-(function() {
-    "use strict";
-
-    angular.module("standings", ["standings.controllers"]);
 })();
 
 (function() {
@@ -492,71 +492,6 @@
             }
         }
     }
-})();
-
-(function() {
-    "use strict";
-
-    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-    angular.module("register.controllers", []).controller("Register_Controller", registerController);
-
-    /* ngInject */
-    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-        var vm = this; // eslint-disable-line
-
-        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-        vm.init = init;
-
-        vm.init();
-
-        function init() {
-            vm.title = "How to Enter";
-
-            if (CacheService.get().pool) {
-                vm.pool = CacheService.get().pool;
-            }
-        }
-
-        function onPoolInfoRefreshed(e, pool) {
-            vm.pool = pool;
-        }
-    }
-})();
-
-(function() {
-    "use strict";
-
-    (function() {
-        'use strict';
-        // Controllers that are specific to this feature
-
-        rulesController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-        angular.module("rules.controllers", []).controller("Rules_Controller", rulesController);
-
-        /* ngInject */
-        function rulesController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-            var vm = this; // eslint-disable-line
-
-            $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-            vm.init = init;
-
-            vm.init();
-
-            function init() {
-                vm.title = "Rules"; // Will quietly fail if i18n is not done loading.
-
-                if (CacheService.get().pool) {
-                    vm.pool = CacheService.get().pool;
-                }
-            }
-
-            function onPoolInfoRefreshed(e, pool) {
-                vm.pool = pool;
-            }
-        }
-    })();
 })();
 
 (function() {
@@ -682,4 +617,69 @@
             return pool;
         }
     }
+})();
+
+(function() {
+    "use strict";
+
+    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+    angular.module("register.controllers", []).controller("Register_Controller", registerController);
+
+    /* ngInject */
+    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+        var vm = this; // eslint-disable-line
+
+        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+        vm.init = init;
+
+        vm.init();
+
+        function init() {
+            vm.title = "How to Enter";
+
+            if (CacheService.get().pool) {
+                vm.pool = CacheService.get().pool;
+            }
+        }
+
+        function onPoolInfoRefreshed(e, pool) {
+            vm.pool = pool;
+        }
+    }
+})();
+
+(function() {
+    "use strict";
+
+    (function() {
+        'use strict';
+        // Controllers that are specific to this feature
+
+        rulesController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+        angular.module("rules.controllers", []).controller("Rules_Controller", rulesController);
+
+        /* ngInject */
+        function rulesController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+            var vm = this; // eslint-disable-line
+
+            $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+            vm.init = init;
+
+            vm.init();
+
+            function init() {
+                vm.title = "Rules"; // Will quietly fail if i18n is not done loading.
+
+                if (CacheService.get().pool) {
+                    vm.pool = CacheService.get().pool;
+                }
+            }
+
+            function onPoolInfoRefreshed(e, pool) {
+                vm.pool = pool;
+            }
+        }
+    })();
 })();
