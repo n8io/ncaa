@@ -70,13 +70,17 @@ function getPoolInfo(callback) {
     */
 
     const transformProps = R.pipe(
-      R.pick([`id`, `p`, `pct`, `ppr`, `ps`, `n_d`, `n_e`]),
+      R.pick([`id`, `p`, `pct`, `ppr`, `ps`, `n_d`, `n_e`, `r`]),
       renameKeys({
         p: `points`,
         pct: `percent`,
         n_d: `userName`,
         n_e: `entryName`,
-        ps: 'picks'
+        ps: 'picks',
+        r: `rank`
+      }),
+      R.evolve({
+        percent: pct => (pct ? Number(pct.toFixed(1)) : 0)
       })
     );
 

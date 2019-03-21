@@ -122,7 +122,7 @@ md-toolbar.md-theme-dark.full-width
           span.rank(data-ng-bind='{{entry.rank}}', data-ng-show='entry.rank > 0')
           span.rank(data-ng-hide='entry.rank > 0') --
         td
-          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='https://fantasy.espn.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{entry.id}}').hint--top-right.hint--bounce
+          a(target='_bracket', data-hint='{{entry.financier}}', data-ng-href='http://fantasy.espn.com/tournament-challenge-bracket/#{process.env.YEAR}/en/entry?entryID={{entry.id}}').hint--top-right.hint--bounce
             gravatar(round, size='16',email='entry.paid.email || ""').mgn-right-5
             span(data-ng-bind-html='entry.entryName | unsafe')
         td.tiny.text-center
