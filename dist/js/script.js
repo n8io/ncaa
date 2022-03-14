@@ -1,4 +1,4 @@
-/* Compiled via gulp-uglify on Monday, March 14th 2022, 9:13:13AM -04:00 [ 1647263593981 ] */
+/* Compiled via gulp-uglify on Monday, March 14th 2022, 9:42:38AM -04:00 [ 1647265358054 ] */
 "use strict";
 
 (function() {
@@ -438,16 +438,24 @@
             };
         }
 
+        function decodeHtml(encoded) {
+            var txt = document.createElement("textarea");
+
+            txt.innerHTML = encoded;
+
+            return txt.value;
+        }
+
         function onSubmit() {
             // ?&c=USD&o=1&n=2016%20March%20Madness&d=The%20Hoosier%20Brackets&f=Nate&l=Clark&a=2000&i=https://goo.gl/GHMVnF&b=https://goo.gl/iIlJPf&r=https://www.google.com
             var url = (__paymentUri || "https://stripe-processor.herokuapp.com") + // eslint-disable-line
                 "?" + "&c=USD" + "&n=" + __year + " March Madness" + "&d=" + encodeURIComponent(vm.selectedEntries.map(function(e) {
-                    return e.name;
+                    return decodeHtml(e.name);
                 }).join(", ")) + // eslint-disable-line
-                "&a=" + (vm.selectedEntries.length * 10 * 100).toString() + "&m_firstName=" + encodeURIComponent(vm.paymentForm.firstName) + "&m_lastName=" + encodeURIComponent(vm.paymentForm.lastName) + "&m_ncaa=true" + ("&m_year=" + new Date().getFullYear()) + "&o=1" + "&i=https://goo.gl/GHMVnF" + "&b=https://goo.gl/iIlJPf" + "&r=https://ncaa.n8io.com" + "&z=1";
+                "&a=" + (vm.selectedEntries.length * 10 * 100).toString() + "&m_firstName=" + encodeURIComponent(vm.paymentForm.firstName) + "&m_lastName=" + encodeURIComponent(vm.paymentForm.lastName) + "&m_ncaa=true" + ("&m_year=" + new Date().getFullYear()) + "&o=1" + ("&i=" + window.__stripeThumbnailImageUrl) + ("&b=" + window.__stripeBackgroundImageUrl) + "&r=https://ncaa.n8io.com" + "&z=1";
             url += "&m_brackets=" + encodeURIComponent(vm.selectedEntries.map(function(e) {
                 // eslint-disable-line
-                return e.id.toString() + "~~~" + e.name;
+                return e.id.toString() + "~~~" + decodeHtml(e.name);
             }).join(":::"));
 
             angular.element("#payment").attr("disable", "disable").text("Please wait...");

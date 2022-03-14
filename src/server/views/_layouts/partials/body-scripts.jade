@@ -24,11 +24,13 @@ block body-scripts
     window.__year = '#{process.env.YEAR}';
     window.__paymentUri = '#{process.env.PAYMENT_BASE_URL}';
     window.__startTime = #{process.env.START_TIME_MS};
+    window.__stripeThumbnailImageUrl = '#{process.env.STRIPE_THUMBNAIL_IMAGE_URL}';
+    window.__stripeBackgroundImageUrl = '#{process.env.STRIPE_BACKGROUND_IMAGE_URL}';
 
   //- Angular app bundle
   - if (isDevelopment)
     script(src='#{CDN("/js/script.js")}', data-id='js-app')
-  - else  
+  - else
     script(src='#{CDN("/js/script.min.js")}', data-id='js-app')
 
   //- Scripts loaded, now show body of page

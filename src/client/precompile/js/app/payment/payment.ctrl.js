@@ -53,6 +53,14 @@ function paymentController(
     };
   }
 
+  function decodeHtml(encoded) {
+    var txt = document.createElement("textarea");
+
+    txt.innerHTML = encoded;
+
+    return txt.value
+  }
+
   function onSubmit() {
     // ?&c=USD&o=1&n=2016%20March%20Madness&d=The%20Hoosier%20Brackets&f=Nate&l=Clark&a=2000&i=https://goo.gl/GHMVnF&b=https://goo.gl/iIlJPf&r=https://www.google.com
     let url =
@@ -66,7 +74,7 @@ function paymentController(
       encodeURIComponent(
         vm.selectedEntries
           .map(function(e) {
-            return e.name;
+            return decodeHtml(e.name);
           })
           .join(`, `)
       ) + // eslint-disable-line
@@ -79,8 +87,8 @@ function paymentController(
       `&m_ncaa=true` +
       `&m_year=${new Date().getFullYear()}` +
       `&o=1` +
-      `&i=https://goo.gl/GHMVnF` +
-      `&b=https://goo.gl/iIlJPf` +
+      `&i=${window.__stripeThumbnailImageUrl}` +
+      `&b=${window.__stripeBackgroundImageUrl}` +
       `&r=https://ncaa.n8io.com` +
       `&z=1`;
     url +=
@@ -89,7 +97,7 @@ function paymentController(
         vm.selectedEntries
           .map(function(e) {
             // eslint-disable-line
-            return `${e.id.toString()}~~~${e.name}`;
+            return `${e.id.toString()}~~~${decodeHtml(e.name)}`;
           })
           .join(`:::`)
       );
