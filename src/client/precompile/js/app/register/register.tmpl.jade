@@ -41,7 +41,7 @@ md-list
         img(src='/statics/img/step-04b-add.png').responsive
         md-subheader.md-no-sticky
           span * If prompted, the group password is:&nbsp;
-          h1 backinaction
+          h2 backinaction
   md-divider
   md-item
     md-item-content
@@ -51,3 +51,15 @@ md-list
           .mgn-left-20
           a(ui-sref='standings') Group Entries
         md-subheader.md-no-sticky If you do not see your bracket entry here, you messed up. Go back to Step 2 and try again.
+  md-divider
+  md-item
+    md-item-content
+      .md-tile-content
+        h2 Step 6 &mdash; Pay for your entries
+        h3
+          .mgn-left-20
+          a(ui-sref='payment') Pay for your entries
+        md-subheader.md-no-sticky
+          span Again, if you do not see your bracket entry here,!{' '}
+          strong YOUR BRACKET DID NOT JOIN THE GROUP.
+          span !{' '}Go back to Step 2 and try again.

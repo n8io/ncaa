@@ -1,4 +1,5 @@
 const R = require(`ramda`);
+const he = require('he')
 const request = require(`request`);
 const teams = require('./teams');
 const _ = require(`lodash`);
@@ -86,6 +87,7 @@ function getPoolInfo(callback) {
         r: `rank`
       }),
       R.evolve({
+        entryName: he.decode,
         percent: pct => (pct ? Number(pct.toFixed(1)) : 0)
       })
     );
