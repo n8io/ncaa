@@ -83,24 +83,19 @@ function getPoolInfo(callback) {
         pct: `percent`,
         n_d: `userName`,
         n_e: `entryName`,
-        ps: 'picks',
-        r: `rank`
+        ps: `picks`,
+        r: `rank`,
       }),
       R.evolve({
         entryName: he.decode,
-        percent: pct => (pct ? Number(pct.toFixed(1)) : 0)
+        percent: (pct) => (pct ? Number(pct.toFixed(1)) : 0),
+        userName: he.decode,
       })
     );
 
     const entries = R.pipe(
       R.pathOr([], [`g`, `e`]),
-      R.map(
-        R.pipe(
-          transformProps,
-          x => console.log(x) || x,
-          addWinningTeamInfo
-        )
-      )
+      R.map(R.pipe(transformProps, addWinningTeamInfo))
     )(data);
 
     const maxEntriesPerUser = R.pathOr(1, [`g`, `max`], data);
