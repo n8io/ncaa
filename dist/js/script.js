@@ -1,4 +1,4 @@
-/* Compiled via gulp-uglify on Monday, March 14th 2022, 9:42:38AM -04:00 [ 1647265358054 ] */
+/* Compiled via gulp-uglify on Monday, March 14th 2022, 9:51:53AM -04:00 [ 1647265913756 ] */
 "use strict";
 
 (function() {
@@ -361,13 +361,13 @@
 (function() {
     "use strict";
 
-    angular.module("payment", ["payment.controllers"]);
+    angular.module("register", ["register.controllers"]);
 })();
 
 (function() {
     "use strict";
 
-    angular.module("register", ["register.controllers"]);
+    angular.module("payment", ["payment.controllers"]);
 })();
 
 (function() {
@@ -388,6 +388,36 @@
     angular.element(document).ready(function() {
         angular.bootstrap(document, ["app"]);
     });
+})();
+
+(function() {
+    "use strict";
+
+    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+    angular.module("register.controllers", []).controller("Register_Controller", registerController);
+
+    /* ngInject */
+    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+        var vm = this; // eslint-disable-line
+
+        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+        vm.init = init;
+
+        vm.init();
+
+        function init() {
+            vm.title = "How to Enter";
+
+            if (CacheService.get().pool) {
+                vm.pool = CacheService.get().pool;
+            }
+        }
+
+        function onPoolInfoRefreshed(e, pool) {
+            vm.pool = pool;
+        }
+    }
 })();
 
 (function() {
@@ -498,36 +528,6 @@
                     return entry.id === parseInt(qsEntry, 10);
                 });
             }
-        }
-    }
-})();
-
-(function() {
-    "use strict";
-
-    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-    angular.module("register.controllers", []).controller("Register_Controller", registerController);
-
-    /* ngInject */
-    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-        var vm = this; // eslint-disable-line
-
-        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-        vm.init = init;
-
-        vm.init();
-
-        function init() {
-            vm.title = "How to Enter";
-
-            if (CacheService.get().pool) {
-                vm.pool = CacheService.get().pool;
-            }
-        }
-
-        function onPoolInfoRefreshed(e, pool) {
-            vm.pool = pool;
         }
     }
 })();
