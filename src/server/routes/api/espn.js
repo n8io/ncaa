@@ -39,7 +39,7 @@ module.exports = function(app /* , options*/) {
       paymentsController.getPayments(function(err, paidBrackets) {
         if (err) {
           return next(
-            err || new Error(`Retuned bad response when fetching payments`)
+            err || new Error(`Returned bad response when fetching payments`)
           );
         }
 

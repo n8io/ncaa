@@ -5,7 +5,9 @@ const _ = require(`lodash`);
 const espnController = function() {};
 const year = process.env.YEAR || new Date().getFullYear();
 const groupId = process.env.ESPN_GROUP_ID || -1;
-const espnBrackUrl = `https://fantasy.espncdn.com/tournament-challenge-bracket/${year}/en/api/group?groupID=${groupId}&start=0&length=500`;
+const espnBracketUrl = `https://fantasy.espncdn.com/tournament-challenge-bracket/${year}/en/api/group?groupID=${groupId}&start=0&length=500`;
+
+const startTime = new Date(parseInt(process.env.START_TIME_MS, 10))
 
 const renameKeys = R.curry((keysMap, obj) =>
   R.reduce(
@@ -20,6 +22,8 @@ espnController.getPoolInfo = getPoolInfo;
 module.exports = espnController;
 
 const addWinningTeamInfo = ({ picks, ...entry }) => {
+  if (new Date() < startTime) return entry
+
   if (!picks || !picks.length) return null;
 
   const seedId = Number(R.last(picks.split('|')));
@@ -38,9 +42,11 @@ const addWinningTeamInfo = ({ picks, ...entry }) => {
 function getPoolInfo(callback) {
   const opts = {};
 
-  opts.uri = espnBrackUrl;
+  opts.uri = espnBracketUrl;
   opts.qs = { noc: new Date().getTime() };
   opts.json = true;
+  opts.rejectUnauthorized = false
+  opts.strictSSL = false;
 
   request(opts, onRequestResponse);
 
@@ -89,6 +95,7 @@ function getPoolInfo(callback) {
       R.map(
         R.pipe(
           transformProps,
+          x => console.log(x) || x,
           addWinningTeamInfo
         )
       )

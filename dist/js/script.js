@@ -1,4 +1,4 @@
-/* Compiled via gulp-uglify on Thursday, March 21st 2019, 3:51:07PM -04:00 [ 1553197867800 ] */
+/* Compiled via gulp-uglify on Monday, March 14th 2022, 9:13:13AM -04:00 [ 1647263593981 ] */
 "use strict";
 
 (function() {
@@ -373,13 +373,13 @@
 (function() {
     "use strict";
 
-    angular.module("standings", ["standings.controllers"]);
+    angular.module("rules", ["rules.controllers"]);
 })();
 
 (function() {
     "use strict";
 
-    angular.module("rules", ["rules.controllers"]);
+    angular.module("standings", ["standings.controllers"]);
 })();
 
 (function() {
@@ -527,6 +527,41 @@
 (function() {
     "use strict";
 
+    (function() {
+        'use strict';
+        // Controllers that are specific to this feature
+
+        rulesController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+        angular.module("rules.controllers", []).controller("Rules_Controller", rulesController);
+
+        /* ngInject */
+        function rulesController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+            var vm = this; // eslint-disable-line
+
+            $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+            vm.init = init;
+
+            vm.init();
+
+            function init() {
+                vm.title = "Rules"; // Will quietly fail if i18n is not done loading.
+
+                if (CacheService.get().pool) {
+                    vm.pool = CacheService.get().pool;
+                }
+            }
+
+            function onPoolInfoRefreshed(e, pool) {
+                vm.pool = pool;
+            }
+        }
+    })();
+})();
+
+(function() {
+    "use strict";
+
     standingsController.$inject = ['$scope', '$rootScope', '$timeout', '$interval', '$sce', '$mdMedia', 'Favorites', 'CacheService', 'CONSTANTS'];
     angular.module("standings.controllers", []).controller("Standings_Controller", standingsController);
 
@@ -647,39 +682,4 @@
             return pool;
         }
     }
-})();
-
-(function() {
-    "use strict";
-
-    (function() {
-        'use strict';
-        // Controllers that are specific to this feature
-
-        rulesController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-        angular.module("rules.controllers", []).controller("Rules_Controller", rulesController);
-
-        /* ngInject */
-        function rulesController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-            var vm = this; // eslint-disable-line
-
-            $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-            vm.init = init;
-
-            vm.init();
-
-            function init() {
-                vm.title = "Rules"; // Will quietly fail if i18n is not done loading.
-
-                if (CacheService.get().pool) {
-                    vm.pool = CacheService.get().pool;
-                }
-            }
-
-            function onPoolInfoRefreshed(e, pool) {
-                vm.pool = pool;
-            }
-        }
-    })();
 })();
