@@ -30,7 +30,7 @@ function standingsController(
   }
 
   function onPoolInfoRefreshed(e, pool) {
-    console.log({ onPoolInfoRefreshed: pool });
+    console.log({onPoolInfoRefreshed: pool});
     $timeout(() => setPool(pool));
   }
 
@@ -110,12 +110,19 @@ function standingsController(
     }
 
     pool.entries.forEach(entry => {
+      entry.person = entry.paid
+        ? `${entry.paid.firstName} ${entry.paid.lastName}`
+        : entry.userName;
+
       entry.owner = entry.userName;
+
       entry.financier =
         (entry.paid
           ? `${entry.paid.firstName} ${entry.paid.lastName} | ${entry.userName}`
           : ``) || `${entry.userName}`;
     });
+
+    console.log(pool);
 
     return pool;
   }

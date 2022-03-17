@@ -1,4 +1,4 @@
-/* Compiled via gulp-uglify on Monday, March 14th 2022, 2:11:41PM -04:00 [ 1647281501216 ] */
+/* Compiled via gulp-uglify on Thursday, March 17th 2022, 8:52:40AM -04:00 [ 1647521560552 ] */
 "use strict";
 
 (function() {
@@ -361,12 +361,6 @@
 (function() {
     "use strict";
 
-    angular.module("register", ["register.controllers"]);
-})();
-
-(function() {
-    "use strict";
-
     angular.module("payment", ["payment.controllers"]);
 })();
 
@@ -374,6 +368,12 @@
     "use strict";
 
     angular.module("rules", ["rules.controllers"]);
+})();
+
+(function() {
+    "use strict";
+
+    angular.module("register", ["register.controllers"]);
 })();
 
 (function() {
@@ -388,36 +388,6 @@
     angular.element(document).ready(function() {
         angular.bootstrap(document, ["app"]);
     });
-})();
-
-(function() {
-    "use strict";
-
-    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
-    angular.module("register.controllers", []).controller("Register_Controller", registerController);
-
-    /* ngInject */
-    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
-        var vm = this; // eslint-disable-line
-
-        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
-
-        vm.init = init;
-
-        vm.init();
-
-        function init() {
-            vm.title = "How to Enter";
-
-            if (CacheService.get().pool) {
-                vm.pool = CacheService.get().pool;
-            }
-        }
-
-        function onPoolInfoRefreshed(e, pool) {
-            vm.pool = pool;
-        }
-    }
 })();
 
 (function() {
@@ -570,6 +540,36 @@
 (function() {
     "use strict";
 
+    registerController.$inject = ['$log', '$scope', '$rootScope', 'CONSTANTS', 'CacheService'];
+    angular.module("register.controllers", []).controller("Register_Controller", registerController);
+
+    /* ngInject */
+    function registerController($log, $scope, $rootScope, CONSTANTS, CacheService) {
+        var vm = this; // eslint-disable-line
+
+        $rootScope.$on(CONSTANTS.ONPOOLDATAREFRESHED, onPoolInfoRefreshed);
+
+        vm.init = init;
+
+        vm.init();
+
+        function init() {
+            vm.title = "How to Enter";
+
+            if (CacheService.get().pool) {
+                vm.pool = CacheService.get().pool;
+            }
+        }
+
+        function onPoolInfoRefreshed(e, pool) {
+            vm.pool = pool;
+        }
+    }
+})();
+
+(function() {
+    "use strict";
+
     standingsController.$inject = ['$scope', '$rootScope', '$timeout', '$interval', '$sce', '$mdMedia', 'Favorites', 'CacheService', 'CONSTANTS'];
     angular.module("standings.controllers", []).controller("Standings_Controller", standingsController);
 
@@ -683,9 +683,14 @@
             }
 
             pool.entries.forEach(function(entry) {
+                entry.person = entry.paid ? entry.paid.firstName + " " + entry.paid.lastName : entry.userName;
+
                 entry.owner = entry.userName;
+
                 entry.financier = (entry.paid ? entry.paid.firstName + " " + entry.paid.lastName + " | " + entry.userName : "") || "" + entry.userName;
             });
+
+            console.log(pool);
 
             return pool;
         }
