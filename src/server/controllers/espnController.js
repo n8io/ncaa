@@ -1,14 +1,14 @@
 const R = require(`ramda`);
-const he = require('he')
+const he = require("he");
 const request = require(`request`);
-const teams = require('./teams');
+const teams = require("./teams");
 const _ = require(`lodash`);
-const espnController = function() {};
+const espnController = function () {};
 const year = process.env.YEAR || new Date().getFullYear();
 const groupId = process.env.ESPN_GROUP_ID || -1;
-const espnBracketUrl = `https://fantasy.espncdn.com/tournament-challenge-bracket/${year}/en/api/group?groupID=${groupId}&start=0&length=500`;
 
-const startTime = new Date(parseInt(process.env.START_TIME_MS, 10))
+const startTime = new Date(parseInt(process.env.START_TIME_MS, 10));
+const espnBracketUrl = `https://fantasy.espncdn.com/tournament-challenge-bracket/${year}/en/api/group?groupID=${groupId}&start=0&length=500`;
 
 const renameKeys = R.curry((keysMap, obj) =>
   R.reduce(
@@ -23,13 +23,13 @@ espnController.getPoolInfo = getPoolInfo;
 module.exports = espnController;
 
 const addWinningTeamInfo = ({ picks, ...entry }) => {
-  if (new Date() < startTime) return entry
+  if (new Date() < startTime) return entry;
 
   if (!picks || !picks.length) return null;
 
-  const seedId = Number(R.last(picks.split('|')));
+  const seedId = Number(R.last(picks.split("|")));
   const winningTeam = R.pick(
-    ['color', 'id', 'isEliminated', 'name'],
+    ["color", "id", "isEliminated", "name"],
     teams[seedId] || {}
   );
 
@@ -37,7 +37,7 @@ const addWinningTeamInfo = ({ picks, ...entry }) => {
 
   return R.isEmpty(winningTeam)
     ? undefined
-    : R.assoc('winningTeam', winningTeam)(entry);
+    : R.assoc("winningTeam", winningTeam)(entry);
 };
 
 function getPoolInfo(callback) {
@@ -46,7 +46,7 @@ function getPoolInfo(callback) {
   opts.uri = espnBracketUrl;
   opts.qs = { noc: new Date().getTime() };
   opts.json = true;
-  opts.rejectUnauthorized = false
+  opts.rejectUnauthorized = false;
   opts.strictSSL = false;
 
   request(opts, onRequestResponse);
@@ -90,7 +90,12 @@ function getPoolInfo(callback) {
         entryName: he.decode,
         percent: (pct) => (pct ? Number(pct.toFixed(1)) : 0),
         userName: he.decode,
+        ps: "picks",
+        r: `rank`,
       })
+      // R.evolve({
+      //   percent: (pct) => (pct ? Number(pct.toFixed(1)) : 0),
+      // })
     );
 
     const entries = R.pipe(
@@ -102,7 +107,7 @@ function getPoolInfo(callback) {
 
     const output = {
       group: { entries: entries },
-      maxEntriesPerUser: maxEntriesPerUser
+      maxEntriesPerUser: maxEntriesPerUser,
     };
 
     return callback(null, output);

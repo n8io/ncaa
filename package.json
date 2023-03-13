@@ -6,7 +6,6 @@
   "scripts": {
     "build": "bower install && gulp",
     "build:git-info": "npm run build git-info",
-    "build:lint": "npm run build lint",
     "build:nvm": "node build/nvm",
     "clean": "npm run clean:dusting && rm -rf node_modules/",
     "clean:dusting": "rm -rf dist/ coverage/ log/ logs/ npm-debug.log src/client/statics/bower_components/",
@@ -59,7 +58,6 @@
     "gulp-concat": "2.6.0",
     "gulp-csso": "1.1.0",
     "gulp-debug": "2.1.2",
-    "gulp-eslint": "2.0.0",
     "gulp-filter": "4.0.0",
     "gulp-footer": "1.0.5",
     "gulp-header": "1.7.1",

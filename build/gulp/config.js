@@ -8,7 +8,9 @@ const buildDir = cwd(`build`);
 const srcDir = cwd(`src`);
 const testDir = cwd(`test`);
 const distDir = cwd(`dist`);
-const bowerCfg = JSON.parse(fs.readFileSync(cwd(`.bowerrc`), `utf-8`).toString());
+const bowerCfg = JSON.parse(
+  fs.readFileSync(cwd(`.bowerrc`), `utf-8`).toString()
+);
 const validEnvironments = {
   local: `local`,
   dev: `dev`,
@@ -16,49 +18,45 @@ const validEnvironments = {
   qa: `qa`,
   uat: `uat`,
   prod: `prod`,
-  production: `prod`
+  production: `prod`,
 };
 const now = moment();
 
-require(`dotenv-safe`).load({silent: true});
+require(`dotenv-safe`).load({ silent: true });
 
 const cfg = {
   localEnv: `local`,
   env: validEnvironments[process.env.NODE_ENV || ``] || validEnvironments.prod,
   clean: {
-    src: [
-      distDir
-    ]
+    src: [distDir],
   },
   css: {
     src: cwd(srcDir, `client/precompile/css/**/*.styl`),
     dest: {
       file: `style.min.css`,
-      dir: cwd(distDir, `css`)
+      dir: cwd(distDir, `css`),
     },
     options: {
       local: {
         linenos: true,
         use: nib(),
-        import: [`nib`]
+        import: [`nib`],
       },
       other: {
         compress: true,
         use: nib(),
-        import: [`nib`]
-      }
+        import: [`nib`],
+      },
     },
     banner: {
-      formatStr: `/* Compiled via gulp-stylus on \${label} [ \${ms} ] */\n`
-    }
+      formatStr: `/* Compiled via gulp-stylus on \${label} [ \${ms} ] */\n`,
+    },
   },
-  'git-info': {
-    dest: cwd(`.git.json`)
+  "git-info": {
+    dest: cwd(`.git.json`),
   },
   html: {
-    src: [
-      cwd(srcDir, `client/precompile/**/*.jade`)
-    ],
+    src: [cwd(srcDir, `client/precompile/**/*.jade`)],
     dest: cwd(`dist/html/`),
     min: {
       options: {
@@ -67,23 +65,25 @@ const cfg = {
         collapseBooleanAttributes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
-        caseSensitive: true
-      }
+        caseSensitive: true,
+      },
     },
     jade: {
       data: {
         cacheKey: now.format(`x`),
-        env: validEnvironments[process.env.NODE_ENV || ``] || validEnvironments.prod
-      }
+        env:
+          validEnvironments[process.env.NODE_ENV || ``] ||
+          validEnvironments.prod,
+      },
     },
     beautify: {
       options: {
         indentSize: 2,
         maxPreserveNewlines: 2,
         wrapLineLength: 0,
-        unformatted: [`pre`]
-      }
-    }
+        unformatted: [`pre`],
+      },
+    },
   },
   js: {
     client: {
@@ -91,106 +91,96 @@ const cfg = {
         cwd(srcDir, `client/precompile/js/app/_*.mdul.js`),
         cwd(srcDir, `client/precompile/js/app/_common/**/*.js`),
         cwd(srcDir, `client/precompile/js/app/**/*.mdul.js`),
-        cwd(srcDir, `client/precompile/js/app/**/*.js`)
+        cwd(srcDir, `client/precompile/js/app/**/*.js`),
       ],
       dest: cwd(distDir, `js`),
       filename: `script.min.js`,
       filenameDebug: `script.js`,
       jsbeautifier: {
-        config: cwd(`.jsbeautifyrc`)
+        config: cwd(`.jsbeautifyrc`),
       },
       uglify: {
         mangle: true,
-        compress: true
+        compress: true,
       },
       banner: {
-        formatStr: `/* Compiled via gulp-uglify on \${label} [ \${ms} ] */\n`
+        formatStr: `/* Compiled via gulp-uglify on \${label} [ \${ms} ] */\n`,
       },
       ngAnnotate: {
-        'single_quotes': true
-      }
+        single_quotes: true,
+      },
     },
     server: {
       src: [
         cwd(srcDir, `server/**/*.js`),
         cwd(buildDir, `**/*.js`),
-        cwd(testDir, `**/*.js`)
-      ]
-    }
-  },
-  lint: {
-    css: {
-      src: [
-        cwd(srcDir, `client/**/*.styl`)
-      ]
+        cwd(testDir, `**/*.js`),
+      ],
     },
-    js: {
-      fix: true
-    }
   },
   nodemon: {
     script: cwd(process.env[`npm_package_main`]),
     ext: `js json`,
-    watch: [
-      cwd(srcDir, `server/**/*.js`)
-    ],
+    watch: [cwd(srcDir, `server/**/*.js`)],
     env: {
-      NODE_ENV: validEnvironments[process.env.NODE_ENV || ``] || validEnvironments.local
+      NODE_ENV:
+        validEnvironments[process.env.NODE_ENV || ``] ||
+        validEnvironments.local,
     },
-    nodeArgs: [`--debug`]
+    nodeArgs: [`--inspect`],
   },
   start: {
     ms: now.format(`x`),
-    label: now.format(`dddd, MMMM Do YYYY, h:mm:ssA Z`)
+    label: now.format(`dddd, MMMM Do YYYY, h:mm:ssA Z`),
   },
   statics: {
     bower: {
       src: cwd(bowerCfg.directory),
       baseDir: `./src/client/statics`,
-      dest: cwd(distDir, `statics`)
-    }
+      dest: cwd(distDir, `statics`),
+    },
   },
   test: {
     all: {
-      src: [
-        cwd(`test/test.spec.js`)
-      ],
+      src: [cwd(`test/test.spec.js`)],
       options: {
         reporter: `spec`,
-        growl: true
-      }
+        growl: true,
+      },
     },
     unit: {
-      src: [
-        cwd(`test/unit/unit.spec.js`)
-      ],
+      src: [cwd(`test/unit/unit.spec.js`)],
       options: {
         reporter: `spec`,
-        growl: true
-      }
+        growl: true,
+      },
     },
     integration: {
-      src: [
-        cwd(`test/integration/integration.spec.js`)
-      ],
+      src: [cwd(`test/integration/integration.spec.js`)],
       options: {
         reporter: `spec`,
-        growl: true
-      }
-    }
+        growl: true,
+      },
+    },
   },
   watch: {
     client: {
-      src: [
-        cwd(srcDir, `client/precompile/js/**/*.js`)
-      ]
-    }
-  }
+      src: [cwd(srcDir, `client/precompile/js/**/*.js`)],
+    },
+  },
 };
 
 cfg.git = {
-  commit: (shell.exec(`git rev-parse --verify HEAD`, {silent: true}).output || ``).split(`\n`).join(``),
-  branch: (shell.exec(`git rev-parse --abbrev-ref HEAD`, {silent: true}).output || ``).split(`\n`).join(``)
+  commit: (
+    shell.exec(`git rev-parse --verify HEAD`, { silent: true }).output || ``
+  )
+    .split(`\n`)
+    .join(``),
+  branch: (
+    shell.exec(`git rev-parse --abbrev-ref HEAD`, { silent: true }).output || ``
+  )
+    .split(`\n`)
+    .join(``),
 };
 
 module.exports = cfg;

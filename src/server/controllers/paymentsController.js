@@ -7,7 +7,7 @@ module.exports = paymentsController;
 paymentsController.getPayments = getPayments;
 
 function getPayments(callback) {
-  stripe.charges.list({ limit: 100 }, function(err, charges) {
+  stripe.charges.list({limit: 100}, function(err, charges) {
     const brackets = [];
 
     if (!charges || !charges.data) {

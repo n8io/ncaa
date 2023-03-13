@@ -1,65 +1,40 @@
-h1
-  span {{rc.title}}
-md-divider
-md-list
-  md-item
-    md-item-content
-      .md-tile-content
-        h2 Step 1 &mdash; Login to your ESPN account*.
-        h3
-          .mgn-left-10
-            a(target='_espn', href='https://espn.go.com/login') Login here
-        .height-10
-        a(target='_espn', href='https://espn.go.com')
-          img(src='/statics/img/step-01-signin.png').responsive
-        md-subheader.md-no-sticky * If you do not have an ESPN account, you will need to create one.
-  md-divider
-  md-item
-    md-item-content
-      .md-tile-content
-        h2 Step 2 &mdash; Click the link
-        h3
-          .mgn-left-20
-            a(target='_espn', href='#{process.env.BITLY_URL}') #{process.env.BITLY_URL}
-  md-divider
-  md-item
-    md-item-content
-      .md-tile-content
-        h2 Step 3 &mdash; Name your bracket
-        .height-10
-        img(src='/statics/img/step-03-create.png').responsive
-  md-divider
-  md-item
-    md-item-content
-      .md-tile-content
-        h2 Step 4 &mdash; Join the Group*
-        .height-10
-        img(src='/statics/img/step-04-join.png').responsive
-        .height-10
-        h3 OR if you want to add a bracket you already have already created...
-        .height-10
-        img(src='/statics/img/step-04b-add.png').responsive
-        md-subheader.md-no-sticky
-          span * If prompted, the group password is:&nbsp;
-          h2 backinaction
-  md-divider
-  md-item
-    md-item-content
-      .md-tile-content
-        h2 Step 5 &mdash; Verify you have entered
-        h3
-          .mgn-left-20
-          a(ui-sref='standings') Group Entries
-        md-subheader.md-no-sticky If you do not see your bracket entry here, you messed up. Go back to Step 2 and try again.
-  md-divider
-  md-item
-    md-item-content
-      .md-tile-content
-        h2 Step 6 &mdash; Pay for your entries
-        h3
-          .mgn-left-20
-          a(ui-sref='payment') Pay for your entries
-        md-subheader.md-no-sticky
-          span Again, if you do not see your bracket entry here,!{' '}
-          strong YOUR BRACKET DID NOT JOIN THE GROUP.
-          span !{' '}Go back to Step 2 and try again.
+h1#-how-to-enter- 🎟️ How to enter?
+p
+  a(href='https://fantasy.espn.com/tournament-challenge-bracket/2023/en/group?redirect=tcmen%3A%2F%2Fx-callback-url%2FshowGroup%3FgroupID%3D5442411&ex_cid=tcmen2023_clipboard&groupID=5442411&groupp=bWFkbmVzczIwMjM%3D&inviteuser=e0Q2REY1NkJFLTJFNzQtNDhFRi1BREU4LTM4MUYzNjAwRTkzRH0%3D&invitesource=clipboard') Enter here on espn.com
+ul
+  li Group: 🍀 March Madness 2023
+  li
+    | Password: 
+    code madness2023
+p
+  strong Please make sure you have joined our group WITH EACH BRACKET you wish to enter
+p
+  | If your bracket has not properly joined our group before tipoff, YOU'RE SHIT OUT OF LUCK.
+
+h2#-troubleshooting ⛑️ Troubleshooting
+h3#how-can-i-confirm-my-bracket-has-joined-the-group- How can I confirm my bracket has joined the group?
+p
+  | When you click 
+  strong Join Group
+  |  it should have a 
+  strong Entry is in this group
+  |  status like the following image.
+p
+  img(width='400' alt='image' src='https://user-images.githubusercontent.com/2074517/224694479-7a813074-52e7-4f22-a120-46ed071e819c.png')
+h3#i-m-lost-help- I'm lost, help?!?
+p
+  | Please contact me via 
+  a(href='mailto:nathandavidclark.mm2021@gmail.com?subject=March%20Madness%202023%20-%20Help&body=Explain%20your%20issue%20here%3A%0D%0A%0D%0A') this email link (preferred)
+  |  or text if you run into any issues.
+h2#-entry-checklist ✅ Entry Checklist
+ul
+  li You have completed your bracket
+  li Your bracket has entered the group
+  li You have paid for each of your entries with a note listing their names
+h2#-have-fun 😃 Have Fun
+p
+  | Feel free to share the links below with your friends, family, and coworkers on the socials.
+p
+  | To enter: 
+  a(href='https://bit.ly/espn-group-2023') https://bit.ly/espn-group-2023
+p Happy bracketing!
